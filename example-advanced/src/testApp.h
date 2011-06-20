@@ -18,7 +18,8 @@ public:
 	ofxTracker tracker;
 	ofVec2f position;
 	float scale;
-	ofMatrix4x4 orientation;
+	ofVec3f orientation;
+	ofMatrix4x4 rotationMatrix;
 	
 	Mat translation, rotation;
 	ofMatrix4x4 pose;

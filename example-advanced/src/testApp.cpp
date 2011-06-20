@@ -7,7 +7,6 @@ void testApp::setup() {
 	cam.initGrabber(640, 480);
 	
 	tracker.setup();
-	tracker.loadCalibration("calibration/mbp-isight.yml");
 }
 
 void testApp::update() {
@@ -16,12 +15,8 @@ void testApp::update() {
 		tracker.update(toCv(cam.getPixelsRef()));
 		position = tracker.getPosition();
 		scale = tracker.getScale();
-		tracker.getOrientation(orientation);
-		
-		if(tracker.getFound()) {
-			tracker.getCalibratedPose(rotation, translation);
-			pose = makeMatrix(rotation, translation);
-		}
+		orientation = tracker.getOrientation();
+		rotationMatrix = tracker.getRotationMatrix();
 	}
 }
 
@@ -37,7 +32,7 @@ void testApp::draw() {
 		//easyCam.begin();
 		ofSetupScreenOrtho(640, 480, OF_ORIENTATION_UNKNOWN, true, -1000, 1000);
 		ofTranslate(640 / 2, 480 / 2);
-		applyMatrix(pose);
+		applyMatrix(rotationMatrix);
 		ofScale(5,5,5);
 		ofDrawAxis(scale);
 		tracker.getObjectMesh().drawWireframe();

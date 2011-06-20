@@ -27,10 +27,8 @@ public:
 	
 	ofVec2f getPosition() const;
 	float getScale() const; // multiply by ~20-23 to get pixel units (+/-20 units in the x axis, +23/-18 on the y axis)
-	void loadCalibration(string filename);
-	void getCalibratedPose(Mat& rotation, Mat& translation) const;
-	void getOrientation(ofVec3f& eulerAngles) const;
-	void getOrientation(ofMatrix4x4& rotationMatrix) const;
+	ofVec3f getOrientation() const;
+	ofMatrix4x4 getRotationMatrix() const;
 	
 	enum Feature {
 		LEFT_EYEBROW,
@@ -81,6 +79,4 @@ protected:
 	
 	Mat im, gray;
 	Mat objectPoints;
-	
-	Calibration calibration;
 };

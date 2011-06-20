@@ -162,60 +162,19 @@ float ofxTracker::getScale() const {
 	return pose.db(0,0);
 }
 
-void ofxTracker::loadCalibration(string filename) {
-	calibration.load(filename);
-}
-
-void ofxTracker::getCalibratedPose(Mat& rotation, Mat& translation) const {
-	if(failed) {
-		return;
-	}
-	
-	vector<Point3f> objectPoints;
-	vector<Point2f> imagePoints;
-	
-	const int indicesInit[] = {
-		36, 39, // left eye
-		42, 45, // right eye
-		30}; // nose
-	const int indicesSize = 5; // >= 4 for solvePnP
-	const vector<int> indices(indicesInit, &indicesInit[indicesSize]);
-	
-	int n = size();
-	for(int i = 0; i < indices.size(); i++) {
-		int j = indices[i];
-		objectPoints.push_back(toCv(getObjectPoint(j)));
-		imagePoints.push_back(toCv(getImagePoint(j)));
-	}
-	
-	const Mat& cameraMatrix = calibration.getDistortedIntrinsics().getCameraMatrix();
-	const Mat& distCoeffs = calibration.getDistCoeffs();
-	// need to use rotiation from getOrientation as an initial guess
-	
-	Mat guess = Mat(3, 3, CV_64FC1);
-	ofMatrix4x4 orientation;
-	getOrientation(orientation);
-	for(int i = 0; i < 3; i++) {
-		for(int j = 0; j < 3; j++) {
-			guess.db(i, j) = orientation(i, j);
-		}
-	}
-	Rodrigues(guess, rotation);
-	
-	solvePnP(Mat(objectPoints), Mat(imagePoints), cameraMatrix, distCoeffs, rotation, translation);
-}
-
-void ofxTracker::getOrientation(ofVec3f& eulerAngles) const {
+ofVec3f ofxTracker::getOrientation() const {
 	const Mat& pose = tracker._clm._pglobl;
-	eulerAngles.set(pose.db(1, 0), pose.db(2, 0), pose.db(3, 0));
+	ofVec3f euler(pose.db(1, 0), pose.db(2, 0), pose.db(3, 0));
+	return euler;
 }
 
-void ofxTracker::getOrientation(ofMatrix4x4& rotationMatrix) const {
-	ofVec3f euler;
-	getOrientation(euler);
-	rotationMatrix.makeRotationMatrix(ofRadToDeg(euler.x), ofVec3f(1,0,0),
-																		ofRadToDeg(euler.y), ofVec3f(0,1,0),
-																		ofRadToDeg(euler.z), ofVec3f(0,0,1));
+ofMatrix4x4 ofxTracker::getRotationMatrix() const {
+	ofVec3f euler = getOrientation();
+	ofMatrix4x4 matrix;
+	matrix.makeRotationMatrix(ofRadToDeg(euler.x), ofVec3f(1,0,0),
+														ofRadToDeg(euler.y), ofVec3f(0,1,0),
+														ofRadToDeg(euler.z), ofVec3f(0,0,1));
+														return matrix;
 }
 
 ofPolyline ofxTracker::getFeature(Feature feature) const {
