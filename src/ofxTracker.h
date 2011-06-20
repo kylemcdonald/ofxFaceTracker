@@ -39,18 +39,19 @@ public:
 		RIGHT_JAW,
 		JAW,
 		OUTER_MOUTH
+		// INNER_MOUTH // needs a little more love
 	};
 	ofPolyline getFeature(Feature feature) const;
 	
-	//float getGesture() const;
-	// MOUTH_WIDTH, MOUTH_HEIGHT,
-	// MOUTH_WIGGLE, // mouth left/right
-	// LEFT_EYEBROW, RIGHT_EYEBROW, // up/down
-	// LEFT_EYE, RIGHT_EYE // open/close
-	// JAW // openness
-	// NOSTRILS // flaring is subtle but detectable
-	// NOSE_WIGGLE // not everyone can do it
-	// similar, but separate: rotation, position
+	enum Gesture {
+		MOUTH_WIDTH, MOUTH_HEIGHT,
+		LEFT_EYEBROW_HEIGHT,	RIGHT_EYEBROW_HEIGHT,
+		LEFT_EYE_OPENNESS, RIGHT_EYE_OPENNESS,
+		JAW_OPENNESS,
+		// MOUTH_WIGGLE // left/right
+		// NOSE_WIGGLE // left/right
+	};
+	float getGesture(Gesture gesture) const;
 	
 	void setScale(float scale); // need to rename this due to getScale
 	void setIterations(int iterations);

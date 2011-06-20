@@ -201,6 +201,42 @@ ofPolyline ofxTracker::getFeature(Feature feature) const {
 	return result;
 }
 
+float ofxTracker::getGesture(Gesture gesture) const {
+	if(failed) {
+		return 0;
+	}
+	int start, end;
+	switch(gesture) {
+		// left to right of mouth
+		case MOUTH_WIDTH:
+		start = (48);
+		end = (54);
+		break;
+				
+		 // top to bottom of inner mouth
+		case MOUTH_HEIGHT:
+		start = (61);
+		end = (64);
+		break;
+		
+		// based on the bridge of the nose to center of eyebrow
+		// would be more stable with an eye average
+		case LEFT_EYEBROW_HEIGHT:
+		start = (20);
+		end = (27)
+		break;
+		
+		// based on the bridge of the nose to center of eyebrow
+		// would be more stable with an eye average
+		case RIGHT_EYEBROW_HEIGHT:
+		start = (23);
+		end = (27)
+		break;
+	}
+	
+	return (getObjectPoint(start) - getObjectPoint(end)).length();
+}
+
 void ofxTracker::setScale(float scale) {
 	this->scale = scale;
 }
