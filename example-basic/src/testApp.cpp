@@ -24,8 +24,8 @@ void testApp::draw() {
 	ofSetLineWidth(1);
 	tracker.draw();
 	
-	ofPolyline leftEye = tracker.getFeature(ofxTracker::LEFT_EYE);
-	ofPolyline rightEye = tracker.getFeature(ofxTracker::RIGHT_EYE);
+	ofPolyline leftEye = tracker.getFeature(ofxFaceTracker::LEFT_EYE);
+	ofPolyline rightEye = tracker.getFeature(ofxFaceTracker::RIGHT_EYE);
 	
 	ofSetLineWidth(2);
 	ofSetColor(ofColor::red);

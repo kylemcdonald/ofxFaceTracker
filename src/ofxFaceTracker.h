@@ -9,9 +9,9 @@ using namespace FACETRACKER;
 
 #include "ofPolyline.h"
 
-class ofxTracker {
+class ofxFaceTracker {
 public:
-	ofxTracker();
+	ofxFaceTracker();
 	void setup();
 	void update(Mat image);
 	void draw() const;

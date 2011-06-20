@@ -1,11 +1,11 @@
-#include "ofxTracker.h"
+#include "ofxFaceTracker.h"
 
 // can be compiled with OpenMP for even faster threaded execution
 
 #define it at<int>
 #define db at<double>
 
-ofxTracker::ofxTracker()
+ofxFaceTracker::ofxFaceTracker()
 :scale(1)
 ,iterations(5) // [1-25] 1 is fast and inaccurate, 25 is slow and accurate
 ,clamp(3) // [0-4] 1 gives a very loose fit, 4 gives a very tight fit
@@ -16,7 +16,7 @@ ofxTracker::ofxTracker()
 ,frameSkip(-1) // how often to skip frames
 {}
 
-void ofxTracker::setup() {
+void ofxFaceTracker::setup() {
 	wSize1.resize(1);
 	wSize1[0] = 7;
 	
@@ -34,7 +34,7 @@ void ofxTracker::setup() {
 	con = IO::LoadCon(conFile.c_str());  // not being used right now
 }
 
-void ofxTracker::update(Mat image) {	
+void ofxFaceTracker::update(Mat image) {	
 	if(scale == 1) {
 		im = image; 
 	} else {
@@ -64,7 +64,7 @@ void ofxTracker::update(Mat image) {
 	}
 }
 
-void ofxTracker::draw() const {
+void ofxFaceTracker::draw() const {
 	if(failed) {
 		return;
 	}
@@ -77,19 +77,19 @@ void ofxTracker::draw() const {
 	}
 }
 
-void ofxTracker::reset() {
+void ofxFaceTracker::reset() {
 	tracker.FrameReset();
 }
 
-int ofxTracker::size() const {
+int ofxFaceTracker::size() const {
 	return tracker._shape.rows / 2;
 }
 
-bool ofxTracker::getFound() const {
+bool ofxFaceTracker::getFound() const {
 	return !failed;
 }
 
-bool ofxTracker::getVisibility(int i) const {
+bool ofxFaceTracker::getVisibility(int i) const {
 	if(failed) {
 		return false;
 	}
@@ -97,7 +97,7 @@ bool ofxTracker::getVisibility(int i) const {
 	return (visi.it(i, 0) != 0);
 }
 
-ofVec2f ofxTracker::getImagePoint(int i) const {
+ofVec2f ofxFaceTracker::getImagePoint(int i) const {
 	if(failed) {
 		return ofVec2f();
 	}
@@ -106,7 +106,7 @@ ofVec2f ofxTracker::getImagePoint(int i) const {
 	return ofVec2f(shape.db(i, 0), shape.db(i + n, 0)) / scale;
 }
 
-ofVec3f ofxTracker::getObjectPoint(int i) const {
+ofVec3f ofxFaceTracker::getObjectPoint(int i) const {
 	if(failed) {
 		return ofVec3f();
 	}	
@@ -114,7 +114,7 @@ ofVec3f ofxTracker::getObjectPoint(int i) const {
 	return ofVec3f(objectPoints.db(i,0), objectPoints.db(i+n,0), objectPoints.db(i+n+n,0));
 }
 
-ofMesh ofxTracker::getImageMesh() const {
+ofMesh ofxFaceTracker::getImageMesh() const {
 	ofMesh mesh;
 	mesh.setMode(OF_TRIANGLES_MODE);
 	
@@ -133,7 +133,7 @@ ofMesh ofxTracker::getImageMesh() const {
 	return mesh;
 }
 
-ofMesh ofxTracker::getObjectMesh() const {
+ofMesh ofxFaceTracker::getObjectMesh() const {
 	ofMesh mesh;
 	mesh.setMode(OF_TRIANGLES_MODE);
 	
@@ -152,23 +152,23 @@ ofMesh ofxTracker::getObjectMesh() const {
 	return mesh;
 }
 
-ofVec2f ofxTracker::getPosition() const {
+ofVec2f ofxFaceTracker::getPosition() const {
 	const Mat& pose = tracker._clm._pglobl;
 	return ofVec2f(pose.db(4,0), pose.db(5,0));
 }
 
-float ofxTracker::getScale() const {
+float ofxFaceTracker::getScale() const {
 	const Mat& pose = tracker._clm._pglobl;
 	return pose.db(0,0);
 }
 
-ofVec3f ofxTracker::getOrientation() const {
+ofVec3f ofxFaceTracker::getOrientation() const {
 	const Mat& pose = tracker._clm._pglobl;
 	ofVec3f euler(pose.db(1, 0), pose.db(2, 0), pose.db(3, 0));
 	return euler;
 }
 
-ofMatrix4x4 ofxTracker::getRotationMatrix() const {
+ofMatrix4x4 ofxFaceTracker::getRotationMatrix() const {
 	ofVec3f euler = getOrientation();
 	ofMatrix4x4 matrix;
 	matrix.makeRotationMatrix(ofRadToDeg(euler.x), ofVec3f(1,0,0),
@@ -177,7 +177,7 @@ ofMatrix4x4 ofxTracker::getRotationMatrix() const {
 														return matrix;
 }
 
-ofPolyline ofxTracker::getFeature(Feature feature) const {
+ofPolyline ofxFaceTracker::getFeature(Feature feature) const {
 	if(failed) {
 		return ofPolyline();
 	}
@@ -201,7 +201,7 @@ ofPolyline ofxTracker::getFeature(Feature feature) const {
 	return result;
 }
 
-float ofxTracker::getGesture(Gesture gesture) const {
+float ofxFaceTracker::getGesture(Gesture gesture) const {
 	if(failed) {
 		return 0;
 	}
@@ -237,27 +237,27 @@ float ofxTracker::getGesture(Gesture gesture) const {
 	return (getObjectPoint(start) - getObjectPoint(end)).length();
 }
 
-void ofxTracker::setScale(float scale) {
+void ofxFaceTracker::setScale(float scale) {
 	this->scale = scale;
 }
 
-void ofxTracker::setIterations(int iterations) {
+void ofxFaceTracker::setIterations(int iterations) {
 	this->iterations = iterations;
 }
 
-void ofxTracker::setClamp(float clamp) {
+void ofxFaceTracker::setClamp(float clamp) {
 	this->clamp = clamp;
 }
 
-void ofxTracker::setTolerance(float tolerance) {
+void ofxFaceTracker::setTolerance(float tolerance) {
 	this->tolerance = tolerance;
 }
 
-void ofxTracker::setAttempts(int attempts) {
+void ofxFaceTracker::setAttempts(int attempts) {
 	this->attempts = attempts;
 }
 
-void ofxTracker::updateObjectPoints() {
+void ofxFaceTracker::updateObjectPoints() {
 	const Mat& mean = tracker._clm._pdm._M;
 	const Mat& variation = tracker._clm._pdm._V;
 	const Mat& weights = tracker._clm._plocal;

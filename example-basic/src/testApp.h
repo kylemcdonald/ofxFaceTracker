@@ -5,7 +5,7 @@
 using namespace ofxCv;
 using namespace cv;
 
-#include "ofxTracker.h"
+#include "ofxFaceTracker.h"
 
 class testApp : public ofBaseApp {
 public:
@@ -15,5 +15,5 @@ public:
 	void keyPressed(int key);
 	
 	ofVideoGrabber cam;
-	ofxTracker tracker;
+	ofxFaceTracker tracker;
 };
