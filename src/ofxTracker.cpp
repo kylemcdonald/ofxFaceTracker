@@ -205,7 +205,7 @@ float ofxTracker::getGesture(Gesture gesture) const {
 	if(failed) {
 		return 0;
 	}
-	int start, end;
+	int start = 0, end = 0;
 	switch(gesture) {
 		// left to right of mouth
 		case MOUTH_WIDTH:
@@ -223,14 +223,14 @@ float ofxTracker::getGesture(Gesture gesture) const {
 		// would be more stable with an eye average
 		case LEFT_EYEBROW_HEIGHT:
 		start = (20);
-		end = (27)
+		end = (27);
 		break;
 		
 		// based on the bridge of the nose to center of eyebrow
-		// would be more stable with an eye average
+		// would be more stable with an eye average 
 		case RIGHT_EYEBROW_HEIGHT:
 		start = (23);
-		end = (27)
+		end = (27);
 		break;
 	}
 	

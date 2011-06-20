@@ -45,7 +45,7 @@ public:
 	
 	enum Gesture {
 		MOUTH_WIDTH, MOUTH_HEIGHT,
-		LEFT_EYEBROW_HEIGHT,	RIGHT_EYEBROW_HEIGHT,
+		LEFT_EYEBROW_HEIGHT, RIGHT_EYEBROW_HEIGHT,
 		LEFT_EYE_OPENNESS, RIGHT_EYE_OPENNESS,
 		JAW_OPENNESS,
 		// MOUTH_WIGGLE // left/right
@@ -61,7 +61,7 @@ public:
 	
 protected:
 	void updateObjectPoints();
-
+	
 	bool failed;
 	int idx;
 	
