@@ -111,15 +111,12 @@ void testApp::update() {
 			
 			addMessage("/gesture/mouth/width", tracker.getGesture(ofxFaceTracker::MOUTH_WIDTH));
 			addMessage("/gesture/mouth/height", tracker.getGesture(ofxFaceTracker::MOUTH_HEIGHT));
-			
-			// get these four working better
 			addMessage("/gesture/eyebrow/left", tracker.getGesture(ofxFaceTracker::LEFT_EYEBROW_HEIGHT));
 			addMessage("/gesture/eyebrow/right", tracker.getGesture(ofxFaceTracker::RIGHT_EYEBROW_HEIGHT));
 			addMessage("/gesture/eye/left", tracker.getGesture(ofxFaceTracker::LEFT_EYE_OPENNESS));
 			addMessage("/gesture/eye/right", tracker.getGesture(ofxFaceTracker::RIGHT_EYE_OPENNESS));
-			
-			// get this working
 			addMessage("/gesture/jaw", tracker.getGesture(ofxFaceTracker::JAW_OPENNESS));
+			addMessage("/gesture/nostrils", tracker.getGesture(ofxFaceTracker::NOSTRIL_FLARE));
 		} else {
 			addMessage("/found", 0);
 		}
@@ -137,13 +134,14 @@ void testApp::draw() {
 	
 	if(tracker.getFound()) {
 		ofSetLineWidth(1);
-		tracker.getImageMesh().drawWireframe();
+		tracker.draw();
+		//tracker.getImageMesh().drawWireframe();
 		
 		ofSetupScreenOrtho(camWidth, camHeight, OF_ORIENTATION_UNKNOWN, true, -1000, 1000);
 		ofVec2f pos = tracker.getPosition();
 		ofTranslate(pos.x, pos.y);
 		applyMatrix(rotationMatrix);
-		ofScale(5,5,5);
+		ofScale(10,10,10);
 		ofDrawAxis(scale);
 	}
 }

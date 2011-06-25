@@ -219,18 +219,40 @@ float ofxFaceTracker::getGesture(Gesture gesture) const {
 		end = (64);
 		break;
 		
-		// based on the bridge of the nose to center of eyebrow
-		// would be more stable with an eye average
+		// center of the eye to middle of eyebrow
 		case LEFT_EYEBROW_HEIGHT:
-		start = (20);
-		end = (27);
+		start = (38);
+		end = (20);
 		break;
 		
-		// based on the bridge of the nose to center of eyebrow
-		// would be more stable with an eye average 
+		// center of the eye to middle of eyebrow
 		case RIGHT_EYEBROW_HEIGHT:
-		start = (23);
-		end = (27);
+		start = (43);
+		end = (23);
+		break;
+		
+		// upper inner eye to lower outer eye
+		case LEFT_EYE_OPENNESS:
+		start = (38);
+		end = (41);
+		break;
+		
+		// upper inner eye to lower outer eye
+		case RIGHT_EYE_OPENNESS:
+		start = (43);
+		end = (46);
+		break;
+		
+		// nose center to chin center
+		case JAW_OPENNESS:
+		start = (33);
+		end = (8);
+		break;
+		
+		// left side of nose to right side of nose
+		case NOSTRIL_FLARE:
+		start = (31);
+		end = (35);
 		break;
 	}
 	
