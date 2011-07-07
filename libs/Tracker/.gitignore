@@ -1,0 +1,6 @@
+# The following files from Jason Saragih should be placed in this directory:
+# CLM.cc, FDet.cc, PAW.cc, Patch.cc,
+# CLM.h, FDet.h, PAW.h, Patch.h,
+# FCheck.cc, IO.cc, PDM.cc, Tracker.cc,
+# FCheck.h, IO.h, PDM.h, Tracker.h
+*
