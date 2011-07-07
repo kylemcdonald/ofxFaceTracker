@@ -130,12 +130,13 @@ void testApp::update() {
 void testApp::draw() {
 	ofSetColor(255);
 	cam.draw(0, 0);
-	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
 	
 	if(tracker.getFound()) {
+		ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
+	
 		ofSetLineWidth(1);
-		tracker.draw();
-		//tracker.getImageMesh().drawWireframe();
+		//tracker.draw();
+		tracker.getImageMesh().drawWireframe();
 		
 		ofSetupScreenOrtho(camWidth, camHeight, OF_ORIENTATION_UNKNOWN, true, -1000, 1000);
 		ofVec2f pos = tracker.getPosition();
@@ -143,6 +144,8 @@ void testApp::draw() {
 		applyMatrix(rotationMatrix);
 		ofScale(10,10,10);
 		ofDrawAxis(scale);
+	} else {
+		ofDrawBitmapString("searching for face...", 10, 20);
 	}
 }
 

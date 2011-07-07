@@ -116,7 +116,7 @@ ofVec3f ofxFaceTracker::getObjectPoint(int i) const {
 
 ofMesh ofxFaceTracker::getImageMesh() const {
 	ofMesh mesh;
-	mesh.setMode(OF_TRIANGLES_MODE);
+	mesh.setMode(OF_PRIMITIVE_TRIANGLES);
 	
 	if(!failed) {
 		for(int i = 0; i < tri.rows; i++){
@@ -135,7 +135,7 @@ ofMesh ofxFaceTracker::getImageMesh() const {
 
 ofMesh ofxFaceTracker::getObjectMesh() const {
 	ofMesh mesh;
-	mesh.setMode(OF_TRIANGLES_MODE);
+	mesh.setMode(OF_PRIMITIVE_TRIANGLES);
 	
 	if(!failed) {
 		for(int i = 0; i < tri.rows; i++){
