@@ -45,7 +45,7 @@ void testApp::loadSettings() {
 
 void testApp::setup() {
 	ofSetVerticalSync(true);
-	
+	ofSetDataPathRoot("../data/");
 	loadSettings();
 }
 

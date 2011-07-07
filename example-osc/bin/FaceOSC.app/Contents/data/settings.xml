@@ -1,0 +1,24 @@
+<!-- to use a default value, leave the tag commented out -->
+
+<!-- camera input settings -->
+<camera>
+	<!-- <device>0</device> -->
+	<!-- <framerate>30</framerate> -->
+	<width>640</width>
+	<height>480</height>
+</camera>
+
+<!-- face tracker settings -->
+<face>
+	<!-- <scale>1</scale> -->
+	<!-- <iterations>5</iterations> -->
+	<!-- <clamp>3</clamp> -->
+	<!-- <tolerance>.01</tolerance> -->
+	<!-- <attempts>1</attempts> -->
+</face>
+
+<!-- osc output settings -->
+<osc>
+	<host>localhost</host>
+	<port>8338</port>
+</osc>
