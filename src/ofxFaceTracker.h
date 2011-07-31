@@ -14,7 +14,7 @@ public:
 	ofxFaceTracker();
 	void setup();
 	void update(Mat image);
-	void draw();
+	void draw() const;
 	void reset();
 	
 	int size() const;
