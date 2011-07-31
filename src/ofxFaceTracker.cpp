@@ -67,7 +67,7 @@ void ofxFaceTracker::update(Mat image) {
 
 }
 
-void ofxFaceTracker::draw(){
+void ofxFaceTracker::draw() const{
 	if(failed) {
 		return;
 	}
