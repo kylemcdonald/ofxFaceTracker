@@ -14,7 +14,13 @@ ofxFaceTracker::ofxFaceTracker()
 ,failed(true)
 ,fcheck(true) // check for whether the tracking failed
 ,frameSkip(-1) // how often to skip frames
-{}
+,imageMeshDirty(true)
+,objectMeshDirty(true)
+{
+
+	imageMesh.setMode(OF_PRIMITIVE_TRIANGLES);
+	objectMesh.setMode(OF_PRIMITIVE_TRIANGLES);
+}
 
 void ofxFaceTracker::setup() {
 	wSize1.resize(1);
@@ -25,7 +31,7 @@ void ofxFaceTracker::setup() {
 	wSize2[1] = 9;
 	wSize2[2] = 7;
 	
-	string ftFile = ofToDataPath("model/face2.tracker");
+	string ftFile = ofToDataPath("model/face.tracker");
 	string triFile = ofToDataPath("model/face.tri");
 	string conFile = ofToDataPath("model/face.con");
 	
@@ -62,6 +68,9 @@ void ofxFaceTracker::update(Mat image) {
 			failed = true;
 		}
 	}
+
+	objectMeshDirty = true;
+	imageMeshDirty = true;
 }
 
 void ofxFaceTracker::draw() const {
@@ -114,42 +123,68 @@ ofVec3f ofxFaceTracker::getObjectPoint(int i) const {
 	return ofVec3f(objectPoints.db(i,0), objectPoints.db(i+n,0), objectPoints.db(i+n+n,0));
 }
 
-ofMesh ofxFaceTracker::getImageMesh() const {
-	ofMesh mesh;
-	mesh.setMode(OF_PRIMITIVE_TRIANGLES);
+ofMesh & ofxFaceTracker::getImageMesh() const{
+
+	// trick to maintain const correctness, we are only changing the cache
+	ofMesh & nonConstMesh = const_cast<ofMesh&>(imageMesh);
 	
-	if(!failed) {
+	if(!failed && imageMeshDirty) {
+		nonConstMesh.clear();
 		for(int i = 0; i < tri.rows; i++){
 			if(getVisibility(tri.it(i,0)) &&
 				 getVisibility(tri.it(i,1)) &&
 				 getVisibility(tri.it(i,2))) {
-				mesh.addVertex(getImagePoint(tri.it(i,0)));
-				mesh.addVertex(getImagePoint(tri.it(i,1)));
-				mesh.addVertex(getImagePoint(tri.it(i,2)));
+
+				ofVec3f p1 = getImagePoint(tri.it(i,0));
+				ofVec3f p2 = getImagePoint(tri.it(i,1));
+				ofVec3f p3 = getImagePoint(tri.it(i,2));
+
+				nonConstMesh.addVertex(p1);
+				nonConstMesh.addVertex(p2);
+				nonConstMesh.addVertex(p3);
+
+				nonConstMesh.addTexCoord(p1);
+				nonConstMesh.addTexCoord(p2);
+				nonConstMesh.addTexCoord(p3);
 			}
 		}
+		bool & flag = const_cast<bool&> (imageMeshDirty);
+		flag = false;
 	}
 	
-	return mesh;
+	return nonConstMesh;
 }
 
-ofMesh ofxFaceTracker::getObjectMesh() const {
-	ofMesh mesh;
-	mesh.setMode(OF_PRIMITIVE_TRIANGLES);
+ofMesh & ofxFaceTracker::getObjectMesh() const{
+
+	// trick to maintain const correctness, we are only changing the cache
+	ofMesh & nonConstMesh = const_cast<ofMesh&>(objectMesh);
 	
-	if(!failed) {
+	if(!failed && objectMeshDirty) {
+		nonConstMesh.clear();
 		for(int i = 0; i < tri.rows; i++){
 			if(getVisibility(tri.it(i,0)) &&
 				 getVisibility(tri.it(i,1)) &&
 				 getVisibility(tri.it(i,2))) {
-				mesh.addVertex(getObjectPoint(tri.it(i,0)));
-				mesh.addVertex(getObjectPoint(tri.it(i,1)));
-				mesh.addVertex(getObjectPoint(tri.it(i,2)));
+
+				ofVec3f p1 = getObjectPoint(tri.it(i,0));
+				ofVec3f p2 = getObjectPoint(tri.it(i,1));
+				ofVec3f p3 = getObjectPoint(tri.it(i,2));
+
+				nonConstMesh.addVertex(p1);
+				nonConstMesh.addVertex(p2);
+				nonConstMesh.addVertex(p3);
+
+				nonConstMesh.addTexCoord(p1);
+				nonConstMesh.addTexCoord(p2);
+				nonConstMesh.addTexCoord(p3);
 			}
 		}
+		bool & flag = const_cast<bool&> (objectMeshDirty);
+		flag = false;
 	}
 	
-	return mesh;
+	return nonConstMesh;
 }
 
 ofVec2f ofxFaceTracker::getPosition() const {

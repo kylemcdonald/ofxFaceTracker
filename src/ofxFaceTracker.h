@@ -22,8 +22,8 @@ public:
 	bool getVisibility(int i) const;
 	ofVec2f getImagePoint(int i) const; // on the 2d screen
 	ofVec3f getObjectPoint(int i) const; // in a normalized 3d space
-	ofMesh getImageMesh() const; // on the 2d screen
-	ofMesh getObjectMesh() const; // in a normalized 3d space
+	ofMesh & getImageMesh() const; // on the 2d screen
+	ofMesh & getObjectMesh() const; // in a normalized 3d space
 	
 	ofVec2f getPosition() const;
 	float getScale() const; // multiply by ~20-23 to get pixel units (+/-20 units in the x axis, +23/-18 on the y axis)
@@ -81,4 +81,7 @@ protected:
 	
 	Mat im, gray;
 	Mat objectPoints;
+
+	ofMesh imageMesh, objectMesh;
+	bool imageMeshDirty, objectMeshDirty;
 };
