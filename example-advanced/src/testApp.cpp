@@ -12,7 +12,7 @@ void testApp::setup() {
 void testApp::update() {
 	cam.update();
 	if(cam.isFrameNew()) {
-		tracker.update(toCv(cam.getPixelsRef()));
+		tracker.update(toCv(cam));
 		position = tracker.getPosition();
 		scale = tracker.getScale();
 		orientation = tracker.getOrientation();

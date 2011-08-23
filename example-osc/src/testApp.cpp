@@ -95,7 +95,7 @@ void testApp::sendBundle() {
 void testApp::update() {
 	cam.update();
 	if(cam.isFrameNew()) {
-		tracker.update(toCv(cam.getPixelsRef()));
+		tracker.update(toCv(cam));
 		
 		clearBundle();
 		

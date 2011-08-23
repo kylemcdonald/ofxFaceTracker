@@ -19,7 +19,6 @@
 		271CDAB213B23BB300854892 /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 271CDA4C13B23BB200854892 /* opencv.a */; };
 		271CDABC13B23BB400854892 /* Calibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271CDA5913B23BB200854892 /* Calibration.cpp */; };
 		271CDABD13B23BB400854892 /* Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271CDA5B13B23BB200854892 /* Distance.cpp */; };
-		271CDABE13B23BB400854892 /* FloatImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271CDA5D13B23BB200854892 /* FloatImage.cpp */; };
 		271CDABF13B23BB400854892 /* ofxCv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271CDA5F13B23BB200854892 /* ofxCv.cpp */; };
 		279B456113B3A6970079859E /* osc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 279B454C13B3A6970079859E /* osc.a */; };
 		279B456513B3A6970079859E /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279B455513B3A6970079859E /* ofxOscBundle.cpp */; };
@@ -80,7 +79,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		271CD98F13B23BB200854892 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../libs/Tracker/.gitignore; sourceTree = SOURCE_ROOT; };
 		271CD99013B23BB200854892 /* CLM.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CLM.cc; path = ../libs/Tracker/CLM.cc; sourceTree = SOURCE_ROOT; };
 		271CD99113B23BB200854892 /* CLM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLM.h; path = ../libs/Tracker/CLM.h; sourceTree = SOURCE_ROOT; };
 		271CD99213B23BB200854892 /* FCheck.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FCheck.cc; path = ../libs/Tracker/FCheck.cc; sourceTree = SOURCE_ROOT; };
@@ -170,8 +168,6 @@
 		271CDA5A13B23BB200854892 /* Calibration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Calibration.h; path = ../../ofxCv/src/Calibration.h; sourceTree = SOURCE_ROOT; };
 		271CDA5B13B23BB200854892 /* Distance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Distance.cpp; path = ../../ofxCv/src/Distance.cpp; sourceTree = SOURCE_ROOT; };
 		271CDA5C13B23BB200854892 /* Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Distance.h; path = ../../ofxCv/src/Distance.h; sourceTree = SOURCE_ROOT; };
-		271CDA5D13B23BB200854892 /* FloatImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FloatImage.cpp; path = ../../ofxCv/src/FloatImage.cpp; sourceTree = SOURCE_ROOT; };
-		271CDA5E13B23BB200854892 /* FloatImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FloatImage.h; path = ../../ofxCv/src/FloatImage.h; sourceTree = SOURCE_ROOT; };
 		271CDA5F13B23BB200854892 /* ofxCv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxCv.cpp; path = ../../ofxCv/src/ofxCv.cpp; sourceTree = SOURCE_ROOT; };
 		271CDA6013B23BB200854892 /* ofxCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxCv.h; path = ../../ofxCv/src/ofxCv.h; sourceTree = SOURCE_ROOT; };
 		279B453413B3A6970079859E /* IpEndpointName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IpEndpointName.h; sourceTree = "<group>"; };
@@ -276,7 +272,6 @@
 		271CD98E13B23BB200854892 /* Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				271CD98F13B23BB200854892 /* .gitignore */,
 				271CD99013B23BB200854892 /* CLM.cc */,
 				271CD99113B23BB200854892 /* CLM.h */,
 				271CD99213B23BB200854892 /* FCheck.cc */,
@@ -561,8 +556,6 @@
 				271CDA5A13B23BB200854892 /* Calibration.h */,
 				271CDA5B13B23BB200854892 /* Distance.cpp */,
 				271CDA5C13B23BB200854892 /* Distance.h */,
-				271CDA5D13B23BB200854892 /* FloatImage.cpp */,
-				271CDA5E13B23BB200854892 /* FloatImage.h */,
 				271CDA5F13B23BB200854892 /* ofxCv.cpp */,
 				271CDA6013B23BB200854892 /* ofxCv.h */,
 			);
@@ -879,7 +872,6 @@
 				271CDA6913B23BB300854892 /* ofxFaceTracker.cpp in Sources */,
 				271CDABC13B23BB400854892 /* Calibration.cpp in Sources */,
 				271CDABD13B23BB400854892 /* Distance.cpp in Sources */,
-				271CDABE13B23BB400854892 /* FloatImage.cpp in Sources */,
 				271CDABF13B23BB400854892 /* ofxCv.cpp in Sources */,
 				279B456513B3A6970079859E /* ofxOscBundle.cpp in Sources */,
 				279B456613B3A6970079859E /* ofxOscMessage.cpp in Sources */,
