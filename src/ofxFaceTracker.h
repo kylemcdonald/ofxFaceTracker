@@ -13,7 +13,7 @@ class ofxFaceTracker {
 public:
 	ofxFaceTracker();
 	void setup();
-	void update(Mat image);
+	bool update(Mat image);
 	void draw() const;
 	void reset();
 	
@@ -59,6 +59,8 @@ public:
 	void setClamp(float clamp);
 	void setTolerance(float tolerance);
 	void setAttempts(int attempts);
+	
+	Tracker& getTracker();
 	
 protected:
 	void updateObjectPoints();

@@ -36,7 +36,7 @@ void ofxFaceTracker::setup() {
 	con = IO::LoadCon(conFile.c_str());  // not being used right now
 }
 
-void ofxFaceTracker::update(Mat image) {	
+bool ofxFaceTracker::update(Mat image) {	
 	if(scale == 1) {
 		im = image; 
 	} else {
@@ -64,7 +64,7 @@ void ofxFaceTracker::update(Mat image) {
 			failed = true;
 		}
 	}
-
+	return !failed;
 }
 
 void ofxFaceTracker::draw() const{
@@ -297,4 +297,8 @@ void ofxFaceTracker::updateObjectPoints() {
 	const Mat& variation = tracker._clm._pdm._V;
 	const Mat& weights = tracker._clm._plocal;
 	objectPoints = mean + variation * weights;
+}
+
+Tracker& ofxFaceTracker::getTracker() {
+	return tracker;
 }
