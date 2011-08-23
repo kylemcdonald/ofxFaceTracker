@@ -14,8 +14,8 @@ string Expression::getDescription() const {
 	return description;
 }
 
-void Expression::addSample(Mat& sample) {
-	samples.push_back(sample);
+void Expression::addSample(const Mat& sample) {
+	samples.push_back(sample.clone());
 }
 
 Mat& Expression::getExample(unsigned int i) {

@@ -302,6 +302,6 @@ void ofxFaceTracker::updateObjectPoints() {
 	objectPoints = mean + variation * weights;
 }
 
-Tracker& ofxFaceTracker::getTracker() {
-	return tracker;
+const Mat& ofxFaceTracker::getObjectPoints() const {
+	return objectPoints;
 }

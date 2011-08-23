@@ -3,18 +3,16 @@
 #include "ofxCv.h"
 #include "Expression.h"
 
-/*
-	sigma describes the classification sharpness. A larger sigma means the
-	boundary between different expressions is more blurry. It won't change
-	the classification, but will give you probabilities that are smoother.
-*/
+#include "ofxFaceTracker.h"
+class ofxFaceTracker;
 
 class ExpressionClassifier {
 public:
 	ExpressionClassifier();
 	void save(string directory) const;
 	void load(string directory);
-	unsigned int classify(cv::Mat& data);
+	unsigned int classify(const ofxFaceTracker& tracker); // helper method
+	unsigned int classify(const cv::Mat& data); // slightly more direct
 	unsigned int getPrimaryExpression() const;
 	double getProbability(unsigned int i) const;
 	string getDescription(unsigned int i) const;
@@ -24,7 +22,8 @@ public:
 	unsigned int size() const;
 	void addExpression(string description = "");
 	void addExpression(Expression& expression);
-	void addSample(cv::Mat& sample);
+	void addSample(const ofxFaceTracker& tracker); // helper method
+	void addSample(const cv::Mat& sample); // slightly more direct
 	void reset();
 protected:
 	vector<Expression> expressions;

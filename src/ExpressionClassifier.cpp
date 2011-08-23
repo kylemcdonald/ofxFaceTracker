@@ -2,6 +2,13 @@
 
 using namespace cv;
 
+
+/*
+	sigma describes the classification sharpness. A larger sigma means the
+	boundary between different expressions is more blurry. It won't change
+	the classification, but will give you probabilities that are smoother.
+*/
+
 ExpressionClassifier::ExpressionClassifier()
 :sigma(10.0) {
 }
@@ -26,9 +33,13 @@ void ExpressionClassifier::load(string directory) {
 	}
 }
 
-unsigned int ExpressionClassifier::classify(Mat& data) {
+unsigned int ExpressionClassifier::classify(const ofxFaceTracker& tracker) {
+	return classify(tracker.getObjectPoints());
+}
+
+unsigned int ExpressionClassifier::classify(const Mat& data) {
 	Mat cur = data.clone();
-	//norm(cur);
+	norm(cur);
 	int n = size();
 	probability.resize(n);
 	if(n == 0) {
@@ -108,7 +119,11 @@ void ExpressionClassifier::addExpression(Expression& expression) {
 	expressions.push_back(expression);
 }
 
-void ExpressionClassifier::addSample(Mat& sample) {
+void ExpressionClassifier::addSample(const ofxFaceTracker& tracker) {
+	addSample(tracker.getObjectPoints());
+}
+
+void ExpressionClassifier::addSample(const Mat& sample) {
 	if(size() == 0) {
 		addExpression();
 	}

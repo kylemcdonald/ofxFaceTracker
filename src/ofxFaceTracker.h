@@ -19,6 +19,7 @@ public:
 	ofVec3f getObjectPoint(int i) const; // in a normalized 3d space
 	ofMesh getImageMesh() const; // on the 2d screen
 	ofMesh getObjectMesh() const; // in a normalized 3d space
+	const cv::Mat& getObjectPoints() const; // object points as a Mat, for classifier
 	
 	ofVec2f getPosition() const;
 	float getScale() const; // multiply by ~20-23 to get pixel units (+/-20 units in the x axis, +23/-18 on the y axis)
@@ -55,8 +56,6 @@ public:
 	void setTolerance(float tolerance);
 	void setAttempts(int attempts);
 	
-	FACETRACKER::Tracker& getTracker();
-	
 protected:
 	void updateObjectPoints();
 	
@@ -67,8 +66,7 @@ protected:
 	double scale;
 	int frameSkip;
 	
-	vector<int> wSize1;
-	vector<int> wSize2;
+	vector<int> wSize1, wSize2;
 	int iterations;
 	int attempts;
 	double clamp, tolerance;

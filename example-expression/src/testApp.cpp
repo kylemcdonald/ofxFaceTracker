@@ -17,16 +17,14 @@ void testApp::update() {
 	cam.update();
 	if(cam.isFrameNew()) {
 		if(tracker.update(toCv(cam))) {
-			Tracker& model = tracker.getTracker();
-			Mat d = model._clm._pdm._M + model._clm._pdm._V * model._clm._plocal;
-			classifier.classify(d);
+			classifier.classify(tracker.getObjectPoints());
 			if(addExpression) {
 				addExpression = false;
 				classifier.addExpression();
 			}			
 			if(addSample) {
 				addSample = false;
-				classifier.addSample(d);
+				classifier.addSample(tracker.getObjectPoints());
 			}				
 			if(loadData) {
 				loadData = false;
