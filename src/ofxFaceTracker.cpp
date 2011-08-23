@@ -1,5 +1,9 @@
 #include "ofxFaceTracker.h"
 
+using namespace ofxCv;
+using namespace cv;
+using namespace FACETRACKER;
+
 // can be compiled with OpenMP for even faster threaded execution
 
 #define it at<int>
@@ -15,7 +19,6 @@ ofxFaceTracker::ofxFaceTracker()
 ,fcheck(true) // check for whether the tracking failed
 ,frameSkip(-1) // how often to skip frames
 {
-
 }
 
 void ofxFaceTracker::setup() {

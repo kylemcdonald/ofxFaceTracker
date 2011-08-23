@@ -6,8 +6,7 @@ using namespace ofxCv;
 using namespace cv;
 
 #include "ofxFaceTracker.h"
-#include "Expression.h"
-#include "ExpressionClassifier.h"
+using namespace FACETRACKER;
 
 class testApp : public ofBaseApp {
 public:

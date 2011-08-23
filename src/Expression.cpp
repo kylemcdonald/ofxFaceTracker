@@ -1,5 +1,7 @@
 #include "Expression.h"
 
+using namespace cv;
+
 Expression::Expression(string description) {
 	this->description = description;
 }

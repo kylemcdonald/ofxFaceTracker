@@ -1,5 +1,7 @@
 #include "ExpressionClassifier.h"
 
+using namespace cv;
+
 ExpressionClassifier::ExpressionClassifier()
 :sigma(10.0) {
 }

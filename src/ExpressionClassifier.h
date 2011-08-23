@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ofxFaceTracker.h"
+#include "ofxCv.h"
 #include "Expression.h"
 
 /*
@@ -14,7 +14,7 @@ public:
 	ExpressionClassifier();
 	void save(string directory) const;
 	void load(string directory);
-	unsigned int classify(Mat& data);
+	unsigned int classify(cv::Mat& data);
 	unsigned int getPrimaryExpression() const;
 	double getProbability(unsigned int i) const;
 	string getDescription(unsigned int i) const;
@@ -24,7 +24,7 @@ public:
 	unsigned int size() const;
 	void addExpression(string description = "");
 	void addExpression(Expression& expression);
-	void addSample(Mat& sample);
+	void addSample(cv::Mat& sample);
 	void reset();
 protected:
 	vector<Expression> expressions;

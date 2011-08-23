@@ -1,19 +1,14 @@
 #pragma once
 
 #include "ofxCv.h"
-using namespace ofxCv;
-using namespace cv;
-
 #include "Tracker.h"
-using namespace FACETRACKER;
-
-#include "ofPolyline.h"
+#include "ExpressionClassifier.h"
 
 class ofxFaceTracker {
 public:
 	ofxFaceTracker();
 	void setup();
-	bool update(Mat image);
+	bool update(cv::Mat image);
 	void draw() const;
 	void reset();
 	
@@ -60,7 +55,7 @@ public:
 	void setTolerance(float tolerance);
 	void setAttempts(int attempts);
 	
-	Tracker& getTracker();
+	FACETRACKER::Tracker& getTracker();
 	
 protected:
 	void updateObjectPoints();
@@ -78,9 +73,9 @@ protected:
 	int attempts;
 	double clamp, tolerance;
 	
-	Tracker tracker;
-	Mat tri, con;
+	FACETRACKER::Tracker tracker;
+	cv::Mat tri, con;
 	
-	Mat im, gray;
-	Mat objectPoints;
+	cv::Mat im, gray;
+	cv::Mat objectPoints;
 };
