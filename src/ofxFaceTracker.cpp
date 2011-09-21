@@ -120,6 +120,12 @@ ofVec3f ofxFaceTracker::getObjectPoint(int i) const {
 	return ofVec3f(objectPoints.db(i,0), objectPoints.db(i+n,0), objectPoints.db(i+n+n,0));
 }
 
+ofVec3f ofxFaceTracker::getMeanObjectPoint(int i) const {
+	int n = objectPoints.rows / 3;
+	const Mat& mean = tracker._clm._pdm._M;
+	return ofVec3f(mean.db(i,0), mean.db(i+n,0), mean.db(i+n+n,0));
+}
+
 ofMesh ofxFaceTracker::getImageMesh() const{
 	ofMesh imageMesh;
 	for(int i = 0; i < tri.rows; i++){
@@ -134,7 +140,7 @@ ofMesh ofxFaceTracker::getImageMesh() const{
 			imageMesh.addVertex(p1);
 			imageMesh.addVertex(p2);
 			imageMesh.addVertex(p3);
-
+			
 			imageMesh.addTexCoord(p1);
 			imageMesh.addTexCoord(p2);
 			imageMesh.addTexCoord(p3);
@@ -158,11 +164,42 @@ ofMesh ofxFaceTracker::getObjectMesh() const {
 				objectMesh.addVertex(p1);
 				objectMesh.addVertex(p2);
 				objectMesh.addVertex(p3);
+					
+				ofVec3f t1 = getImagePoint(tri.it(i,0));
+				ofVec3f t2 = getImagePoint(tri.it(i,1));
+				ofVec3f t3 = getImagePoint(tri.it(i,2));
 
-				objectMesh.addTexCoord(p1);
-				objectMesh.addTexCoord(p2);
-				objectMesh.addTexCoord(p3);
+				objectMesh.addTexCoord(t1);
+				objectMesh.addTexCoord(t2);
+				objectMesh.addTexCoord(t3);
 			}
+		}
+	}
+	return objectMesh;
+}
+
+ofMesh ofxFaceTracker::getMeanObjectMesh() const {
+	ofMesh objectMesh;
+	for(int i = 0; i < tri.rows; i++){
+		if(getVisibility(tri.it(i,0)) &&
+			 getVisibility(tri.it(i,1)) &&
+			 getVisibility(tri.it(i,2))) {
+			
+			ofVec3f p1 = getMeanObjectPoint(tri.it(i,0));
+			ofVec3f p2 = getMeanObjectPoint(tri.it(i,1));
+			ofVec3f p3 = getMeanObjectPoint(tri.it(i,2));
+			
+			objectMesh.addVertex(p1);
+			objectMesh.addVertex(p2);
+			objectMesh.addVertex(p3);
+			
+			ofVec3f t1 = getImagePoint(tri.it(i,0));
+			ofVec3f t2 = getImagePoint(tri.it(i,1));
+			ofVec3f t3 = getImagePoint(tri.it(i,2));
+			
+			objectMesh.addTexCoord(t1);
+			objectMesh.addTexCoord(t2);
+			objectMesh.addTexCoord(t3);
 		}
 	}
 	return objectMesh;

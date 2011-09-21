@@ -17,8 +17,10 @@ public:
 	bool getVisibility(int i) const;
 	ofVec2f getImagePoint(int i) const; // on the 2d screen
 	ofVec3f getObjectPoint(int i) const; // in a normalized 3d space
+	ofVec3f getMeanObjectPoint(int i) const; // in a normalized 3d space
 	ofMesh getImageMesh() const; // on the 2d screen
 	ofMesh getObjectMesh() const; // in a normalized 3d space
+	ofMesh getMeanObjectMesh() const; // ideal, in a normalized 3d space
 	const cv::Mat& getObjectPoints() const; // object points as a Mat, for classifier
 	
 	ofVec2f getPosition() const;
