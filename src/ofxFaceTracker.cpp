@@ -181,26 +181,21 @@ ofMesh ofxFaceTracker::getObjectMesh() const {
 ofMesh ofxFaceTracker::getMeanObjectMesh() const {
 	ofMesh objectMesh;
 	for(int i = 0; i < tri.rows; i++){
-		if(getVisibility(tri.it(i,0)) &&
-			 getVisibility(tri.it(i,1)) &&
-			 getVisibility(tri.it(i,2))) {
-			
-			ofVec3f p1 = getMeanObjectPoint(tri.it(i,0));
-			ofVec3f p2 = getMeanObjectPoint(tri.it(i,1));
-			ofVec3f p3 = getMeanObjectPoint(tri.it(i,2));
-			
-			objectMesh.addVertex(p1);
-			objectMesh.addVertex(p2);
-			objectMesh.addVertex(p3);
-			
-			ofVec3f t1 = getImagePoint(tri.it(i,0));
-			ofVec3f t2 = getImagePoint(tri.it(i,1));
-			ofVec3f t3 = getImagePoint(tri.it(i,2));
-			
-			objectMesh.addTexCoord(t1);
-			objectMesh.addTexCoord(t2);
-			objectMesh.addTexCoord(t3);
-		}
+		ofVec3f p1 = getMeanObjectPoint(tri.it(i,0));
+		ofVec3f p2 = getMeanObjectPoint(tri.it(i,1));
+		ofVec3f p3 = getMeanObjectPoint(tri.it(i,2));
+		
+		objectMesh.addVertex(p1);
+		objectMesh.addVertex(p2);
+		objectMesh.addVertex(p3);
+		
+		ofVec3f t1 = getImagePoint(tri.it(i,0));
+		ofVec3f t2 = getImagePoint(tri.it(i,1));
+		ofVec3f t3 = getImagePoint(tri.it(i,2));
+		
+		objectMesh.addTexCoord(t1);
+		objectMesh.addTexCoord(t2);
+		objectMesh.addTexCoord(t3);
 	}
 	return objectMesh;
 }
