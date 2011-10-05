@@ -4,6 +4,9 @@ using namespace ofxCv;
 using namespace cv;
 using namespace FACETRACKER;
 
+
+static int innerMouthPoints[8] = {48, 60,61,62,54,63,64,65};
+
 // can be compiled with OpenMP for even faster threaded execution
 
 #define it at<int>
@@ -225,10 +228,62 @@ ofMatrix4x4 ofxFaceTracker::getRotationMatrix() const {
 														return matrix;
 }
 
+ofPolyline ofxFaceTracker::getFeatureMean(Feature feature) const {
+	if(failed) {
+		return ofPolyline();
+	}
+	
+	// inner mouth is not in sequential order so do it and return, or do the others. 	
+	if (feature == INNER_MOUTH){
+		ofPolyline result;
+		for (int i = 0; i < 8; i++){
+			int who = innerMouthPoints[i];
+			if (getVisibility(who)){
+				result.addVertex(getMeanObjectPoint(who));
+			}
+		}
+		return result;
+	}
+	
+	int begin, end;
+	switch(feature) {
+		case LEFT_JAW: begin = 0; end = 9; break;
+		case RIGHT_JAW: begin = 8; end = 17; break;
+		case JAW: begin = 0; end = 17; break;
+		case LEFT_EYEBROW: begin = 17; end = 22; break;
+		case RIGHT_EYEBROW: begin = 22; end = 27; break;
+		case LEFT_EYE: begin = 36; end = 42; break;
+		case RIGHT_EYE: begin = 42; end = 48; break;
+		case OUTER_MOUTH: begin = 48; end = 60; break;
+	}
+	ofPolyline result;
+	for(int i = begin; i < end; i++) {
+		if(getVisibility(i)) {
+			result.addVertex(getMeanObjectPoint(i));
+		}
+	}
+	return result;
+	
+}
+
+
 ofPolyline ofxFaceTracker::getFeature(Feature feature) const {
 	if(failed) {
 		return ofPolyline();
 	}
+	
+	// inner mouth is not in sequential order so do it and return, or do the others. 	
+	if (feature == INNER_MOUTH){
+		ofPolyline result;
+		for (int i = 0; i < 8; i++){
+			int who = innerMouthPoints[i];
+			if (getVisibility(who)){
+				result.addVertex(getImagePoint(who));
+			}
+		}
+		return result;
+	}
+	
 	int begin, end;
 	switch(feature) {
 		case LEFT_JAW: begin = 0; end = 9; break;

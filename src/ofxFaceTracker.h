@@ -36,10 +36,11 @@ public:
 		LEFT_JAW,
 		RIGHT_JAW,
 		JAW,
-		OUTER_MOUTH
-		// INNER_MOUTH // needs a little more love
+		OUTER_MOUTH,
+		INNER_MOUTH 
 	};
 	ofPolyline getFeature(Feature feature) const;
+	ofPolyline getFeatureMean(Feature feature) const;
 	
 	enum Gesture {
 		MOUTH_WIDTH, MOUTH_HEIGHT,
