@@ -30,20 +30,30 @@ public:
 	int size() const;
 	bool getFound() const;
 	bool getVisibility(int i) const;
+	
 	ofVec2f getImagePoint(int i) const; // on the 2d screen
-	ofVec3f getObjectPoint(int i) const; // in a normalized 3d space
-	ofVec3f getMeanObjectPoint(int i) const; // in a normalized 3d space
-	ofMesh getImageMesh() const; // on the 2d screen
+	ofVec3f getObjectPoint(int i) const; // 3d, expression, no rotation or translation
+	ofVec3f getMeanObjectPoint(int i) const; // 3d, no expression, no rotation or translation
+	
+	ofMesh getImageMesh(bool useInvisible = false) const; // on the 2d screen
 	ofMesh getObjectMesh() const; // in a normalized 3d space
 	ofMesh getMeanObjectMesh() const; // ideal, in a normalized 3d space
-	const cv::Mat& getObjectPoints() const; // object points as a Mat, for classifier
+	const Mat& getObjectPoints() const; // object points as a Mat, for classifier
 	
 	ofMesh getMeshFromVertices(vector<Point3d>& vertices);
 	
-	ofVec2f getPosition() const;
+	ofVec2f getPosition() const; // on the 2d screen
 	float getScale() const; // multiply by ~20-23 to get pixel units (+/-20 units in the x axis, +23/-18 on the y axis)
 	ofVec3f getOrientation() const;
 	ofMatrix4x4 getRotationMatrix() const;
+	
+	enum Direction {
+		FACING_FORWARD,
+		FACING_LEFT,
+		FACING_RIGHT,
+		FACING_UNKNOWN
+	};
+	Direction getDirection() const;
 	
 	enum Feature {
 		LEFT_EYEBROW,
@@ -65,8 +75,6 @@ public:
 		LEFT_EYE_OPENNESS, RIGHT_EYE_OPENNESS,
 		JAW_OPENNESS,
 		NOSTRIL_FLARE
-		// MOUTH_WIGGLE // left/right
-		// NOSE_WIGGLE // left/right
 	};
 	float getGesture(Gesture gesture) const;
 	
@@ -78,9 +86,10 @@ public:
 	
 protected:
 	void updateObjectPoints();
+	void addTriangleIndices(ofMesh& mesh, bool useInvisible = false) const;
 	
 	bool failed;
-	int idx;
+	int currentView;
 	
 	bool fcheck;
 	double scale;

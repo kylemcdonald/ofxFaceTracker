@@ -1,9 +1,6 @@
 #include "ofxFaceTracker.h"
 
-using namespace ofxCv;
-using namespace cv;
 using namespace FACETRACKER;
-
 
 static int innerMouthPoints[8] = {48, 60,61,62,54,63,64,65};
 
@@ -61,7 +58,7 @@ bool ofxFaceTracker::update(Mat image) {
 		}
 		
 		if(tracker.Track(gray, wSize, frameSkip, iterations, clamp, tolerance, fcheck) == 0) {
-			idx = tracker._clm.GetViewIdx();
+			currentView = tracker._clm.GetViewIdx();
 			failed = false;
 			tryAgain = false;
 			updateObjectPoints();
@@ -102,7 +99,7 @@ bool ofxFaceTracker::getVisibility(int i) const {
 	if(failed) {
 		return false;
 	}
-	const Mat& visi = tracker._clm._visi[idx];
+	const Mat& visi = tracker._clm._visi[currentView];
 	return (visi.it(i, 0) != 0);
 }
 
@@ -129,27 +126,15 @@ ofVec3f ofxFaceTracker::getMeanObjectPoint(int i) const {
 	return ofVec3f(mean.db(i,0), mean.db(i+n,0), mean.db(i+n+n,0));
 }
 
-ofMesh ofxFaceTracker::getImageMesh() const{
-	ofMesh imageMesh;
-	for(int i = 0; i < tri.rows; i++){
-		if(getVisibility(tri.it(i,0)) &&
-			 getVisibility(tri.it(i,1)) &&
-			 getVisibility(tri.it(i,2))) {
-
-			ofVec3f p1 = getImagePoint(tri.it(i,0));
-			ofVec3f p2 = getImagePoint(tri.it(i,1));
-			ofVec3f p3 = getImagePoint(tri.it(i,2));
-
-			imageMesh.addVertex(p1);
-			imageMesh.addVertex(p2);
-			imageMesh.addVertex(p3);
-			
-			imageMesh.addTexCoord(p1);
-			imageMesh.addTexCoord(p2);
-			imageMesh.addTexCoord(p3);
-		}
+ofMesh ofxFaceTracker::getImageMesh(bool useInvisible) const{
+	ofMesh mesh;
+	int n = size();
+	for(int i = 0; i < n; i++) {
+		mesh.addVertex(getImagePoint(i));
 	}
-	return imageMesh;
+	mesh.setMode(OF_PRIMITIVE_TRIANGLES);
+	addTriangleIndices(mesh, useInvisible);
+	return mesh;
 }
 
 ofMesh ofxFaceTracker::getObjectMesh() const {
@@ -246,6 +231,17 @@ ofMatrix4x4 ofxFaceTracker::getRotationMatrix() const {
 														ofRadToDeg(euler.y), ofVec3f(0,1,0),
 														ofRadToDeg(euler.z), ofVec3f(0,0,1));
 														return matrix;
+}
+
+ofxFaceTracker::Direction ofxFaceTracker::getDirection() const {
+	if(failed) {
+		return FACING_UNKNOWN;
+	}
+	switch(currentView) {
+		case 0: return FACING_FORWARD;
+		case 1: return FACING_LEFT;
+		case 2: return FACING_RIGHT;
+	}
 }
 
 ofPolyline ofxFaceTracker::getFeatureMean(Feature feature) const {
@@ -407,6 +403,19 @@ void ofxFaceTracker::updateObjectPoints() {
 	const Mat& variation = tracker._clm._pdm._V;
 	const Mat& weights = tracker._clm._plocal;
 	objectPoints = mean + variation * weights;
+}
+
+void ofxFaceTracker::addTriangleIndices(ofMesh& mesh, bool useInvisible) const {
+	int in = tri.rows;
+	for(int i = 0; i < tri.rows; i++) {
+		int i0 = tri.it(i, 0), i1 = tri.it(i, 1), i2 = tri.it(i, 2);
+		bool visible = getVisibility(i0) && getVisibility(i1) && getVisibility(i2);
+		if(useInvisible || visible) {
+			mesh.addIndex(i0);
+			mesh.addIndex(i1);
+			mesh.addIndex(i2);
+		}
+	}
 }
 
 const Mat& ofxFaceTracker::getObjectPoints() const {
