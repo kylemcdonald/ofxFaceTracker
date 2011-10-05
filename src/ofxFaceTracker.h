@@ -89,6 +89,7 @@ protected:
 	void addTriangleIndices(ofMesh& mesh) const;
 	static vector<int> getFeatureIndices(Feature feature);
 	template <class T> ofPolyline getFeature(Feature feature, vector<T> points) const;
+	template <class T> ofMesh getMesh(vector<T> points) const;
 	
 	bool failed;
 	int currentView;
@@ -123,4 +124,19 @@ ofPolyline ofxFaceTracker::getFeature(Feature feature, vector<T> points) const {
 		}
 	}
 	return polyline;
+}
+
+template <class T>
+ofMesh ofxFaceTracker::getMesh(vector<T> points) const {
+	ofMesh mesh;
+	mesh.setMode(OF_PRIMITIVE_TRIANGLES);
+	if(!failed) {
+		int n = size();
+		for(int i = 0; i < n; i++) {
+			mesh.addVertex(points[i]);
+			mesh.addTexCoord(getImagePoint(i));
+		}
+		addTriangleIndices(mesh);
+	}
+	return mesh;
 }
