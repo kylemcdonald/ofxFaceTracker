@@ -35,7 +35,7 @@ public:
 	ofVec3f getObjectPoint(int i) const; // 3d, expression, no rotation or translation
 	ofVec3f getMeanObjectPoint(int i) const; // 3d, no expression, no rotation or translation
 	
-	ofMesh getImageMesh(bool useInvisible = false) const; // on the 2d screen
+	ofMesh getImageMesh() const; // on the 2d screen
 	ofMesh getObjectMesh() const; // in a normalized 3d space
 	ofMesh getMeanObjectMesh() const; // ideal, in a normalized 3d space
 	const Mat& getObjectPoints() const; // object points as a Mat, for classifier
@@ -83,10 +83,12 @@ public:
 	void setClamp(float clamp);
 	void setTolerance(float tolerance);
 	void setAttempts(int attempts);
+	void setUseInvisible(bool useInvisible);
 	
 protected:
 	void updateObjectPoints();
-	void addTriangleIndices(ofMesh& mesh, bool useInvisible = false) const;
+	void addTriangleIndices(ofMesh& mesh) const;
+	static vector<int> getFeatureIndices(Feature feature);
 	
 	bool failed;
 	int currentView;
@@ -99,6 +101,7 @@ protected:
 	int iterations;
 	int attempts;
 	double clamp, tolerance;
+	bool useInvisible;
 	
 	FACETRACKER::Tracker tracker;
 	cv::Mat tri, con;

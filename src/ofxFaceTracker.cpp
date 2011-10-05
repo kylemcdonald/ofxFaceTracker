@@ -2,13 +2,38 @@
 
 using namespace FACETRACKER;
 
-static int innerMouthPoints[8] = {48, 60,61,62,54,63,64,65};
-
 // can be compiled with OpenMP for even faster threaded execution
 
 #define it at<int>
 #define db at<double>
 
+static int innerMouthPoints[] = {48, 60,61,62,54,63,64,65};
+
+vector<int> consecutive(int start, int end) {
+	int n = end - start;
+	vector<int> result(n);
+	for(int i = 0; i < n; i++) {
+		result[i] = start + i;
+	}
+	return result;
+}
+
+vector<int> ofxFaceTracker::getFeatureIndices(Feature feature) {
+	switch(feature) {
+		case LEFT_JAW: return consecutive(0, 9);
+		case RIGHT_JAW: return consecutive(8, 17);
+		case JAW: return consecutive(0, 17);
+		case LEFT_EYEBROW: return consecutive(17, 22);
+		case RIGHT_EYEBROW: return consecutive(22, 27);
+		case LEFT_EYE: return consecutive(36, 42);
+		case RIGHT_EYE: return consecutive(42, 48);
+		case OUTER_MOUTH: return consecutive(48, 60);
+		case INNER_MOUTH:
+			static int innerMouth[] = {48,60,61,62,54,63,64,65};
+			return vector<int>(innerMouth, innerMouth + 8);
+	}
+}
+		
 ofxFaceTracker::ofxFaceTracker()
 :scale(1)
 ,iterations(10) // [1-25] 1 is fast and inaccurate, 25 is slow and accurate
@@ -18,6 +43,7 @@ ofxFaceTracker::ofxFaceTracker()
 ,failed(true)
 ,fcheck(true) // check for whether the tracking failed
 ,frameSkip(-1) // how often to skip frames
+,useInvisible(true)
 {
 }
 
@@ -126,14 +152,14 @@ ofVec3f ofxFaceTracker::getMeanObjectPoint(int i) const {
 	return ofVec3f(mean.db(i,0), mean.db(i+n,0), mean.db(i+n+n,0));
 }
 
-ofMesh ofxFaceTracker::getImageMesh(bool useInvisible) const{
+ofMesh ofxFaceTracker::getImageMesh() const{
 	ofMesh mesh;
 	int n = size();
 	for(int i = 0; i < n; i++) {
 		mesh.addVertex(getImagePoint(i));
 	}
 	mesh.setMode(OF_PRIMITIVE_TRIANGLES);
-	addTriangleIndices(mesh, useInvisible);
+	addTriangleIndices(mesh);
 	return mesh;
 }
 
@@ -188,6 +214,9 @@ ofMesh ofxFaceTracker::getMeanObjectMesh() const {
 	return objectMesh;
 }
 
+const Mat& ofxFaceTracker::getObjectPoints() const {
+	return objectPoints;
+}
 
 ofMesh ofxFaceTracker::getMeshFromVertices(vector<Point3d>& vertices) {
 	ofMesh mesh;
@@ -249,9 +278,8 @@ ofPolyline ofxFaceTracker::getFeatureMean(Feature feature) const {
 		return ofPolyline();
 	}
 	
-	// inner mouth is not in sequential order so do it and return, or do the others. 	
+	ofPolyline result;
 	if (feature == INNER_MOUTH){
-		ofPolyline result;
 		for (int i = 0; i < 8; i++){
 			int who = innerMouthPoints[i];
 			if (getVisibility(who)){
@@ -272,52 +300,28 @@ ofPolyline ofxFaceTracker::getFeatureMean(Feature feature) const {
 		case RIGHT_EYE: begin = 42; end = 48; break;
 		case OUTER_MOUTH: begin = 48; end = 60; break;
 	}
-	ofPolyline result;
+	
 	for(int i = begin; i < end; i++) {
 		if(getVisibility(i)) {
 			result.addVertex(getMeanObjectPoint(i));
 		}
 	}
 	return result;
-	
 }
 
 
 ofPolyline ofxFaceTracker::getFeature(Feature feature) const {
-	if(failed) {
-		return ofPolyline();
-	}
-	
-	// inner mouth is not in sequential order so do it and return, or do the others. 	
-	if (feature == INNER_MOUTH){
-		ofPolyline result;
-		for (int i = 0; i < 8; i++){
-			int who = innerMouthPoints[i];
-			if (getVisibility(who)){
-				result.addVertex(getImagePoint(who));
+	ofPolyline polyline;
+	if(!failed) {
+		vector<int> indices = getFeatureIndices(feature);
+		for(int i = 0; i < indices.size(); i++) {
+			int cur = indices[i];
+			if(getVisibility(cur)) {
+				polyline.addVertex(getImagePoint(cur));
 			}
 		}
-		return result;
 	}
-	
-	int begin, end;
-	switch(feature) {
-		case LEFT_JAW: begin = 0; end = 9; break;
-		case RIGHT_JAW: begin = 8; end = 17; break;
-		case JAW: begin = 0; end = 17; break;
-		case LEFT_EYEBROW: begin = 17; end = 22; break;
-		case RIGHT_EYEBROW: begin = 22; end = 27; break;
-		case LEFT_EYE: begin = 36; end = 42; break;
-		case RIGHT_EYE: begin = 42; end = 48; break;
-		case OUTER_MOUTH: begin = 48; end = 60; break;
-	}
-	ofPolyline result;
-	for(int i = begin; i < end; i++) {
-		if(getVisibility(i)) {
-			result.addVertex(getImagePoint(i));
-		}
-	}
-	return result;
+	return polyline;
 }
 
 float ofxFaceTracker::getGesture(Gesture gesture) const {
@@ -398,6 +402,10 @@ void ofxFaceTracker::setAttempts(int attempts) {
 	this->attempts = attempts;
 }
 
+void ofxFaceTracker::setUseInvisible(bool useInvisible) {
+	this->useInvisible = useInvisible;
+}
+
 void ofxFaceTracker::updateObjectPoints() {
 	const Mat& mean = tracker._clm._pdm._M;
 	const Mat& variation = tracker._clm._pdm._V;
@@ -405,7 +413,7 @@ void ofxFaceTracker::updateObjectPoints() {
 	objectPoints = mean + variation * weights;
 }
 
-void ofxFaceTracker::addTriangleIndices(ofMesh& mesh, bool useInvisible) const {
+void ofxFaceTracker::addTriangleIndices(ofMesh& mesh) const {
 	int in = tri.rows;
 	for(int i = 0; i < tri.rows; i++) {
 		int i0 = tri.it(i, 0), i1 = tri.it(i, 1), i2 = tri.it(i, 2);
@@ -416,8 +424,4 @@ void ofxFaceTracker::addTriangleIndices(ofMesh& mesh, bool useInvisible) const {
 			mesh.addIndex(i2);
 		}
 	}
-}
-
-const Mat& ofxFaceTracker::getObjectPoints() const {
-	return objectPoints;
 }
