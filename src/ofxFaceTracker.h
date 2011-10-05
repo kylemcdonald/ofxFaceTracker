@@ -66,8 +66,9 @@ public:
 		OUTER_MOUTH,
 		INNER_MOUTH 
 	};
-	ofPolyline getFeature(Feature feature) const;
-	ofPolyline getFeatureMean(Feature feature) const;
+	ofPolyline getImageFeature(Feature feature) const;
+	ofPolyline getObjectFeature(Feature feature) const;
+	ofPolyline getMeanObjectFeature(Feature feature) const;
 	
 	enum Gesture {
 		MOUTH_WIDTH, MOUTH_HEIGHT,
@@ -78,7 +79,7 @@ public:
 	};
 	float getGesture(Gesture gesture) const;
 	
-	void setScale(float scale); // need to rename this due to getScale
+	void setRescale(float rescale); // need to rename this due to getScale
 	void setIterations(int iterations);
 	void setClamp(float clamp);
 	void setTolerance(float tolerance);
@@ -94,7 +95,7 @@ protected:
 	int currentView;
 	
 	bool fcheck;
-	double scale;
+	double rescale;
 	int frameSkip;
 	
 	vector<int> wSize1, wSize2;

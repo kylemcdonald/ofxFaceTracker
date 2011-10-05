@@ -7,8 +7,6 @@ using namespace FACETRACKER;
 #define it at<int>
 #define db at<double>
 
-static int innerMouthPoints[] = {48, 60,61,62,54,63,64,65};
-
 vector<int> consecutive(int start, int end) {
 	int n = end - start;
 	vector<int> result(n);
@@ -35,7 +33,7 @@ vector<int> ofxFaceTracker::getFeatureIndices(Feature feature) {
 }
 		
 ofxFaceTracker::ofxFaceTracker()
-:scale(1)
+:rescale(1)
 ,iterations(10) // [1-25] 1 is fast and inaccurate, 25 is slow and accurate
 ,clamp(3) // [0-4] 1 gives a very loose fit, 4 gives a very tight fit
 ,tolerance(.01) // [.01-1] match tolerance
@@ -66,10 +64,10 @@ void ofxFaceTracker::setup() {
 }
 
 bool ofxFaceTracker::update(Mat image) {	
-	if(scale == 1) {
+	if(rescale == 1) {
 		im = image; 
 	} else {
-		resize(image, im, cv::Size(scale * image.cols, scale * image.rows));
+		resize(image, im, cv::Size(rescale * image.cols, rescale * image.rows));
 	}
 	
 	cvtColor(im, gray, CV_RGB2GRAY);
@@ -135,7 +133,7 @@ ofVec2f ofxFaceTracker::getImagePoint(int i) const {
 	}
 	const Mat& shape = tracker._shape;
 	int n = size();
-	return ofVec2f(shape.db(i, 0), shape.db(i + n, 0)) / scale;
+	return ofVec2f(shape.db(i, 0), shape.db(i + n, 0)) / rescale;
 }
 
 ofVec3f ofxFaceTracker::getObjectPoint(int i) const {
@@ -273,44 +271,7 @@ ofxFaceTracker::Direction ofxFaceTracker::getDirection() const {
 	}
 }
 
-ofPolyline ofxFaceTracker::getFeatureMean(Feature feature) const {
-	if(failed) {
-		return ofPolyline();
-	}
-	
-	ofPolyline result;
-	if (feature == INNER_MOUTH){
-		for (int i = 0; i < 8; i++){
-			int who = innerMouthPoints[i];
-			if (getVisibility(who)){
-				result.addVertex(getMeanObjectPoint(who));
-			}
-		}
-		return result;
-	}
-	
-	int begin, end;
-	switch(feature) {
-		case LEFT_JAW: begin = 0; end = 9; break;
-		case RIGHT_JAW: begin = 8; end = 17; break;
-		case JAW: begin = 0; end = 17; break;
-		case LEFT_EYEBROW: begin = 17; end = 22; break;
-		case RIGHT_EYEBROW: begin = 22; end = 27; break;
-		case LEFT_EYE: begin = 36; end = 42; break;
-		case RIGHT_EYE: begin = 42; end = 48; break;
-		case OUTER_MOUTH: begin = 48; end = 60; break;
-	}
-	
-	for(int i = begin; i < end; i++) {
-		if(getVisibility(i)) {
-			result.addVertex(getMeanObjectPoint(i));
-		}
-	}
-	return result;
-}
-
-
-ofPolyline ofxFaceTracker::getFeature(Feature feature) const {
+ofPolyline ofxFaceTracker::getImageFeature(Feature feature) const {
 	ofPolyline polyline;
 	if(!failed) {
 		vector<int> indices = getFeatureIndices(feature);
@@ -324,6 +285,34 @@ ofPolyline ofxFaceTracker::getFeature(Feature feature) const {
 	return polyline;
 }
 
+ofPolyline ofxFaceTracker::getObjectFeature(Feature feature) const {
+	ofPolyline polyline;
+	if(!failed) {
+		vector<int> indices = getFeatureIndices(feature);
+		for(int i = 0; i < indices.size(); i++) {
+			int cur = indices[i];
+			if(getVisibility(cur)) {
+				polyline.addVertex(getObjectPoint(cur));
+			}
+		}
+	}
+	return polyline;
+}
+
+ofPolyline ofxFaceTracker::getMeanObjectFeature(Feature feature) const {
+	ofPolyline polyline;
+	if(!failed) {
+		vector<int> indices = getFeatureIndices(feature);
+		for(int i = 0; i < indices.size(); i++) {
+			int cur = indices[i];
+			if(getVisibility(cur)) {
+				polyline.addVertex(getMeanObjectPoint(cur));
+			}
+		}
+	}
+	return polyline;
+}
+
 float ofxFaceTracker::getGesture(Gesture gesture) const {
 	if(failed) {
 		return 0;
@@ -331,59 +320,28 @@ float ofxFaceTracker::getGesture(Gesture gesture) const {
 	int start = 0, end = 0;
 	switch(gesture) {
 		// left to right of mouth
-		case MOUTH_WIDTH:
-		start = (48);
-		end = (54);
-		break;
-				
+		case MOUTH_WIDTH: start = 48; end = 54; break;
 		 // top to bottom of inner mouth
-		case MOUTH_HEIGHT:
-		start = (61);
-		end = (64);
-		break;
-		
+		case MOUTH_HEIGHT: start = 61; end = 64; break;
 		// center of the eye to middle of eyebrow
-		case LEFT_EYEBROW_HEIGHT:
-		start = (38);
-		end = (20);
-		break;
-		
+		case LEFT_EYEBROW_HEIGHT: start = 38; end = 20; break;
 		// center of the eye to middle of eyebrow
-		case RIGHT_EYEBROW_HEIGHT:
-		start = (43);
-		end = (23);
-		break;
-		
+		case RIGHT_EYEBROW_HEIGHT: start = 43; end = 23; break;
 		// upper inner eye to lower outer eye
-		case LEFT_EYE_OPENNESS:
-		start = (38);
-		end = (41);
-		break;
-		
+		case LEFT_EYE_OPENNESS: start = 38; end = 41; break;
 		// upper inner eye to lower outer eye
-		case RIGHT_EYE_OPENNESS:
-		start = (43);
-		end = (46);
-		break;
-		
+		case RIGHT_EYE_OPENNESS: start = 43; end = 46; break;
 		// nose center to chin center
-		case JAW_OPENNESS:
-		start = (33);
-		end = (8);
-		break;
-		
+		case JAW_OPENNESS: start = 33; end = 8; break;
 		// left side of nose to right side of nose
-		case NOSTRIL_FLARE:
-		start = (31);
-		end = (35);
-		break;
+		case NOSTRIL_FLARE: start = 31; end = 35; break;
 	}
 	
 	return (getObjectPoint(start) - getObjectPoint(end)).length();
 }
 
-void ofxFaceTracker::setScale(float scale) {
-	this->scale = scale;
+void ofxFaceTracker::setRescale(float rescale) {
+	this->rescale = rescale;
 }
 
 void ofxFaceTracker::setIterations(int iterations) {
