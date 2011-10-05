@@ -127,6 +127,33 @@ bool ofxFaceTracker::getVisibility(int i) const {
 	return (visi.it(i, 0) != 0);
 }
 
+vector<ofVec2f> ofxFaceTracker::getImagePoints() const {
+	int n = size();
+	vector<ofVec2f> imagePoints(n);
+	for(int i = 0; i < n; i++) {
+		imagePoints[i] = getImagePoint(i);
+	}
+	return imagePoints;
+}
+
+vector<ofVec3f> ofxFaceTracker::getObjectPoints() const {
+	int n = size();
+	vector<ofVec3f> objectPoints(n);
+	for(int i = 0; i < n; i++) {
+		objectPoints[i] = getObjectPoint(i);
+	}
+	return objectPoints;
+}
+
+vector<ofVec3f> ofxFaceTracker::getMeanObjectPoints() const {
+	int n = size();
+	vector<ofVec3f> meanObjectPoints(n);
+	for(int i = 0; i < n; i++) {
+		meanObjectPoints[i] = getMeanObjectPoint(i);
+	}
+	return meanObjectPoints;
+}
+
 ofVec2f ofxFaceTracker::getImagePoint(int i) const {
 	if(failed) {
 		return ofVec2f();
@@ -212,7 +239,7 @@ ofMesh ofxFaceTracker::getMeanObjectMesh() const {
 	return objectMesh;
 }
 
-const Mat& ofxFaceTracker::getObjectPoints() const {
+const Mat& ofxFaceTracker::getObjectPointsMat() const {
 	return objectPoints;
 }
 
@@ -240,6 +267,7 @@ ofVec2f ofxFaceTracker::getPosition() const {
 	return ofVec2f(pose.db(4,0), pose.db(5,0)) / rescale;
 }
 
+ // multiply by ~20-23 to get pixel units (+/-20 units in the x axis, +23/-18 on the y axis)
 float ofxFaceTracker::getScale() const {
 	const Mat& pose = tracker._clm._pglobl;
 	return pose.db(0,0) / rescale;

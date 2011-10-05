@@ -31,40 +31,38 @@ public:
 	bool getFound() const;
 	bool getVisibility(int i) const;
 	
-	ofVec2f getImagePoint(int i) const; // on the 2d screen
-	ofVec3f getObjectPoint(int i) const; // 3d, expression, no rotation or translation
-	ofVec3f getMeanObjectPoint(int i) const; // 3d, no expression, no rotation or translation
+	vector<ofVec2f> getImagePoints() const;
+	vector<ofVec3f> getObjectPoints() const;
+	vector<ofVec3f> getMeanObjectPoints() const;
 	
-	ofMesh getImageMesh() const; // on the 2d screen
-	ofMesh getObjectMesh() const; // in a normalized 3d space
-	ofMesh getMeanObjectMesh() const; // ideal, in a normalized 3d space
-	const Mat& getObjectPoints() const; // object points as a Mat, for classifier
+	ofVec2f getImagePoint(int i) const;
+	ofVec3f getObjectPoint(int i) const;
+	ofVec3f getMeanObjectPoint(int i) const;
 	
+	ofMesh getImageMesh() const;
+	ofMesh getObjectMesh() const;
+	ofMesh getMeanObjectMesh() const;
+	
+	const Mat& getObjectPointsMat() const;
 	ofMesh getMeshFromVertices(vector<Point3d>& vertices);
 	
-	ofVec2f getPosition() const; // on the 2d screen
-	float getScale() const; // multiply by ~20-23 to get pixel units (+/-20 units in the x axis, +23/-18 on the y axis)
+	ofVec2f getPosition() const;
+	float getScale() const;
 	ofVec3f getOrientation() const;
 	ofMatrix4x4 getRotationMatrix() const;
 	
 	enum Direction {
 		FACING_FORWARD,
-		FACING_LEFT,
-		FACING_RIGHT,
+		FACING_LEFT, FACING_RIGHT,
 		FACING_UNKNOWN
 	};
 	Direction getDirection() const;
 	
 	enum Feature {
-		LEFT_EYEBROW,
-		RIGHT_EYEBROW,
-		LEFT_EYE,
-		RIGHT_EYE,
-		LEFT_JAW,
-		RIGHT_JAW,
-		JAW,
-		OUTER_MOUTH,
-		INNER_MOUTH 
+		LEFT_EYEBROW, RIGHT_EYEBROW,
+		LEFT_EYE, RIGHT_EYE,
+		LEFT_JAW, RIGHT_JAW, JAW,
+		OUTER_MOUTH, INNER_MOUTH 
 	};
 	ofPolyline getImageFeature(Feature feature) const;
 	ofPolyline getObjectFeature(Feature feature) const;
@@ -79,7 +77,7 @@ public:
 	};
 	float getGesture(Gesture gesture) const;
 	
-	void setRescale(float rescale); // need to rename this due to getScale
+	void setRescale(float rescale);
 	void setIterations(int iterations);
 	void setClamp(float clamp);
 	void setTolerance(float tolerance);
