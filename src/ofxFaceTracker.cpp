@@ -11,7 +11,7 @@ using namespace FACETRACKER;
 
 ofxFaceTracker::ofxFaceTracker()
 :scale(1)
-,iterations(5) // [1-25] 1 is fast and inaccurate, 25 is slow and accurate
+,iterations(10) // [1-25] 1 is fast and inaccurate, 25 is slow and accurate
 ,clamp(3) // [0-4] 1 gives a very loose fit, 4 gives a very tight fit
 ,tolerance(.01) // [.01-1] match tolerance
 ,attempts(1) // [1-4] 1 is fast and may not find faces, 4 is slow but will find faces
@@ -198,6 +198,26 @@ ofMesh ofxFaceTracker::getMeanObjectMesh() const {
 		objectMesh.addTexCoord(t3);
 	}
 	return objectMesh;
+}
+
+
+ofMesh ofxFaceTracker::getMeshFromVertices(vector<Point3d>& vertices) {
+	ofMesh mesh;
+	for(int i = 0; i < tri.rows; i++){
+		if(getVisibility(tri.it(i,0)) &&
+			 getVisibility(tri.it(i,1)) &&
+			 getVisibility(tri.it(i,2))) {
+
+			ofVec3f p1 = toOf(vertices[tri.it(i,0)]);
+			ofVec3f p2 = toOf(vertices[tri.it(i,1)]);
+			ofVec3f p3 = toOf(vertices[tri.it(i,2)]);
+
+			mesh.addVertex(p1);
+			mesh.addVertex(p2);
+			mesh.addVertex(p3);
+		}
+	}
+	return mesh;
 }
 
 ofVec2f ofxFaceTracker::getPosition() const {

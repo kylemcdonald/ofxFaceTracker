@@ -1,3 +1,18 @@
+/*
+ ofxFaceTracker provides an interface to Jason Saragih's FaceTracker library.
+ 
+ getImagePoint()/getImageMesh() are in image space. This means that all the
+ points will line up with the pixel coordinates of the image you fed into
+ ofxFaceTracker.
+ 
+ getObjectPoint()/getObjectMesh() are in 3d object space. This is a product of
+ the mean mesh with only the expression applied. There is no rotation or
+ translation applied to the object space.
+ 
+ getMeanObjectPoint()/getMeanObjectMesh() are also in 3d object space. However,
+ there is no expression applied to the mesh.
+ */
+
 #pragma once
 
 #include "ofxCv.h"
@@ -22,6 +37,8 @@ public:
 	ofMesh getObjectMesh() const; // in a normalized 3d space
 	ofMesh getMeanObjectMesh() const; // ideal, in a normalized 3d space
 	const cv::Mat& getObjectPoints() const; // object points as a Mat, for classifier
+	
+	ofMesh getMeshFromVertices(vector<Point3d>& vertices);
 	
 	ofVec2f getPosition() const;
 	float getScale() const; // multiply by ~20-23 to get pixel units (+/-20 units in the x axis, +23/-18 on the y axis)
