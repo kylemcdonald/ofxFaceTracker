@@ -277,7 +277,7 @@ ofPolyline ofxFaceTracker::getImageFeature(Feature feature) const {
 		vector<int> indices = getFeatureIndices(feature);
 		for(int i = 0; i < indices.size(); i++) {
 			int cur = indices[i];
-			if(getVisibility(cur)) {
+			if(useInvisible || getVisibility(cur)) {
 				polyline.addVertex(getImagePoint(cur));
 			}
 		}
@@ -291,7 +291,7 @@ ofPolyline ofxFaceTracker::getObjectFeature(Feature feature) const {
 		vector<int> indices = getFeatureIndices(feature);
 		for(int i = 0; i < indices.size(); i++) {
 			int cur = indices[i];
-			if(getVisibility(cur)) {
+			if(useInvisible || getVisibility(cur)) {
 				polyline.addVertex(getObjectPoint(cur));
 			}
 		}
@@ -305,7 +305,7 @@ ofPolyline ofxFaceTracker::getMeanObjectFeature(Feature feature) const {
 		vector<int> indices = getFeatureIndices(feature);
 		for(int i = 0; i < indices.size(); i++) {
 			int cur = indices[i];
-			if(getVisibility(cur)) {
+			if(useInvisible || getVisibility(cur)) {
 				polyline.addVertex(getMeanObjectPoint(cur));
 			}
 		}
