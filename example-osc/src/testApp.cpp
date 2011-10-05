@@ -18,8 +18,8 @@ void testApp::loadSettings() {
 	xml.popTag();
 	
 	xml.pushTag("face");
-	if(xml.getNumTags("scale")) {
-		tracker.setScale(xml.getValue("scale", 1.));
+	if(xml.getNumTags("rescale")) {
+		tracker.setRescale(xml.getValue("rescale", 1.));
 	}
 	if(xml.getNumTags("iterations")) {
 		tracker.setIterations(xml.getValue("iterations", 5));

@@ -5,7 +5,7 @@ void testApp::setup() {
 	cam.initGrabber(640, 480);
 	
 	tracker.setup();
-	tracker.setScale(.5);
+	tracker.setRescale(.5);
 	
 	addExpression = false;
 	addSample = false;
@@ -17,14 +17,14 @@ void testApp::update() {
 	cam.update();
 	if(cam.isFrameNew()) {
 		if(tracker.update(toCv(cam))) {
-			classifier.classify(tracker.getObjectPoints());
+			classifier.classify(tracker);
 			if(addExpression) {
 				addExpression = false;
 				classifier.addExpression();
 			}			
 			if(addSample) {
 				addSample = false;
-				classifier.addSample(tracker.getObjectPoints());
+				classifier.addSample(tracker);
 			}				
 			if(loadData) {
 				loadData = false;

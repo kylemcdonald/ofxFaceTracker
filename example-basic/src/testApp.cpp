@@ -6,7 +6,7 @@ void testApp::setup() {
 	cam.initGrabber(640, 480);
 	
 	tracker.setup();
-	tracker.setScale(.5);
+	tracker.setRescale(.5);
 }
 
 void testApp::update() {
@@ -24,8 +24,8 @@ void testApp::draw() {
 	ofSetLineWidth(1);
 	tracker.draw();
 	
-	ofPolyline leftEye = tracker.getFeature(ofxFaceTracker::LEFT_EYE);
-	ofPolyline rightEye = tracker.getFeature(ofxFaceTracker::RIGHT_EYE);
+	ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
+	ofPolyline rightEye = tracker.getImageFeature(ofxFaceTracker::RIGHT_EYE);
 	
 	ofSetLineWidth(2);
 	ofSetColor(ofColor::red);

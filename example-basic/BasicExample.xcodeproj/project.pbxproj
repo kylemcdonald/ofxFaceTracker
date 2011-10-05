@@ -21,7 +21,6 @@
 		27215CF51411537900DAD3C6 /* ContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27215CE71411537900DAD3C6 /* ContourFinder.cpp */; };
 		27215CF61411537900DAD3C6 /* Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27215CE91411537900DAD3C6 /* Distance.cpp */; };
 		27215CF71411537900DAD3C6 /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27215CEB1411537900DAD3C6 /* Helpers.cpp */; };
-		27215CF81411537900DAD3C6 /* Tracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27215CEE1411537900DAD3C6 /* Tracker.cpp */; };
 		27215CF91411537900DAD3C6 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27215CF01411537900DAD3C6 /* Utilities.cpp */; };
 		27215CFA1411537900DAD3C6 /* Wrappers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27215CF21411537900DAD3C6 /* Wrappers.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -168,8 +167,6 @@
 		27215CEB1411537900DAD3C6 /* Helpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Helpers.cpp; path = ../../ofxCv/src/Helpers.cpp; sourceTree = SOURCE_ROOT; };
 		27215CEC1411537900DAD3C6 /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Helpers.h; path = ../../ofxCv/src/Helpers.h; sourceTree = SOURCE_ROOT; };
 		27215CED1411537900DAD3C6 /* ofxCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxCv.h; path = ../../ofxCv/src/ofxCv.h; sourceTree = SOURCE_ROOT; };
-		27215CEE1411537900DAD3C6 /* Tracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Tracker.cpp; path = ../../ofxCv/src/Tracker.cpp; sourceTree = SOURCE_ROOT; };
-		27215CEF1411537900DAD3C6 /* Tracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tracker.h; path = ../../ofxCv/src/Tracker.h; sourceTree = SOURCE_ROOT; };
 		27215CF01411537900DAD3C6 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utilities.cpp; path = ../../ofxCv/src/Utilities.cpp; sourceTree = SOURCE_ROOT; };
 		27215CF11411537900DAD3C6 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = ../../ofxCv/src/Utilities.h; sourceTree = SOURCE_ROOT; };
 		27215CF21411537900DAD3C6 /* Wrappers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Wrappers.cpp; path = ../../ofxCv/src/Wrappers.cpp; sourceTree = SOURCE_ROOT; };
@@ -534,8 +531,6 @@
 				27215CEB1411537900DAD3C6 /* Helpers.cpp */,
 				27215CEC1411537900DAD3C6 /* Helpers.h */,
 				27215CED1411537900DAD3C6 /* ofxCv.h */,
-				27215CEE1411537900DAD3C6 /* Tracker.cpp */,
-				27215CEF1411537900DAD3C6 /* Tracker.h */,
 				27215CF01411537900DAD3C6 /* Utilities.cpp */,
 				27215CF11411537900DAD3C6 /* Utilities.h */,
 				27215CF21411537900DAD3C6 /* Wrappers.cpp */,
@@ -728,7 +723,6 @@
 				27215CF51411537900DAD3C6 /* ContourFinder.cpp in Sources */,
 				27215CF61411537900DAD3C6 /* Distance.cpp in Sources */,
 				27215CF71411537900DAD3C6 /* Helpers.cpp in Sources */,
-				27215CF81411537900DAD3C6 /* Tracker.cpp in Sources */,
 				27215CF91411537900DAD3C6 /* Utilities.cpp in Sources */,
 				27215CFA1411537900DAD3C6 /* Wrappers.cpp in Sources */,
 			);

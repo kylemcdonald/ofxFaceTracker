@@ -11,8 +11,7 @@ public:
 	ExpressionClassifier();
 	void save(string directory) const;
 	void load(string directory);
-	unsigned int classify(const ofxFaceTracker& tracker); // helper method
-	unsigned int classify(const cv::Mat& data); // slightly more direct
+	unsigned int classify(const ofxFaceTracker& tracker);
 	unsigned int getPrimaryExpression() const;
 	double getProbability(unsigned int i) const;
 	string getDescription(unsigned int i) const;
@@ -22,8 +21,7 @@ public:
 	unsigned int size() const;
 	void addExpression(string description = "");
 	void addExpression(Expression& expression);
-	void addSample(const ofxFaceTracker& tracker); // helper method
-	void addSample(const cv::Mat& sample); // slightly more direct
+	void addSample(const ofxFaceTracker& tracker);
 	void reset();
 protected:
 	vector<Expression> expressions;
