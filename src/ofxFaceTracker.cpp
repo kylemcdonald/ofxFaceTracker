@@ -300,45 +300,15 @@ ofxFaceTracker::Direction ofxFaceTracker::getDirection() const {
 }
 
 ofPolyline ofxFaceTracker::getImageFeature(Feature feature) const {
-	ofPolyline polyline;
-	if(!failed) {
-		vector<int> indices = getFeatureIndices(feature);
-		for(int i = 0; i < indices.size(); i++) {
-			int cur = indices[i];
-			if(useInvisible || getVisibility(cur)) {
-				polyline.addVertex(getImagePoint(cur));
-			}
-		}
-	}
-	return polyline;
+	return getFeature(feature, getImagePoints());
 }
 
 ofPolyline ofxFaceTracker::getObjectFeature(Feature feature) const {
-	ofPolyline polyline;
-	if(!failed) {
-		vector<int> indices = getFeatureIndices(feature);
-		for(int i = 0; i < indices.size(); i++) {
-			int cur = indices[i];
-			if(useInvisible || getVisibility(cur)) {
-				polyline.addVertex(getObjectPoint(cur));
-			}
-		}
-	}
-	return polyline;
+	return getFeature(feature, getObjectPoints());
 }
 
 ofPolyline ofxFaceTracker::getMeanObjectFeature(Feature feature) const {
-	ofPolyline polyline;
-	if(!failed) {
-		vector<int> indices = getFeatureIndices(feature);
-		for(int i = 0; i < indices.size(); i++) {
-			int cur = indices[i];
-			if(useInvisible || getVisibility(cur)) {
-				polyline.addVertex(getMeanObjectPoint(cur));
-			}
-		}
-	}
-	return polyline;
+	return getFeature(feature, getMeanObjectPoints());
 }
 
 float ofxFaceTracker::getGesture(Gesture gesture) const {

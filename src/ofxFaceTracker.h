@@ -88,6 +88,7 @@ protected:
 	void updateObjectPoints();
 	void addTriangleIndices(ofMesh& mesh) const;
 	static vector<int> getFeatureIndices(Feature feature);
+	template <class T> ofPolyline getFeature(Feature feature, vector<T> points) const;
 	
 	bool failed;
 	int currentView;
@@ -108,3 +109,18 @@ protected:
 	cv::Mat im, gray;
 	cv::Mat objectPoints;
 };
+
+template <class T>
+ofPolyline ofxFaceTracker::getFeature(Feature feature, vector<T> points) const {
+	ofPolyline polyline;
+	if(!failed) {
+		vector<int> indices = getFeatureIndices(feature);
+		for(int i = 0; i < indices.size(); i++) {
+			int cur = indices[i];
+			if(useInvisible || getVisibility(cur)) {
+				polyline.addVertex(points[cur]);
+			}
+		}
+	}
+	return polyline;
+}
