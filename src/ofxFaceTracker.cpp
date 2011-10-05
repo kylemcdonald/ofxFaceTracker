@@ -132,7 +132,7 @@ ofVec2f ofxFaceTracker::getImagePoint(int i) const {
 		return ofVec2f();
 	}
 	const Mat& shape = tracker._shape;
-	int n = size();
+	int n = shape.rows / 2;
 	return ofVec2f(shape.db(i, 0), shape.db(i + n, 0)) / rescale;
 }
 
@@ -145,8 +145,8 @@ ofVec3f ofxFaceTracker::getObjectPoint(int i) const {
 }
 
 ofVec3f ofxFaceTracker::getMeanObjectPoint(int i) const {
-	int n = objectPoints.rows / 3;
 	const Mat& mean = tracker._clm._pdm._M;
+	int n = mean.rows / 3;
 	return ofVec3f(mean.db(i,0), mean.db(i+n,0), mean.db(i+n+n,0));
 }
 
@@ -237,12 +237,12 @@ ofMesh ofxFaceTracker::getMeshFromVertices(vector<Point3d>& vertices) {
 
 ofVec2f ofxFaceTracker::getPosition() const {
 	const Mat& pose = tracker._clm._pglobl;
-	return ofVec2f(pose.db(4,0), pose.db(5,0));
+	return ofVec2f(pose.db(4,0), pose.db(5,0)) / rescale;
 }
 
 float ofxFaceTracker::getScale() const {
 	const Mat& pose = tracker._clm._pglobl;
-	return pose.db(0,0);
+	return pose.db(0,0) / rescale;
 }
 
 ofVec3f ofxFaceTracker::getOrientation() const {
