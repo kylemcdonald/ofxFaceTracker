@@ -42,9 +42,9 @@ public:
 	ofMesh getImageMesh() const;
 	ofMesh getObjectMesh() const;
 	ofMesh getMeanObjectMesh() const;
+	template <class T> ofMesh getMesh(vector<T> points) const;
 	
 	const cv::Mat& getObjectPointsMat() const;
-	ofMesh getMeshFromVertices(vector<cv::Point3d>& vertices);
 	
 	ofVec2f getPosition() const;
 	float getScale() const;
@@ -89,7 +89,6 @@ protected:
 	void addTriangleIndices(ofMesh& mesh) const;
 	static vector<int> getFeatureIndices(Feature feature);
 	template <class T> ofPolyline getFeature(Feature feature, vector<T> points) const;
-	template <class T> ofMesh getMesh(vector<T> points) const;
 	
 	bool failed;
 	int currentView;

@@ -195,25 +195,6 @@ const Mat& ofxFaceTracker::getObjectPointsMat() const {
 	return objectPoints;
 }
 
-ofMesh ofxFaceTracker::getMeshFromVertices(vector<Point3d>& vertices) {
-	ofMesh mesh;
-	for(int i = 0; i < tri.rows; i++){
-		if(getVisibility(tri.it(i,0)) &&
-			 getVisibility(tri.it(i,1)) &&
-			 getVisibility(tri.it(i,2))) {
-
-			ofVec3f p1 = toOf(vertices[tri.it(i,0)]);
-			ofVec3f p2 = toOf(vertices[tri.it(i,1)]);
-			ofVec3f p3 = toOf(vertices[tri.it(i,2)]);
-
-			mesh.addVertex(p1);
-			mesh.addVertex(p2);
-			mesh.addVertex(p3);
-		}
-	}
-	return mesh;
-}
-
 ofVec2f ofxFaceTracker::getPosition() const {
 	const Mat& pose = tracker._clm._pglobl;
 	return ofVec2f(pose.db(4,0), pose.db(5,0)) / rescale;
