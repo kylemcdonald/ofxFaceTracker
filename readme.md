@@ -24,7 +24,7 @@ Demonstrates how to use the mean face mesh to draw pose and expression normalize
 
 Demonstrates the `ExpressionClassifier`, which can load, save, and classify expressions into pre-trained categories. Provides basic expressions (eyebrows raised, neutral, smiling) as examples.
 
-## Calibrated
+### Calibrated
 
 Fairly complicated example that demonstrates some advanced/experimental features of ofxCv and ofxFaceTracker for doing AR-style augmentation of the face.
 
