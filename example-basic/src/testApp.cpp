@@ -1,5 +1,7 @@
 #include "testApp.h"
 
+using namespace ofxCv;
+
 void testApp::setup() {
 	ofSetVerticalSync(true);
 	ofSetDrawBitmapMode(OF_BITMAPMODE_MODEL_BILLBOARD);

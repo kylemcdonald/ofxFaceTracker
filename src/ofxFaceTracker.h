@@ -43,8 +43,8 @@ public:
 	ofMesh getObjectMesh() const;
 	ofMesh getMeanObjectMesh() const;
 	
-	const Mat& getObjectPointsMat() const;
-	ofMesh getMeshFromVertices(vector<Point3d>& vertices);
+	const cv::Mat& getObjectPointsMat() const;
+	ofMesh getMeshFromVertices(vector<cv::Point3d>& vertices);
 	
 	ofVec2f getPosition() const;
 	float getScale() const;

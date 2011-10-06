@@ -1,5 +1,8 @@
 #include "testApp.h"
 
+using namespace ofxCv;
+using namespace cv;
+
 void testApp::loadSettings() {
 	ofxXmlSettings xml;
 	xml.loadFile("settings.xml");

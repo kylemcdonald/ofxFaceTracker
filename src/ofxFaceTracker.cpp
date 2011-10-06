@@ -1,5 +1,7 @@
 #include "ofxFaceTracker.h"
 
+using namespace ofxCv;
+using namespace cv;
 using namespace FACETRACKER;
 
 // can be compiled with OpenMP for even faster threaded execution

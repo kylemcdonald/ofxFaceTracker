@@ -1,5 +1,7 @@
 #include "testApp.h"
 
+using namespace ofxCv;
+
 void testApp::setup() {
 	ofSetVerticalSync(true);
 	cam.initGrabber(640, 480);
