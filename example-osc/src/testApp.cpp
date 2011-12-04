@@ -50,12 +50,10 @@ void testApp::loadSettings() {
 }
 
 void testApp::setup() {
-<<<<<<< HEAD
-    ofSetVerticalSync(true);
-=======
 	ofSetVerticalSync(true);
+#ifdef TARGET_OSX
 	ofSetDataPathRoot("../Resources/data/");
->>>>>>> aed63f1a8363e55a77a2bb5f31173d6eaa9be73e
+#endif
 	loadSettings();
 }
 

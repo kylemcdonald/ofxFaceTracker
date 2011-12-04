@@ -104,7 +104,7 @@ protected:
 	double clamp, tolerance;
 	bool useInvisible;
 
-	FACETRACKER::jTracker tracker;
+	FACETRACKER::Tracker tracker;
 	cv::Mat tri, con;
 
 	cv::Mat im, gray;
