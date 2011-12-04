@@ -2,8 +2,6 @@
 
 #include "ofMain.h"
 #include "ofxCv.h"
-//using namespace ofxCv;
-//using namespace cv;
 
 #include "ofxFaceTracker.h"
 #include "ofxOsc.h"

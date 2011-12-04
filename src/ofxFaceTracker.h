@@ -16,7 +16,7 @@
 #pragma once
 
 #include "ofxCv.h"
-#include <jTracker.h>
+#include "Tracker.h"
 #include "ExpressionClassifier.h"
 
 
