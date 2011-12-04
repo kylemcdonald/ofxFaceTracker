@@ -6,7 +6,7 @@ using namespace cv;
 void testApp::loadSettings() {
 	ofxXmlSettings xml;
 	xml.loadFile("settings.xml");
-	
+
 	xml.pushTag("camera");
 	if(xml.getNumTags("device") > 0) {
 		cam.setDeviceID(xml.getValue("device", 0));
@@ -19,7 +19,7 @@ void testApp::loadSettings() {
 	cam.initGrabber(camWidth, camHeight);
 	ofSetWindowShape(camWidth, camHeight);
 	xml.popTag();
-	
+
 	xml.pushTag("face");
 	if(xml.getNumTags("rescale")) {
 		tracker.setRescale(xml.getValue("rescale", 1.));
@@ -38,17 +38,19 @@ void testApp::loadSettings() {
 	}
 	tracker.setup();
 	xml.popTag();
-	
+
 	xml.pushTag("osc");
 	host = xml.getValue("host", "localhost");
 	port = xml.getValue("port", 8338);
 	osc.setup(host, port);
 	xml.popTag();
+
+	osc.setup(host, port);
+
 }
 
 void testApp::setup() {
-	ofSetVerticalSync(true);
-	ofSetDataPathRoot("../data/");
+    ofSetVerticalSync(true);
 	loadSettings();
 }
 
@@ -99,19 +101,19 @@ void testApp::update() {
 	cam.update();
 	if(cam.isFrameNew()) {
 		tracker.update(toCv(cam));
-		
+
 		clearBundle();
-		
+
 		if(tracker.getFound()) {
 			addMessage("/found", 1);
-			
+
 			ofVec2f position = tracker.getPosition();
 			addMessage("/pose/position", position);
 			scale = tracker.getScale();
 			addMessage("/pose/scale", scale);
 			ofVec3f orientation = tracker.getOrientation();
 			addMessage("/pose/orientation", orientation);
-			
+
 			addMessage("/gesture/mouth/width", tracker.getGesture(ofxFaceTracker::MOUTH_WIDTH));
 			addMessage("/gesture/mouth/height", tracker.getGesture(ofxFaceTracker::MOUTH_HEIGHT));
 			addMessage("/gesture/eyebrow/left", tracker.getGesture(ofxFaceTracker::LEFT_EYEBROW_HEIGHT));
@@ -123,9 +125,9 @@ void testApp::update() {
 		} else {
 			addMessage("/found", 0);
 		}
-		
+
 		sendBundle();
-		
+
 		rotationMatrix = tracker.getRotationMatrix();
 	}
 }
@@ -133,14 +135,14 @@ void testApp::update() {
 void testApp::draw() {
 	ofSetColor(255);
 	cam.draw(0, 0);
-	
+
 	if(tracker.getFound()) {
 		ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
-	
+
 		ofSetLineWidth(1);
 		//tracker.draw();
 		tracker.getImageMesh().drawWireframe();
-		
+
 		ofSetupScreenOrtho(camWidth, camHeight, OF_ORIENTATION_UNKNOWN, true, -1000, 1000);
 		ofVec2f pos = tracker.getPosition();
 		ofTranslate(pos.x, pos.y);

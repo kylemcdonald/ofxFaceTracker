@@ -2,8 +2,8 @@
 
 #include "ofMain.h"
 #include "ofxCv.h"
-using namespace ofxCv;
-using namespace cv;
+//using namespace ofxCv;
+//using namespace cv;
 
 #include "ofxFaceTracker.h"
 #include "ofxOsc.h"
@@ -12,24 +12,24 @@ using namespace cv;
 class testApp : public ofBaseApp {
 public:
 	void loadSettings();
-	
+
 	void clearBundle();
 	template <class T>
 	void addMessage(string address, T data);
 	void sendBundle();
-	
+
 	void setup();
 	void update();
 	void draw();
 	void keyPressed(int key);
-	
+
 	int camWidth, camHeight;
-	
+
 	string host;
 	int port;
 	ofxOscSender osc;
 	ofxOscBundle bundle;
-	
+
 	ofVideoGrabber cam;
 	ofxFaceTracker tracker;
 	float scale;
