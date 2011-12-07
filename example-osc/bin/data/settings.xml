@@ -1,5 +1,10 @@
 <!-- to use a default value, leave the tag commented out -->
 
+<!-- choose the input source, set useCamera to 0 to use a movie -->
+<source>
+    <useCamera>1</useCamera>
+</source>
+
 <!-- camera input settings -->
 <camera>
 	<!-- <device>0</device> -->
@@ -7,6 +12,21 @@
 	<width>640</width>
 	<height>480</height>
 </camera>
+
+<!-- movie input settings -->
+<movie>
+    <!--
+        the file should be a full path ie /User/yourusername/myMovie.mov or you
+        can use a relative path with the home folder ~/myMovie.mov
+    -->
+    <filename>/path/to/myMovie.mov</filename>
+    <volume>1.0</volume> <!-- volume is 0 - 1.0 -->
+    <!--
+        speed is -16 - 16
+        1.0 is normal speed, -1.0 is reverse, 2.0 is double speed, etc
+    -->
+    <speed>1.0</speed> 
+</movie>
 
 <!-- face tracker settings -->
 <face>
