@@ -210,8 +210,7 @@ void testApp::draw() {
     
     if(!bUseCamera) {
         ofSetColor(255, 0, 0);
-        ofDrawBitmapString("looping", ofGetWidth()-100, 20);
-        ofDrawBitmapString("speed "+ofToString(movie.getSpeed()), ofGetWidth()-100, 32);
+        ofDrawBitmapString("speed "+ofToString(movie.getSpeed()), ofGetWidth()-100, 20);
     }
 }
 
@@ -240,12 +239,10 @@ void testApp::setVideoSource(bool useCamera) {
         videoSource = &cam;
         sourceWidth = camWidth;
         sourceHeight = camHeight;
-        cout << "Using Camera" << endl;
     }
     else {
         videoSource = &movie;
         sourceWidth = movieWidth;
         sourceHeight = movieHeight;
-        cout << "Using Movie" << endl;
     }
 }
