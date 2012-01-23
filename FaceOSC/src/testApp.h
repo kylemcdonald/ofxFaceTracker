@@ -21,13 +21,13 @@ public:
 	void draw();
 	void keyPressed(int key);
 
-    void setVideoSource(bool useCamera);
+	void setVideoSource(bool useCamera);
 
-    bool bUseCamera, bPaused;
+	bool bUseCamera, bPaused;
 
 	int camWidth, camHeight;
-    int movieWidth, movieHeight;
-    int sourceWidth, sourceHeight;
+	int movieWidth, movieHeight;
+	int sourceWidth, sourceHeight;
 
 	string host;
 	int port;
@@ -35,8 +35,8 @@ public:
 	ofxOscBundle bundle;
 
 	ofVideoGrabber cam;
-    ofVideoPlayer movie;
-    ofBaseVideoDraws *videoSource;
+	ofVideoPlayer movie;
+	ofBaseVideoDraws *videoSource;
     
 	ofxFaceTracker tracker;
 	float scale;
