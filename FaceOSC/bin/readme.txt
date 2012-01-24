@@ -17,7 +17,11 @@ Put the movie file in your home folder and set it in the movie <filename> tag wi
 
 Change the source <useCamera> tag to 0 to use the movie as input. Also check the other movie settings (volume, speed).
 
-Key controls:
-* p - pause/unpause 
-* up/down - increase/decrease movie playback speed
+Key Controls
+-------------
+
+* r - reset the face tracker
+* m - toggle face mesh drawing
+* p - pause/unpause (only works with movie source) 
+* up/down - increase/decrease movie playback speed (only orks with movie source)
 

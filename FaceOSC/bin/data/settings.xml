@@ -35,6 +35,11 @@
 	<!-- <clamp>3</clamp> -->
 	<!-- <tolerance>.01</tolerance> -->
 	<!-- <attempts>1</attempts> -->
+	<!-- 
+		drawMesh is a bool, 0 or 1
+		1 by default
+	-->
+	<!-- <drawMesh>1</drawMesh> -->
 </face>
 
 <!-- osc output settings -->
