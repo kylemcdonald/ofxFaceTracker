@@ -88,7 +88,6 @@ void testApp::loadSettings() {
 	xml.popTag();
 
 	osc.setup(host, port);
-
 }
 
 void testApp::setup() {
