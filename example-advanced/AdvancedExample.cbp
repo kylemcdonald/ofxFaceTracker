@@ -6,7 +6,7 @@
 		<Option makefile="makefile" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;src\;addons\ofxCv\;addons\ofxCv\libs\;addons\ofxCv\libs\opencv\include\opencv2\core\;addons\ofxCv\libs\opencv\include\opencv2\flann\;addons\ofxCv\libs\opencv\include\opencv2\highgui\;addons\ofxCv\libs\opencv\include\opencv2\imgproc\;addons\ofxCv\libs\opencv\include\opencv\;addons\ofxCv\libs\ofxCv\;addons\ofxCv\libs\ofxCv\include\;addons\ofxCv\libs\ofxCv\src\;addons\ofxCv\libs\ofxCv\include\ofxCv\;addons\ofxCv\src\;addons\ofxFaceTracker\;addons\ofxFaceTracker\src\;addons\ofxFaceTracker\libs\;addons\ofxFaceTracker\libs\Tracker\;" />
+		<Option virtualFolders="addons\;addons\ofxCv\;addons\ofxCv\libs\;addons\ofxCv\libs\opencv\include\opencv2\core\;addons\ofxCv\libs\opencv\include\opencv2\flann\;addons\ofxCv\libs\opencv\include\opencv2\highgui\;addons\ofxCv\libs\opencv\include\opencv2\imgproc\;addons\ofxCv\libs\opencv\include\opencv\;addons\ofxCv\libs\ofxCv\;addons\ofxCv\libs\ofxCv\include\;addons\ofxCv\libs\ofxCv\src\;addons\ofxCv\libs\ofxCv\include\ofxCv\;addons\ofxCv\src\;addons\ofxFaceTracker\;addons\ofxFaceTracker\src\;addons\ofxFaceTracker\libs\;addons\ofxFaceTracker\libs\Tracker\;src\;" />
 		<Build>
 			<Target title="release">
 				<Option output="bin\$(PROJECT_NAME)" prefix_auto="1" extension_auto="1" />
@@ -155,159 +155,9 @@
 			<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin/data&quot; mkdir &quot;$(PROJECT_DIR)bin/data&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
-		<Unit filename="..\..\ofxCv\libs\ofxCv\include\ofxCv\Calibration.h" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\include\ofxCv\ContourFinder.h" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\include\ofxCv\Distance.h" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\include\ofxCv\Helpers.h" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\include\ofxCv\RunningBackground.h" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\include\ofxCv\Tracker.h" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\include\ofxCv\Utilities.h" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\include\ofxCv\Wrappers.h" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\src\Calibration.cpp" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\src\ContourFinder.cpp" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\src\Distance.cpp" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\src\Helpers.cpp" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\src\RunningBackground.cpp" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\src\Tracker.cpp" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\src\Utilities.cpp" />
-		<Unit filename="..\..\ofxCv\libs\ofxCv\src\Wrappers.cpp" />
-		<Unit filename="..\..\ofxCv\src\ofxCv.h" />
-		<Unit filename="src\main.cpp">
-			<Option virtualFolder="src\" />
-		</Unit>
-		<Unit filename="src\testApp.cpp">
-			<Option virtualFolder="src\" />
-		</Unit>
-		<Unit filename="src\testApp.h">
-			<Option virtualFolder="src\" />
-		</Unit>
-		<Unit filename="..\libs\Tracker\CLM.cc" />
-		<Unit filename="..\libs\Tracker\CLM.h" />
-		<Unit filename="..\libs\Tracker\FCheck.cc" />
-		<Unit filename="..\libs\Tracker\FCheck.h" />
-		<Unit filename="..\libs\Tracker\FDet.cc" />
-		<Unit filename="..\libs\Tracker\FDet.h" />
-		<Unit filename="..\libs\Tracker\IO.cc" />
-		<Unit filename="..\libs\Tracker\IO.h" />
-		<Unit filename="..\libs\Tracker\PAW.cc" />
-		<Unit filename="..\libs\Tracker\PAW.h" />
-		<Unit filename="..\libs\Tracker\PDM.cc" />
-		<Unit filename="..\libs\Tracker\PDM.h" />
-		<Unit filename="..\libs\Tracker\Patch.cc" />
-		<Unit filename="..\libs\Tracker\Patch.h" />
-		<Unit filename="..\libs\Tracker\Tracker.cc" />
-		<Unit filename="..\libs\Tracker\Tracker.h" />
-		<Unit filename="..\src\Expression.cpp" />
-		<Unit filename="..\src\Expression.h" />
-		<Unit filename="..\src\ExpressionClassifier.cpp" />
-		<Unit filename="..\src\ExpressionClassifier.h" />
-		<Unit filename="..\src\ofxFaceTracker.cpp" />
-		<Unit filename="..\src\ofxFaceTracker.h" />
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\core\core_c.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\core\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\core\types_c.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\core\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\all_indices.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\allocator.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\autotuned_index.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\composite_index.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\dist.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\general.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\ground_truth.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\hdf5.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\heap.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\index_testing.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\kdtree_index.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\kmeans_index.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\linear_index.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\logger.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\matrix.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\nn_index.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\object_factory.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\random.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\result_set.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\sampling.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\saving.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\simplex_downhill.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\timer.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\flann\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui\highgui_c.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\highgui\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\imgproc_c.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\imgproc\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\types_c.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv2\imgproc\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\cv.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\cvaux.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\cvwimage.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\cxcore.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\cxmisc.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\highgui.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv\" />
-		</Unit>
-		<Unit filename="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv\ml.h">
-			<Option virtualFolder="addons\ofxCv\libs\opencv\include\opencv\" />
-		</Unit>
+		<Unit filename="src\main.cpp" />
+		<Unit filename="src\testApp.cpp" />
+		<Unit filename="src\testApp.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
