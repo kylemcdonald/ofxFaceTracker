@@ -28,12 +28,21 @@ void testApp::draw() {
 	
 	ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
 	ofPolyline rightEye = tracker.getImageFeature(ofxFaceTracker::RIGHT_EYE);
+	ofPolyline faceOutline = tracker.getImageFeature(ofxFaceTracker::FACE_OUTLINE);
 	
 	ofSetLineWidth(2);
 	ofSetColor(ofColor::red);
 	leftEye.draw();
 	ofSetColor(ofColor::green);
 	rightEye.draw();
+	ofSetColor(ofColor::blue);
+	faceOutline.draw();
+	
+	if(tracker.getFound()) {
+		ofSetColor(255);
+		bool inside = faceOutline.inside(mouseX, mouseY);
+		ofDrawBitmapString(inside ? "inside" : "outside", 10, 40);
+	}
 }
 
 void testApp::keyPressed(int key) {

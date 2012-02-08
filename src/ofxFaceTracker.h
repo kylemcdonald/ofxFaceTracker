@@ -63,7 +63,8 @@ public:
 		LEFT_EYEBROW, RIGHT_EYEBROW,
 		LEFT_EYE, RIGHT_EYE,
 		LEFT_JAW, RIGHT_JAW, JAW,
-		OUTER_MOUTH, INNER_MOUTH
+		OUTER_MOUTH, INNER_MOUTH,
+		FACE_OUTLINE
 	};
 	ofPolyline getImageFeature(Feature feature) const;
 	ofPolyline getObjectFeature(Feature feature) const;
