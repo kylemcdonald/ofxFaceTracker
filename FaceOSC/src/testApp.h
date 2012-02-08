@@ -41,4 +41,6 @@ public:
 	ofxFaceTracker tracker;
 	float scale;
 	ofMatrix4x4 rotationMatrix;
+	
+	bool bDrawMesh;
 };

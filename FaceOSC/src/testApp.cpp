@@ -78,6 +78,10 @@ void testApp::loadSettings() {
 	if(xml.getNumTags("attempts")) {
 		tracker.setAttempts(xml.getValue("attempts", 1));
 	}
+	bDrawMesh = true;
+	if(xml.getNumTags("drawMesh")) {
+		bDrawMesh = (bool) xml.getValue("drawMesh", 1);
+	}
 	tracker.setup();
 	xml.popTag();
 
@@ -186,18 +190,20 @@ void testApp::draw() {
 	if(tracker.getFound()) {
 		ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
 
-		ofSetLineWidth(1);
-		//tracker.draw();
-		tracker.getImageMesh().drawWireframe();
-
-		ofPushView();
-		ofSetupScreenOrtho(sourceWidth, sourceHeight, OF_ORIENTATION_UNKNOWN, true, -1000, 1000);
-		ofVec2f pos = tracker.getPosition();
-		ofTranslate(pos.x, pos.y);
-		applyMatrix(rotationMatrix);
-		ofScale(10,10,10);
-		ofDrawAxis(scale);
-		ofPopView();
+		if(bDrawMesh) {
+			ofSetLineWidth(1);
+			//tracker.draw();
+			tracker.getImageMesh().drawWireframe();
+		
+			ofPushView();
+			ofSetupScreenOrtho(sourceWidth, sourceHeight, OF_ORIENTATION_UNKNOWN, true, -1000, 1000);
+			ofVec2f pos = tracker.getPosition();
+			ofTranslate(pos.x, pos.y);
+			applyMatrix(rotationMatrix);
+			ofScale(10,10,10);
+			ofDrawAxis(scale);
+			ofPopView();
+		}
 	} else {
 		ofDrawBitmapString("searching for face...", 10, 20);
 	}
@@ -217,6 +223,9 @@ void testApp::keyPressed(int key) {
 	switch(key) {
 		case 'r':
 			tracker.reset();
+			break;
+		case 'm':
+			bDrawMesh = !bDrawMesh;
 			break;
 		case 'p':
 			bPaused = !bPaused;
