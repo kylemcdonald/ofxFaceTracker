@@ -94,6 +94,7 @@ void testApp::setup() {
 	ofSetVerticalSync(true);
 #ifdef TARGET_OSX
 	ofSetDataPathRoot("../Resources/data/");
+    syphonServer.setName("FaceOSC Camera");
 #endif
 	loadSettings();
 }
@@ -182,6 +183,11 @@ void testApp::update() {
 void testApp::draw() {
 	ofSetColor(255);
 	videoSource->draw(0, 0);
+    
+#ifdef TARGET_OSX
+    syphonServer.publishScreen();
+#endif
+
 
 	if(tracker.getFound()) {
 		ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);

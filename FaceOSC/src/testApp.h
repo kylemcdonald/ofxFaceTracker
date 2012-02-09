@@ -6,6 +6,7 @@
 #include "ofxFaceTracker.h"
 #include "ofxOsc.h"
 #include "ofxXmlSettings.h"
+#include "ofxSyphon.h"
 
 class testApp : public ofBaseApp {
 public:
@@ -37,6 +38,9 @@ public:
 	ofVideoGrabber cam;
 	ofVideoPlayer movie;
 	ofBaseVideoDraws *videoSource;
+    
+    ofxSyphonServer syphonServer;
+
     
 	ofxFaceTracker tracker;
 	float scale;
