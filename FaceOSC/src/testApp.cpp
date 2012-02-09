@@ -180,6 +180,19 @@ void testApp::update() {
 			addMessage("/gesture/eye/right", tracker.getGesture(ofxFaceTracker::RIGHT_EYE_OPENNESS));
 			addMessage("/gesture/jaw", tracker.getGesture(ofxFaceTracker::JAW_OPENNESS));
 			addMessage("/gesture/nostrils", tracker.getGesture(ofxFaceTracker::NOSTRIL_FLARE));
+            
+            if(bIncludeAllVertices){
+                ofxOscMessage msg;
+                msg.setAddress("/raw");
+                vector<ofVec2f> imagePoints = tracker.getImagePoints();
+                for(int i = 0; i < imagePoints.size(); i++){
+                    ofVec2f p = imagePoints.at(i);
+                    msg.addFloatArg(p.x);
+                    msg.addFloatArg(p.y);
+                }
+                bundle.addMessage(msg);
+
+            }
 		} else {
 			addMessage("/found", 0);
 		}
