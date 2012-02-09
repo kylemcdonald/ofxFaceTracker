@@ -24,8 +24,8 @@ public:
 
 	void setVideoSource(bool useCamera);
 
-	bool bUseCamera, bPaused;
-
+	bool bUseCamera, bPaused, bIncludeAllVertices;
+    
 	int camWidth, camHeight;
 	int movieWidth, movieHeight;
 	int sourceWidth, sourceHeight;

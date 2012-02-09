@@ -14,7 +14,17 @@ void testApp::loadSettings() {
 		bUseCamera = xml.getValue("useCamera", 0);
 	}
 	xml.popTag();
+    
+    xml.pushTag("vertices");
+	if(xml.getNumTags("includeAll") > 0) {
+		bIncludeAllVertices = xml.getValue("includeAll", 0);
+	} else {
+        bIncludeAllVertices = false;
+    }
+	xml.popTag();
 
+    cout << "bIncludeAllVertices: " << bIncludeAllVertices << endl;
+    
 	xml.pushTag("camera");
 	if(xml.getNumTags("device") > 0) {
 		cam.setDeviceID(xml.getValue("device", 0));

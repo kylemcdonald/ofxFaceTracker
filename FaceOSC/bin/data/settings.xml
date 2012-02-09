@@ -37,6 +37,11 @@
 	<!-- <attempts>1</attempts> -->
 </face>
 
+<!-- vertices settings -->
+<vertices>
+    <includeAll>1</includeAll>
+</vertices>
+
 <!-- osc output settings -->
 <osc>
 	<host>localhost</host>
