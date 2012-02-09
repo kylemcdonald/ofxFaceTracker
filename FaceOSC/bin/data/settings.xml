@@ -39,7 +39,7 @@
 
 <!-- vertices settings -->
 <vertices>
-    <includeAll>1</includeAll>
+    <!-- <includeAll>1</includeAll> -->
 </vertices>
 
 <!-- osc output settings -->
