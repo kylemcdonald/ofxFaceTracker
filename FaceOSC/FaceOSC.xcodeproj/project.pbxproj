@@ -38,13 +38,8 @@
 		30658548145F2D640015FD7B /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30658542145F2D640015FD7B /* tinyxmlerror.cpp */; };
 		30658549145F2D640015FD7B /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30658543145F2D640015FD7B /* tinyxmlparser.cpp */; };
 		3065854A145F2D640015FD7B /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30658545145F2D640015FD7B /* ofxXmlSettings.cpp */; };
-		30658557145F2E2E0015FD7B /* settings.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30658551145F2E040015FD7B /* settings.xml */; };
-		3065855F145F30A70015FD7B /* face.con in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30658559145F2FF00015FD7B /* face.con */; };
-		30658560145F30A70015FD7B /* face.tracker in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3065855A145F2FF00015FD7B /* face.tracker */; };
-		30658561145F30A70015FD7B /* face.tri in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3065855B145F2FF00015FD7B /* face.tri */; };
-		30658562145F30A70015FD7B /* face2.tracker in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3065855C145F2FF00015FD7B /* face2.tracker */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
-		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
+		E4328149138ABC9F0047C5CB /* openFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworks.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
 		E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9730E8CC7DD009D7055 /* AudioToolbox.framework */; };
@@ -84,7 +79,6 @@
 			dstPath = data;
 			dstSubfolderSpec = 7;
 			files = (
-				30658557145F2E2E0015FD7B /* settings.xml in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,10 +88,6 @@
 			dstPath = data/model;
 			dstSubfolderSpec = 7;
 			files = (
-				3065855F145F30A70015FD7B /* face.con in CopyFiles */,
-				30658560145F30A70015FD7B /* face.tracker in CopyFiles */,
-				30658561145F30A70015FD7B /* face.tri in CopyFiles */,
-				30658562145F30A70015FD7B /* face2.tracker in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,11 +244,6 @@
 		30658543145F2D640015FD7B /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		30658545145F2D640015FD7B /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		30658546145F2D640015FD7B /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
-		30658551145F2E040015FD7B /* settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = settings.xml; sourceTree = "<group>"; };
-		30658559145F2FF00015FD7B /* face.con */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face.con; sourceTree = "<group>"; };
-		3065855A145F2FF00015FD7B /* face.tracker */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face.tracker; sourceTree = "<group>"; };
-		3065855B145F2FF00015FD7B /* face.tri */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face.tri; sourceTree = "<group>"; };
-		3065855C145F2FF00015FD7B /* face2.tracker */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face2.tracker; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -270,7 +255,7 @@
 		E45BE9770E8CC7DD009D7055 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		E45BE9790E8CC7DD009D7055 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
-		E4B69B5B0A3A1756003C02F2 /* FaceOSCDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceOSCDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* FaceOSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceOSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4C2424410CC5A17004149E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E4C2424510CC5A17004149E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -285,7 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
-				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
+				E4328149138ABC9F0047C5CB /* openFrameworks.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
 				E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */,
 				E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */,
@@ -775,27 +760,6 @@
 			path = ../../../addons/ofxXmlSettings/src;
 			sourceTree = "<group>";
 		};
-		3065854B145F2DC10015FD7B /* data */ = {
-			isa = PBXGroup;
-			children = (
-				30658558145F2FF00015FD7B /* model */,
-				30658551145F2E040015FD7B /* settings.xml */,
-			);
-			name = data;
-			path = bin/data;
-			sourceTree = "<group>";
-		};
-		30658558145F2FF00015FD7B /* model */ = {
-			isa = PBXGroup;
-			children = (
-				30658559145F2FF00015FD7B /* face.con */,
-				3065855A145F2FF00015FD7B /* face.tracker */,
-				3065855B145F2FF00015FD7B /* face.tri */,
-				3065855C145F2FF00015FD7B /* face2.tracker */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -837,7 +801,7 @@
 		E4328144138ABC890047C5CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E4328148138ABC890047C5CB /* openFrameworksDebug.a */,
+				E4328148138ABC890047C5CB /* openFrameworks.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -855,12 +819,11 @@
 			isa = PBXGroup;
 			children = (
 				3000D977145E65A2009FC3EC /* Project.xcconfig */,
-				3065854B145F2DC10015FD7B /* data */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
 				E45BE5980E8CC70C009D7055 /* frameworks */,
-				E4B69B5B0A3A1756003C02F2 /* FaceOSCDebug.app */,
+				E4B69B5B0A3A1756003C02F2 /* FaceOSC.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -906,7 +869,7 @@
 			);
 			name = FaceOSC;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* FaceOSCDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* FaceOSC.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -916,7 +879,6 @@
 			isa = PBXProject;
 			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "FaceOSC" */;
 			compatibilityVersion = "Xcode 2.4";
-			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				English,
@@ -941,10 +903,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E4328148138ABC890047C5CB /* openFrameworksDebug.a */ = {
+		E4328148138ABC890047C5CB /* openFrameworks.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = openFrameworksDebug.a;
+			path = openFrameworks.a;
 			remoteRef = E4328147138ABC890047C5CB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

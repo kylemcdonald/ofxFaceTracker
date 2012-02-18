@@ -31,9 +31,12 @@ vector<int> ofxFaceTracker::getFeatureIndices(Feature feature) {
 		case INNER_MOUTH:
 			static int innerMouth[] = {48,60,61,62,54,63,64,65};
 			return vector<int>(innerMouth, innerMouth + 8);
+		case NOSE_BRIDGE: return consecutive(27, 31);
+		case NOSE_BASE: return consecutive(31, 36);
 		case FACE_OUTLINE:
 			static int faceOutline[] = {17,18,19,20,21,22,23,24,25,26, 16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0};
 			return vector<int>(faceOutline, faceOutline + 27);
+		case ALL_FEATURES: return consecutive(0, 66);
 	}
 }
 		
@@ -99,15 +102,30 @@ bool ofxFaceTracker::update(Mat image) {
 	return !failed;
 }
 
-void ofxFaceTracker::draw() const{
+void ofxFaceTracker::draw(bool drawLabels) const{
 	if(failed) {
 		return;
 	}
-	getImageMesh().drawWireframe();
-	int n = size();
-	for(int i = 0; i < n; i++){
-		if(getVisibility(i)) {
-			ofDrawBitmapString(ofToString(i), getImagePoint(i));
+	
+	ofPushStyle();
+	ofNoFill();
+	getImageFeature(LEFT_EYE).draw();
+	getImageFeature(RIGHT_EYE).draw();
+	getImageFeature(LEFT_EYEBROW).draw();
+	getImageFeature(RIGHT_EYEBROW).draw();
+	getImageFeature(NOSE_BRIDGE).draw();
+	getImageFeature(NOSE_BASE).draw();
+	getImageFeature(INNER_MOUTH).draw();
+	getImageFeature(OUTER_MOUTH).draw();
+	getImageFeature(JAW).draw();
+	ofPopStyle();
+	
+	if(drawLabels) {
+		int n = size();
+		for(int i = 0; i < n; i++){
+			if(getVisibility(i)) {
+				ofDrawBitmapString(ofToString(i), getImagePoint(i));
+			}
 		}
 	}
 }

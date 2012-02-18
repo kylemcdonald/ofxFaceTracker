@@ -1,14 +1,14 @@
 /*
  ofxFaceTracker provides an interface to Jason Saragih's FaceTracker library.
-
+ 
  getImagePoint()/getImageMesh() are in image space. This means that all the
  points will line up with the pixel coordinates of the image you fed into
  ofxFaceTracker.
-
+ 
  getObjectPoint()/getObjectMesh() are in 3d object space. This is a product of
  the mean mesh with only the expression applied. There is no rotation or
  translation applied to the object space.
-
+ 
  getMeanObjectPoint()/getMeanObjectMesh() are also in 3d object space. However,
  there is no expression applied to the mesh.
  */
@@ -19,57 +19,57 @@
 #include "Tracker.h"
 #include "ExpressionClassifier.h"
 
-
 class ofxFaceTracker {
 public:
 	ofxFaceTracker();
 	void setup();
 	bool update(cv::Mat image);
-	void draw() const;
+	void draw(bool drawLabels = false) const;
 	void reset();
-
+	
 	int size() const;
 	bool getFound() const;
 	bool getVisibility(int i) const;
-
+	
 	vector<ofVec2f> getImagePoints() const;
 	vector<ofVec3f> getObjectPoints() const;
 	vector<ofVec3f> getMeanObjectPoints() const;
-
+	
 	ofVec2f getImagePoint(int i) const;
 	ofVec3f getObjectPoint(int i) const;
 	ofVec3f getMeanObjectPoint(int i) const;
-
+	
 	ofMesh getImageMesh() const;
 	ofMesh getObjectMesh() const;
 	ofMesh getMeanObjectMesh() const;
 	template <class T> ofMesh getMesh(vector<T> points) const;
-
+	
 	const cv::Mat& getObjectPointsMat() const;
-
+	
 	ofVec2f getPosition() const;
 	float getScale() const;
 	ofVec3f getOrientation() const;
 	ofMatrix4x4 getRotationMatrix() const;
-
+	
 	enum Direction {
 		FACING_FORWARD,
 		FACING_LEFT, FACING_RIGHT,
 		FACING_UNKNOWN
 	};
 	Direction getDirection() const;
-
+	
 	enum Feature {
 		LEFT_EYEBROW, RIGHT_EYEBROW,
 		LEFT_EYE, RIGHT_EYE,
 		LEFT_JAW, RIGHT_JAW, JAW,
 		OUTER_MOUTH, INNER_MOUTH,
-		FACE_OUTLINE
+		NOSE_BRIDGE, NOSE_BASE,
+		FACE_OUTLINE, ALL_FEATURES
 	};
 	ofPolyline getImageFeature(Feature feature) const;
 	ofPolyline getObjectFeature(Feature feature) const;
 	ofPolyline getMeanObjectFeature(Feature feature) const;
-
+	
 	enum Gesture {
 		MOUTH_WIDTH, MOUTH_HEIGHT,
 		LEFT_EYEBROW_HEIGHT, RIGHT_EYEBROW_HEIGHT,
@@ -78,36 +78,36 @@ public:
 		NOSTRIL_FLARE
 	};
 	float getGesture(Gesture gesture) const;
-
+	
 	void setRescale(float rescale);
 	void setIterations(int iterations);
 	void setClamp(float clamp);
 	void setTolerance(float tolerance);
 	void setAttempts(int attempts);
 	void setUseInvisible(bool useInvisible);
-
+	
 protected:
 	void updateObjectPoints();
 	void addTriangleIndices(ofMesh& mesh) const;
 	static vector<int> getFeatureIndices(Feature feature);
 	template <class T> ofPolyline getFeature(Feature feature, vector<T> points) const;
-
+	
 	bool failed;
 	int currentView;
-
+	
 	bool fcheck;
 	double rescale;
 	int frameSkip;
-
+	
 	vector<int> wSize1, wSize2;
 	int iterations;
 	int attempts;
 	double clamp, tolerance;
 	bool useInvisible;
-
+	
 	FACETRACKER::Tracker tracker;
 	cv::Mat tri, con;
-
+	
 	cv::Mat im, gray;
 	cv::Mat objectPoints;
 };
@@ -122,6 +122,14 @@ ofPolyline ofxFaceTracker::getFeature(Feature feature, vector<T> points) const {
 			if(useInvisible || getVisibility(cur)) {
 				polyline.addVertex(points[cur]);
 			}
+		}
+		switch(feature) {
+			case LEFT_EYE:
+			case RIGHT_EYE:
+			case OUTER_MOUTH:
+			case INNER_MOUTH:
+			case FACE_OUTLINE:
+				polyline.close();
 		}
 	}
 	return polyline;
