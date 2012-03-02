@@ -45,6 +45,8 @@ void testApp::setup() {
 	tracker.setup();
 	eyeFbo.allocate(128, 48, GL_RGB);
 	runningMean = 24;
+	
+	osc.setup("localhost", 8338);
 }
 
 void testApp::update() {
@@ -145,16 +147,12 @@ void testApp::update() {
 			
 			convertColor(eyePixels, gray, CV_RGB2GRAY);
 			normalize(gray, gray);
-			Mat sobelx, sobely;
 			Sobel(gray, sobelx, CV_32F, 1, 0, 3, 1);
 			Sobel(gray, sobely, CV_32F, 0, 1, 3, 1);
 			sobel = abs(sobelx) + abs(sobely);
 			bitwise_not(gray, gray);
-			Mat grayFloat;
 			gray.convertTo(grayFloat, CV_32F);
 			sobel += grayFloat;
-			
-			float avg, sum;
 			
 			rowMean = meanRows(sobel);
 			// clear the ends
@@ -162,8 +160,7 @@ void testApp::update() {
 			rowMean.at<float>(rowMean.rows - 1) = 0;
 			// build the line
 			rowMeanLine.clear();
-			avg = 0;
-			sum = 0;
+			float avg = 0, sum = 0;
 			for(int i = 0; i < rowMean.rows; i++) {
 				float cur = rowMean.at<float>(i);
 				avg += i * cur;
@@ -172,12 +169,17 @@ void testApp::update() {
 			}
 			avg /= sum;
 			rowGraph.addSample(avg - runningMean);
-			runningMean = ofLerp(runningMean, avg, .5);
+			runningMean = ofLerp(runningMean, avg, .3);
 			
-			Mat laplacianMat = toCv(laplacian);
-			imitate(laplacian, gray);
-			sobel.convertTo(laplacianMat, CV_8U, .5);
-			laplacian.update();
+			Mat sobelImgMat = toCv(sobelImg);
+			imitate(sobelImg, gray);
+			sobel.convertTo(sobelImgMat, CV_8U, .5);
+			sobelImg.update();
+			
+			ofxOscMessage msg;
+			msg.setAddress("/gesture/blink");
+			msg.addIntArg(rowGraph.getState() ? 1 : 0);
+			osc.sendMessage(msg);
 		}
 	}
 }
@@ -194,7 +196,7 @@ void testApp::draw() {
 	eyeFbo.draw(0, 0);
 	
 	ofTranslate(0, 48 + 10);
-	laplacian.draw(0, 0);
+	sobelImg.draw(0, 0);
 	
 	ofNoFill();
 	ofPushMatrix();

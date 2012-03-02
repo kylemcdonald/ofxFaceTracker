@@ -2,14 +2,16 @@
 
 #include "ofMain.h"
 #include "ofxCv.h"
+#include "ofxOsc.h"
 
 #include "ofxFaceTracker.h"
 
 class Graph {
 public:
 	Graph()
-	:threshold(0)
-	,maxSize(128) {
+	:maxSize(128)
+	,threshold(0)
+	,state(false) {
 	}
 	void setup(int maxSize) {
 		this->maxSize = maxSize;
@@ -19,9 +21,13 @@ public:
 		if(buffer.size() > maxSize) {
 			buffer.pop_front();
 		}
-	}
-	void setThreshold(float threshold) {
-		this->threshold = threshold;
+		
+		// get the median at the 95th percentile
+		vector<float> all;
+		all.assign(buffer.begin(), buffer.end());
+		ofSort(all);
+		float percentile = .95;
+		threshold = all[(int) (all.size() * percentile)];
 	}
 	void glMapX(float minInput, float maxInput, float minOutput, float maxOutput) {
 		float inputRange = maxInput - minInput, outputRange = maxOutput - minOutput;
@@ -37,6 +43,9 @@ public:
 		ofScale(1, 1. / inputRange);
 		ofTranslate(0, -minInput);
 	}
+	ofRectangle getBounds() {
+		return line.getBoundingBox();
+	}
 	void draw(int x, int y, int height) {
 		line.clear();
 		for(int i = 0; i < buffer.size(); i++) {
@@ -44,6 +53,9 @@ public:
 		}
 		ofPushMatrix();
 		ofPushStyle();
+		
+		ofRectangle box = getBounds();
+		
 		ofTranslate(x, y);
 		ofFill();
 		bool bright = !buffer.empty() && threshold != 0 && buffer.back() > threshold;
@@ -53,21 +65,25 @@ public:
 		ofSetColor(255);
 		ofRect(0, 0, maxSize, height);
 		
-		ofRectangle box = line.getBoundingBox();
-		glMapX(box.x, box.x + box.width, 0, maxSize);
-		glMapY(box.y, box.y + box.height, height, 0);
-		line.draw();
-		if(threshold != 0) {
+		if(!buffer.empty()) {
+			glMapX(box.x, box.x + box.width, 0, maxSize);
+			glMapY(box.y, box.y + box.height, height, 0);
+			line.draw();
 			ofLine(0, threshold, buffer.size(), threshold);
+			state = buffer.back() > threshold;
 		}
 		ofPopStyle();
 		ofPopMatrix();
+	}
+	bool getState() {
+		return state;
 	}
 private:
 	ofPolyline line;
 	int maxSize;
 	deque<float> buffer;
 	float threshold;
+	bool state;
 };
 
 class testApp : public ofBaseApp {
@@ -82,7 +98,9 @@ public:
 	
 	ofFbo eyeFbo;
 	ofPixels eyePixels;
-	ofImage laplacian;
+	ofImage sobelImg;
+	cv::Mat grayFloat;
+	cv::Mat sobelx, sobely;
 	cv::Mat rowMean, gray, sobel;
 	ofPolyline rowMeanLine;
 	ofMesh leftRectImg, rightRectImg;
@@ -93,4 +111,6 @@ public:
 	ofVec2f position;
 	float scale;
 	ofMatrix4x4 rotationMatrix;
+	
+	ofxOscSender osc;
 };

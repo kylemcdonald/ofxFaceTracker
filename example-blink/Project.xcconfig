@@ -18,9 +18,13 @@ OFX_OPENCV_LIBS = "$(ADDONS_PATH)/ofxOpenCv/libs/opencv/lib/osx/opencv.a"
 // ofxFaceTracker
 OFX_FACETRACKER_HEADERS = "$(ADDONS_PATH)/ofxFaceTracker/src"
 
+// ofxOsc
+OFX_OSC_HEADERS = "$(ADDONS_PATH)/ofxOsc/src" "$(ADDONS_PATH)/ofxOsc/libs/oscpack/include/"
+OFX_OSC_LIBS = "$(ADDONS_PATH)/ofxOsc/libs/oscpack/lib/osx/osc.a"
+
 // all addons
-OF_ADDON_HEADERS = $(OFX_OPENCV_HEADERS) $(OFX_FACETRACKER_HEADERS)
-OF_ADDON_LIBS = $(OFX_OPENCV_LIBS)
+OF_ADDON_HEADERS = $(OFX_OPENCV_HEADERS) $(OFX_FACETRACKER_HEADERS) $(OFX_OSC_HEADERS)
+OF_ADDON_LIBS = $(OFX_OPENCV_LIBS) $(OFX_OSC_LIBS)
 
 ///////////////////////////////////////////
 // MAIN
