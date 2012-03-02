@@ -1,0 +1,29 @@
+//THE PATH TO THE ROOT OF OUR OF PATH RELATIVE TO THIS PROJECT.
+//THIS NEEDS TO BE DEFINED BEFORE CoreOF.xcconfig IS INCLUDED
+OF_PATH = ../../..
+
+//THIS HAS ALL THE HEADER AND LIBS FOR OF CORE
+#include "../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig"
+
+///////////////////////////////////////////
+// ADDONS
+
+// path to the addons dir
+ADDONS_PATH = $(OF_PATH)/addons
+
+// ofxCV
+OFX_OPENCV_HEADERS = "$(ADDONS_PATH)/ofxOpenCv/src" "$(ADDONS_PATH)/ofxOpenCv/libs/opencv/include/" "$(ADDONS_PATH)/ofxOpenCv/libs/opencv/include/opencv" "$(ADDONS_PATH)/ofxCv/src" "$(ADDONS_PATH)/ofxCv/libs/ofxCv/include"
+OFX_OPENCV_LIBS = "$(ADDONS_PATH)/ofxOpenCv/libs/opencv/lib/osx/opencv.a"
+
+// ofxFaceTracker
+OFX_FACETRACKER_HEADERS = "$(ADDONS_PATH)/ofxFaceTracker/src"
+
+// all addons
+OF_ADDON_HEADERS = $(OFX_OPENCV_HEADERS) $(OFX_FACETRACKER_HEADERS)
+OF_ADDON_LIBS = $(OFX_OPENCV_LIBS)
+
+///////////////////////////////////////////
+// MAIN
+
+HEADER_SEARCH_PATHS = $(OF_CORE_HEADERS) $(OF_ADDON_HEADERS)
+OTHER_LDFLAGS = $(OF_CORE_LIBS) $(OF_ADDON_LIBS)
