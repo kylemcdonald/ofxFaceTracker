@@ -38,6 +38,7 @@ void addTexCoords(ofMesh& to, const vector<T>& from) {
 using namespace ofxCv;
 
 void testApp::setup() {
+	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
 	ofSetDrawBitmapMode(OF_BITMAPMODE_MODEL_BILLBOARD);
 	cam.initGrabber(640, 480);
