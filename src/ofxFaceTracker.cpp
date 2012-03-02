@@ -50,6 +50,7 @@ ofxFaceTracker::ofxFaceTracker()
 ,fcheck(true) // check for whether the tracking failed
 ,frameSkip(-1) // how often to skip frames
 ,useInvisible(true)
+,age(-1)
 {
 }
 
@@ -92,11 +93,13 @@ bool ofxFaceTracker::update(Mat image) {
 		if(tracker.Track(gray, wSize, frameSkip, iterations, clamp, tolerance, fcheck) == 0) {
 			currentView = tracker._clm.GetViewIdx();
 			failed = false;
+			age++;
 			tryAgain = false;
 			updateObjectPoints();
 		} else {
 			tracker.FrameReset();
 			failed = true;
+			age = -1;
 		}
 	}
 	return !failed;
@@ -140,6 +143,10 @@ int ofxFaceTracker::size() const {
 
 bool ofxFaceTracker::getFound() const {
 	return !failed;
+}
+
+int ofxFaceTracker::getAge() const {
+	return age;
 }
 
 bool ofxFaceTracker::getVisibility(int i) const {

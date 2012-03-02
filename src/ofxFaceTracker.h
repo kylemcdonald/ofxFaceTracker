@@ -29,6 +29,7 @@ public:
 	
 	int size() const;
 	bool getFound() const;
+	int getAge() const;
 	bool getVisibility(int i) const;
 	
 	vector<ofVec2f> getImagePoints() const;
@@ -93,6 +94,7 @@ protected:
 	template <class T> ofPolyline getFeature(Feature feature, vector<T> points) const;
 	
 	bool failed;
+	int age;
 	int currentView;
 	
 	bool fcheck;
