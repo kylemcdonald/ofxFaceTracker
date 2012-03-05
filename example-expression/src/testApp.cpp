@@ -9,11 +9,6 @@ void testApp::setup() {
 	
 	tracker.setup();
 	tracker.setRescale(.5);
-	
-	addExpression = false;
-	addSample = false;
-	saveData = false;
-	loadData = false;
 }
 
 void testApp::update() {
@@ -21,22 +16,6 @@ void testApp::update() {
 	if(cam.isFrameNew()) {
 		if(tracker.update(toCv(cam))) {
 			classifier.classify(tracker);
-			if(addExpression) {
-				addExpression = false;
-				classifier.addExpression();
-			}			
-			if(addSample) {
-				addSample = false;
-				classifier.addSample(tracker);
-			}				
-			if(loadData) {
-				loadData = false;
-				classifier.load("expressions");
-			}			
-			if(saveData) {
-				saveData = false;
-				classifier.save("expressions");
-			}
 		}		
 	}
 }
@@ -63,14 +42,14 @@ void testApp::draw() {
 	ofPopStyle();
 	
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), ofGetWidth() - 20, ofGetHeight() - 10);
-	ofDrawBitmapString(
+	drawHighlightString(
 		string() +
 		"r - reset\n" +
 		"e - add expression\n" +
 		"a - add sample\n" +
 		"s - save expressions\n"
 		"l - load expressions",
-		14, ofGetHeight() - 6 * 12);
+		14, ofGetHeight() - 7 * 12);
 }
 
 void testApp::keyPressed(int key) {
@@ -79,15 +58,15 @@ void testApp::keyPressed(int key) {
 		classifier.reset();
 	}
 	if(key == 'e') {
-		addExpression = true;
+		classifier.addExpression();
 	}
 	if(key == 'a') {
-		addSample = true;
+		classifier.addSample(tracker);
 	}
 	if(key == 's') {
-		saveData = true;
+		classifier.save("expressions");
 	}
 	if(key == 'l') {
-		loadData = true;
+		classifier.load("expressions");
 	}
 }

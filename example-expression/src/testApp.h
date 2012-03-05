@@ -13,6 +13,4 @@ public:
 	ofVideoGrabber cam;
 	ofxFaceTracker tracker;
 	ExpressionClassifier classifier;
-	
-	bool addExpression, addSample, saveData, loadData;
 };
