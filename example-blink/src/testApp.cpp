@@ -68,8 +68,8 @@ void testApp::update() {
 			ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
 			ofPolyline rightEye = tracker.getImageFeature(ofxFaceTracker::RIGHT_EYE);
 			
-			ofVec2f leftCenter = leftEye.getCentroid2D();
-			ofVec2f rightCenter = rightEye.getCentroid2D();
+			ofVec2f leftCenter = leftEye.getBoundingBox().getCenter();
+			ofVec2f rightCenter = rightEye.getBoundingBox().getCenter();
 			
 			float leftRadius = (leftCenter.distance(leftInner) + leftCenter.distance(leftOuter)) / 2;
 			float rightRadius = (rightCenter.distance(rightInner) + rightCenter.distance(rightOuter)) / 2;
@@ -170,7 +170,7 @@ void testApp::update() {
 			}
 			avg /= sum;
 			rowGraph.addSample(avg - runningMean);
-			runningMean = ofLerp(runningMean, avg, .3);
+			runningMean = 0;//ofLerp(runningMean, avg, .3);
 			
 			Mat sobelImgMat = toCv(sobelImg);
 			imitate(sobelImg, gray);
