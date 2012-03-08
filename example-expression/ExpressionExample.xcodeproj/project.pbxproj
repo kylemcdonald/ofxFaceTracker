@@ -77,6 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		27FF908F150930B700F2FBBC /* ofxFaceTrackerThreaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxFaceTrackerThreaded.h; path = ../src/ofxFaceTrackerThreaded.h; sourceTree = SOURCE_ROOT; };
 		3000D977145E65A2009FC3EC /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		30658265145EFACE0015FD7B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		30658266145EFACE0015FD7B /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
@@ -286,6 +287,7 @@
 		306582F2145EFD0C0015FD7B /* src */ = {
 			isa = PBXGroup;
 			children = (
+				27FF908F150930B700F2FBBC /* ofxFaceTrackerThreaded.h */,
 				306582F3145EFD0C0015FD7B /* Expression.cpp */,
 				306582F4145EFD0C0015FD7B /* Expression.h */,
 				306582F5145EFD0C0015FD7B /* ExpressionClassifier.cpp */,
