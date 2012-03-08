@@ -28,7 +28,7 @@ public:
 		needsUpdatingFront = true;
 		bool curFailed = failed;
 		dataMutex.unlock();
-		return curFailed;
+		return !curFailed;
 	}
 	const cv::Mat& getObjectPointsMat() const {
 		return objectPointsMatFront;
@@ -60,7 +60,7 @@ public:
 	
 protected:
 	void threadedFunction() {
-		threadedTracker = new ofxFaceTracker();
+		ofxFaceTracker* threadedTracker = new ofxFaceTracker();
 		threadedTracker->setup();
 		while(isThreadRunning()) {
 			dataMutex.lock();
@@ -107,6 +107,4 @@ protected:
 	float scale;
 	ofVec2f position;
 	cv::Mat objectPointsMatBack, objectPointsMatMiddle, objectPointsMatFront; 
-	
-	ofxFaceTracker* threadedTracker;
 };

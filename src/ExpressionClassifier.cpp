@@ -34,7 +34,8 @@ void ExpressionClassifier::load(string directory) {
 }
 
 unsigned int ExpressionClassifier::classify(const ofxFaceTracker& tracker) {
-	Mat cur = tracker.getObjectPointsMat().clone();
+	Mat cur;
+	tracker.getObjectPointsMat().copyTo(cur);
 	norm(cur);
 	int n = size();
 	probability.resize(n);
