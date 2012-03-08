@@ -30,14 +30,14 @@ public:
 	int size() const;
 	bool getFound() const;
 	int getAge() const;
-	bool getVisibility(int i) const;
+	virtual bool getVisibility(int i) const;
 	
 	vector<ofVec2f> getImagePoints() const;
 	vector<ofVec3f> getObjectPoints() const;
 	vector<ofVec3f> getMeanObjectPoints() const;
 	
-	ofVec2f getImagePoint(int i) const;
-	ofVec3f getObjectPoint(int i) const;
+	virtual ofVec2f getImagePoint(int i) const;
+	virtual ofVec3f getObjectPoint(int i) const;
 	ofVec3f getMeanObjectPoint(int i) const;
 	
 	ofMesh getImageMesh() const;
@@ -47,9 +47,9 @@ public:
 	
 	const cv::Mat& getObjectPointsMat() const;
 	
-	ofVec2f getPosition() const;
-	float getScale() const;
-	ofVec3f getOrientation() const;
+	virtual ofVec2f getPosition() const;
+	virtual float getScale() const;
+	virtual ofVec3f getOrientation() const;
 	ofMatrix4x4 getRotationMatrix() const;
 	
 	enum Direction {
