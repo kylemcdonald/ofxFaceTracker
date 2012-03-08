@@ -45,7 +45,7 @@ public:
 	ofMesh getMeanObjectMesh() const;
 	template <class T> ofMesh getMesh(vector<T> points) const;
 	
-	const cv::Mat& getObjectPointsMat() const;
+	virtual const cv::Mat& getObjectPointsMat() const;
 	
 	virtual ofVec2f getPosition() const;
 	virtual float getScale() const;

@@ -24,10 +24,14 @@ public:
 		image.copyTo(imageMiddle);
 		objectPointsFront = objectPointsMiddle;
 		imagePointsFront = imagePointsMiddle;
+		objectPointsMatFront = objectPointsMatMiddle;
 		needsUpdatingFront = true;
 		bool curFailed = failed;
 		dataMutex.unlock();
 		return curFailed;
+	}
+	const cv::Mat& getObjectPointsMat() const {
+		return objectPointsMatFront;
 	}
 	ofVec2f getImagePoint(int i) const {
 		if(failed) {
@@ -86,6 +90,7 @@ protected:
 			position = threadedTracker->getPosition();
 			orientation = threadedTracker->getOrientation();
 			scale = threadedTracker->getScale();
+			objectPointsMatMiddle = threadedTracker->getObjectPointsMat();
 			dataMutex.unlock();
 		}
 		delete threadedTracker;
@@ -101,6 +106,7 @@ protected:
 	ofVec3f orientation;
 	float scale;
 	ofVec2f position;
+	cv::Mat objectPointsMatBack, objectPointsMatMiddle, objectPointsMatFront; 
 	
 	ofxFaceTracker* threadedTracker;
 };
