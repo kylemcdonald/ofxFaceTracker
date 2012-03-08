@@ -19,13 +19,15 @@ public:
 		ofxFaceTracker::setup();
 		startThread(true, false);
 	}
-	void update(cv::Mat image) {
+	bool update(cv::Mat image) {
 		dataMutex.lock();
 		image.copyTo(imageMiddle);
 		objectPointsFront = objectPointsMiddle;
 		imagePointsFront = imagePointsMiddle;
 		needsUpdatingFront = true;
+		bool curFailed = failed;
 		dataMutex.unlock();
+		return curFailed;
 	}
 	ofVec2f getImagePoint(int i) const {
 		if(failed) {

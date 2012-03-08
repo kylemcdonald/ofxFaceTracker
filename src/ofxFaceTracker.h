@@ -23,7 +23,7 @@ class ofxFaceTracker {
 public:
 	ofxFaceTracker();
 	void setup();
-	bool update(cv::Mat image);
+	virtual bool update(cv::Mat image);
 	void draw(bool drawLabels = false) const;
 	void reset();
 	
