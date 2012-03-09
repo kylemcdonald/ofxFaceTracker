@@ -8,7 +8,8 @@ class ofxFaceTrackerThreaded : public ofxFaceTracker, public ofThread {
 public:
 	ofxFaceTrackerThreaded()
 	:needsUpdatingBack(false)
-	,needsUpdatingFront(false) {
+	,needsUpdatingFront(false)
+	,meanObjectPointsReady(false) {
 	}
 	~ofxFaceTrackerThreaded() {
 		stopThread(false);
@@ -24,11 +25,15 @@ public:
 		image.copyTo(imageMiddle);
 		objectPointsFront = objectPointsMiddle;
 		imagePointsFront = imagePointsMiddle;
+		meanObjectPointsFront = meanObjectPointsMiddle;
 		objectPointsMatFront = objectPointsMatMiddle;
+		failed = failedMiddle;
 		needsUpdatingFront = true;
-		bool curFailed = failed;
 		dataMutex.unlock();
-		return !curFailed;
+		if(!failed) {
+			meanObjectPointsReady = true;
+		}
+		return getFound();
 	}
 	const cv::Mat& getObjectPointsMat() const {
 		return objectPointsMatFront;
@@ -44,6 +49,13 @@ public:
 			return ofVec3f();
 		}
 		return objectPointsFront[i];
+	}
+	ofVec3f getMeanObjectPoint(int i) const {
+		if(meanObjectPointsReady) {
+			return meanObjectPointsFront[i];
+		} else {
+			return ofVec3f();
+		}
 	}
 	bool getVisibility(int i) const {
 		return failed;
@@ -86,7 +98,8 @@ protected:
 			dataMutex.lock();
 			objectPointsMiddle = threadedTracker->getObjectPoints();
 			imagePointsMiddle = threadedTracker->getImagePoints();
-			failed = !threadedTracker->getFound();
+			meanObjectPointsMiddle = threadedTracker->getMeanObjectPoints();
+			failedMiddle = !threadedTracker->getFound();
 			position = threadedTracker->getPosition();
 			orientation = threadedTracker->getOrientation();
 			scale = threadedTracker->getScale();
@@ -102,6 +115,9 @@ protected:
 	cv::Mat imageMiddle, imageBack;
 	vector<ofVec3f> objectPointsFront, objectPointsMiddle;
 	vector<ofVec2f> imagePointsFront, imagePointsMiddle;
+	vector<ofVec3f> meanObjectPointsFront, meanObjectPointsMiddle;
+	bool failedMiddle;
+	bool meanObjectPointsReady;
 	
 	ofVec3f orientation;
 	float scale;

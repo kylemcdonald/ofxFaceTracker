@@ -38,7 +38,7 @@ public:
 	
 	virtual ofVec2f getImagePoint(int i) const;
 	virtual ofVec3f getObjectPoint(int i) const;
-	ofVec3f getMeanObjectPoint(int i) const;
+	virtual ofVec3f getMeanObjectPoint(int i) const;
 	
 	ofMesh getImageMesh() const;
 	ofMesh getObjectMesh() const;
