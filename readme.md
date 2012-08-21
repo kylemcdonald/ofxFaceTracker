@@ -2,7 +2,7 @@
 
 [openFrameworks](http://openFrameworks.cc/) is an open source toolkit for creative coding.
 
-ofxFaceTracker is available under the MIT license, while FaceTracker is open source for non-commercial use, and is available [from Jason directly](http://web.mac.com/jsaragih/FaceTracker/FaceTracker.html). One you have Jason's source, you'll need to drop it in `libs/` (e.g., `libs/Tracker/Tracker.h`). You'll also need to drop the model data in `bin/data/model/`. If you see the error `Assertion failed: s.is_open()`, that means you forgot to drop the model files in the right folder.
+ofxFaceTracker is available under the MIT license, while FaceTracker is open source for non-commercial use, and is available from Jason directly (contact him at [jason.saragih@csiro.au](mailto:jason.saragih@csiro.au)). One you have Jason's source, you'll need to drop it in `libs/` (e.g., `libs/Tracker/Tracker.h`). You'll also need to drop the model data in `bin/data/model/`. If you see the error `Assertion failed: s.is_open()`, that means you forgot to drop the model files in the right folder.
 
 If you would like to prototype an idea involving face tracking, I encourage you to download [FaceOSC](https://github.com/kylemcdonald/ofxFaceTracker/downloads). Dan Wilcox has some great [FaceOSC templates](https://github.com/danomatika/FaceOSC-Templates) that will help you get started in environments like Max, pd, Processing, and openFrameworks.
 
