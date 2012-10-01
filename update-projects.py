@@ -19,7 +19,7 @@ sourceWorkspace = "example-empty/EmptyExample.workspace"
 # xcode osx
 sourceXcconfig = "example-empty/Project.xcconfig"
 sourcePlist = "example-empty/openFrameworks-Info.plist"
-sourcePbxproj = "example-empty/EmptyExample.xcodeproj/project.pbxproj"
+sourceXcodeproj = "example-empty/ofApp.xcodeproj/"
 
 examples = glob.glob("example*")
 for example in examples:
@@ -37,14 +37,14 @@ for example in examples:
     replaceInFile(targetWorkspace, sourceProjectName, targetProjectName)
 
     # xcode osx
-    targetXcodeproj = "{0}/{1}.xcodeproj".format(example, targetProjectName)
-    targetPbxproj = "{0}/project.pbxproj".format(targetXcodeproj)
+    targetXcodeproj = "{0}/ofApp.xcodeproj".format(example)
     shutil.copy(sourceXcconfig, example)
     shutil.copy(sourcePlist, example)
     if not os.path.exists(targetXcodeproj):
       os.mkdir(targetXcodeproj)
-    shutil.copy(sourcePbxproj, targetPbxproj)
-    replaceInFile(targetPbxproj, sourceProjectName, targetProjectName)
+    try: shutil.rmtree(targetXcodeproj)
+    except: pass
+    shutil.copytree(sourceXcodeproj, targetXcodeproj)
 
     print "Updated " + targetProjectName + " project."
 
