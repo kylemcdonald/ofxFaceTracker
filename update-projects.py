@@ -10,7 +10,7 @@ def replaceInFile(filename, pattern, replacement):
     print re.sub(pattern, replacement, line),
 
 sourceProjectName = "EmptyExample"
-sourceModelPath = "model/"
+sourceModelPath = "libs/FaceTracker/model/"
 
 # windows code::blocks
 sourceCbp = "example-empty/EmptyExample.cbp"

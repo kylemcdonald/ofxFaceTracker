@@ -16,7 +16,7 @@
 #pragma once
 
 #include "ofxCv.h"
-#include "Tracker.h"
+#include "FaceTracker/Tracker.h"
 #include "ExpressionClassifier.h"
 
 class ofxFaceTracker {
