@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2783B7B716649EA00045DDFE /* CLM.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7A716649EA00045DDFE /* CLM.cc */; };
+		2783B7B816649EA00045DDFE /* FCheck.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7A816649EA00045DDFE /* FCheck.cc */; };
+		2783B7B916649EA00045DDFE /* FDet.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7A916649EA00045DDFE /* FDet.cc */; };
+		2783B7BA16649EA00045DDFE /* IO.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7AA16649EA00045DDFE /* IO.cc */; };
+		2783B7BB16649EA00045DDFE /* Patch.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7AB16649EA00045DDFE /* Patch.cc */; };
+		2783B7BC16649EA00045DDFE /* PAW.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7AC16649EA00045DDFE /* PAW.cc */; };
+		2783B7BD16649EA00045DDFE /* PDM.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7AD16649EA00045DDFE /* PDM.cc */; };
+		2783B7BE16649EA00045DDFE /* Tracker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7AE16649EA00045DDFE /* Tracker.cc */; };
+		2783B7BF16649EA00045DDFE /* Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7B016649EA00045DDFE /* Expression.cpp */; };
+		2783B7C016649EA00045DDFE /* ExpressionClassifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7B216649EA00045DDFE /* ExpressionClassifier.cpp */; };
+		2783B7C116649EA00045DDFE /* ofxFaceTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2783B7B416649EA00045DDFE /* ofxFaceTracker.cpp */; };
 		27E7FAD316193015007E0DB3 /* Calibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27E7FACA16193015007E0DB3 /* Calibration.cpp */; };
 		27E7FAD416193015007E0DB3 /* ContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27E7FACB16193015007E0DB3 /* ContourFinder.cpp */; };
 		27E7FAD516193015007E0DB3 /* Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27E7FACC16193015007E0DB3 /* Distance.cpp */; };
@@ -69,6 +80,29 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2783B79716649EA00045DDFE /* CLM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLM.h; path = ../libs/FaceTracker/include/FaceTracker/CLM.h; sourceTree = SOURCE_ROOT; };
+		2783B79816649EA00045DDFE /* FCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FCheck.h; path = ../libs/FaceTracker/include/FaceTracker/FCheck.h; sourceTree = SOURCE_ROOT; };
+		2783B79916649EA00045DDFE /* FDet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDet.h; path = ../libs/FaceTracker/include/FaceTracker/FDet.h; sourceTree = SOURCE_ROOT; };
+		2783B79A16649EA00045DDFE /* IO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IO.h; path = ../libs/FaceTracker/include/FaceTracker/IO.h; sourceTree = SOURCE_ROOT; };
+		2783B79B16649EA00045DDFE /* Patch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Patch.h; path = ../libs/FaceTracker/include/FaceTracker/Patch.h; sourceTree = SOURCE_ROOT; };
+		2783B79C16649EA00045DDFE /* PAW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PAW.h; path = ../libs/FaceTracker/include/FaceTracker/PAW.h; sourceTree = SOURCE_ROOT; };
+		2783B79D16649EA00045DDFE /* PDM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PDM.h; path = ../libs/FaceTracker/include/FaceTracker/PDM.h; sourceTree = SOURCE_ROOT; };
+		2783B79E16649EA00045DDFE /* Tracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tracker.h; path = ../libs/FaceTracker/include/FaceTracker/Tracker.h; sourceTree = SOURCE_ROOT; };
+		2783B7A716649EA00045DDFE /* CLM.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CLM.cc; path = ../libs/FaceTracker/src/lib/CLM.cc; sourceTree = SOURCE_ROOT; };
+		2783B7A816649EA00045DDFE /* FCheck.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FCheck.cc; path = ../libs/FaceTracker/src/lib/FCheck.cc; sourceTree = SOURCE_ROOT; };
+		2783B7A916649EA00045DDFE /* FDet.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FDet.cc; path = ../libs/FaceTracker/src/lib/FDet.cc; sourceTree = SOURCE_ROOT; };
+		2783B7AA16649EA00045DDFE /* IO.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IO.cc; path = ../libs/FaceTracker/src/lib/IO.cc; sourceTree = SOURCE_ROOT; };
+		2783B7AB16649EA00045DDFE /* Patch.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Patch.cc; path = ../libs/FaceTracker/src/lib/Patch.cc; sourceTree = SOURCE_ROOT; };
+		2783B7AC16649EA00045DDFE /* PAW.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PAW.cc; path = ../libs/FaceTracker/src/lib/PAW.cc; sourceTree = SOURCE_ROOT; };
+		2783B7AD16649EA00045DDFE /* PDM.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PDM.cc; path = ../libs/FaceTracker/src/lib/PDM.cc; sourceTree = SOURCE_ROOT; };
+		2783B7AE16649EA00045DDFE /* Tracker.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Tracker.cc; path = ../libs/FaceTracker/src/lib/Tracker.cc; sourceTree = SOURCE_ROOT; };
+		2783B7B016649EA00045DDFE /* Expression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Expression.cpp; path = ../src/Expression.cpp; sourceTree = SOURCE_ROOT; };
+		2783B7B116649EA00045DDFE /* Expression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Expression.h; path = ../src/Expression.h; sourceTree = SOURCE_ROOT; };
+		2783B7B216649EA00045DDFE /* ExpressionClassifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExpressionClassifier.cpp; path = ../src/ExpressionClassifier.cpp; sourceTree = SOURCE_ROOT; };
+		2783B7B316649EA00045DDFE /* ExpressionClassifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExpressionClassifier.h; path = ../src/ExpressionClassifier.h; sourceTree = SOURCE_ROOT; };
+		2783B7B416649EA00045DDFE /* ofxFaceTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxFaceTracker.cpp; path = ../src/ofxFaceTracker.cpp; sourceTree = SOURCE_ROOT; };
+		2783B7B516649EA00045DDFE /* ofxFaceTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxFaceTracker.h; path = ../src/ofxFaceTracker.h; sourceTree = SOURCE_ROOT; };
+		2783B7B616649EA00045DDFE /* ofxFaceTrackerThreaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxFaceTrackerThreaded.h; path = ../src/ofxFaceTrackerThreaded.h; sourceTree = SOURCE_ROOT; };
 		27D9ED9B1619258700419619 /* cv.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = cv.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv/cv.h; sourceTree = SOURCE_ROOT; };
 		27D9ED9C1619258700419619 /* cv.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = cv.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv/cv.hpp; sourceTree = SOURCE_ROOT; };
 		27D9ED9D1619258700419619 /* cvaux.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = cvaux.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv/cvaux.h; sourceTree = SOURCE_ROOT; };
@@ -224,6 +258,99 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2783B79116649E920045DDFE /* ofxFaceTracker */ = {
+			isa = PBXGroup;
+			children = (
+				2783B79316649E9F0045DDFE /* libs */,
+				2783B7AF16649EA00045DDFE /* src */,
+			);
+			name = ofxFaceTracker;
+			sourceTree = "<group>";
+		};
+		2783B79316649E9F0045DDFE /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				2783B79416649E9F0045DDFE /* FaceTracker */,
+			);
+			name = libs;
+			path = ../libs;
+			sourceTree = SOURCE_ROOT;
+		};
+		2783B79416649E9F0045DDFE /* FaceTracker */ = {
+			isa = PBXGroup;
+			children = (
+				2783B79516649E9F0045DDFE /* include */,
+				2783B7A516649EA00045DDFE /* src */,
+			);
+			name = FaceTracker;
+			path = ../libs/FaceTracker;
+			sourceTree = SOURCE_ROOT;
+		};
+		2783B79516649E9F0045DDFE /* include */ = {
+			isa = PBXGroup;
+			children = (
+				2783B79616649EA00045DDFE /* FaceTracker */,
+			);
+			name = include;
+			path = ../libs/FaceTracker/include;
+			sourceTree = SOURCE_ROOT;
+		};
+		2783B79616649EA00045DDFE /* FaceTracker */ = {
+			isa = PBXGroup;
+			children = (
+				2783B79716649EA00045DDFE /* CLM.h */,
+				2783B79816649EA00045DDFE /* FCheck.h */,
+				2783B79916649EA00045DDFE /* FDet.h */,
+				2783B79A16649EA00045DDFE /* IO.h */,
+				2783B79B16649EA00045DDFE /* Patch.h */,
+				2783B79C16649EA00045DDFE /* PAW.h */,
+				2783B79D16649EA00045DDFE /* PDM.h */,
+				2783B79E16649EA00045DDFE /* Tracker.h */,
+			);
+			name = FaceTracker;
+			path = ../libs/FaceTracker/include/FaceTracker;
+			sourceTree = SOURCE_ROOT;
+		};
+		2783B7A516649EA00045DDFE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2783B7A616649EA00045DDFE /* lib */,
+			);
+			name = src;
+			path = ../libs/FaceTracker/src;
+			sourceTree = SOURCE_ROOT;
+		};
+		2783B7A616649EA00045DDFE /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				2783B7A716649EA00045DDFE /* CLM.cc */,
+				2783B7A816649EA00045DDFE /* FCheck.cc */,
+				2783B7A916649EA00045DDFE /* FDet.cc */,
+				2783B7AA16649EA00045DDFE /* IO.cc */,
+				2783B7AB16649EA00045DDFE /* Patch.cc */,
+				2783B7AC16649EA00045DDFE /* PAW.cc */,
+				2783B7AD16649EA00045DDFE /* PDM.cc */,
+				2783B7AE16649EA00045DDFE /* Tracker.cc */,
+			);
+			name = lib;
+			path = ../libs/FaceTracker/src/lib;
+			sourceTree = SOURCE_ROOT;
+		};
+		2783B7AF16649EA00045DDFE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2783B7B016649EA00045DDFE /* Expression.cpp */,
+				2783B7B116649EA00045DDFE /* Expression.h */,
+				2783B7B216649EA00045DDFE /* ExpressionClassifier.cpp */,
+				2783B7B316649EA00045DDFE /* ExpressionClassifier.h */,
+				2783B7B416649EA00045DDFE /* ofxFaceTracker.cpp */,
+				2783B7B516649EA00045DDFE /* ofxFaceTracker.h */,
+				2783B7B616649EA00045DDFE /* ofxFaceTrackerThreaded.h */,
+			);
+			name = src;
+			path = ../src;
+			sourceTree = SOURCE_ROOT;
+		};
 		27D9EDA61619258700419619 /* opencv */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +651,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				2783B79116649E920045DDFE /* ofxFaceTracker */,
 				27E7FABC16193003007E0DB3 /* ofxCv */,
 			);
 			name = addons;
@@ -702,6 +830,17 @@
 				27E7FAD916193015007E0DB3 /* Tracker.cpp in Sources */,
 				27E7FADA16193015007E0DB3 /* Utilities.cpp in Sources */,
 				27E7FADB16193015007E0DB3 /* Wrappers.cpp in Sources */,
+				2783B7B716649EA00045DDFE /* CLM.cc in Sources */,
+				2783B7B816649EA00045DDFE /* FCheck.cc in Sources */,
+				2783B7B916649EA00045DDFE /* FDet.cc in Sources */,
+				2783B7BA16649EA00045DDFE /* IO.cc in Sources */,
+				2783B7BB16649EA00045DDFE /* Patch.cc in Sources */,
+				2783B7BC16649EA00045DDFE /* PAW.cc in Sources */,
+				2783B7BD16649EA00045DDFE /* PDM.cc in Sources */,
+				2783B7BE16649EA00045DDFE /* Tracker.cc in Sources */,
+				2783B7BF16649EA00045DDFE /* Expression.cpp in Sources */,
+				2783B7C016649EA00045DDFE /* ExpressionClassifier.cpp in Sources */,
+				2783B7C116649EA00045DDFE /* ofxFaceTracker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,6 +876,7 @@
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
+					../../../addons/ofxFaceTracker/libs/FaceTracker/include/,
 					"$(OF_CORE_HEADERS)",
 					../../../addons/ofxCv/libs/ofxCv/include/,
 					../../../addons/ofxOpenCv/libs,
@@ -795,6 +935,7 @@
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
+					../../../addons/ofxFaceTracker/libs/FaceTracker/include/,
 					"$(OF_CORE_HEADERS)",
 					../../../addons/ofxCv/libs/ofxCv/include/,
 					../../../addons/ofxOpenCv/libs,
