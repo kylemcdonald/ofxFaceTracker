@@ -16,6 +16,12 @@ sourceModelPath = "libs/FaceTracker/model/"
 sourceCbp = "example-empty/EmptyExample.cbp"
 sourceWorkspace = "example-empty/EmptyExample.workspace"
 
+# windows vs2010
+sourceSln = "example-empty/EmptyExample.sln"
+sourceVcxproj = "example-empty/EmptyExample.vcxproj"
+sourceVcxprojFilters = "example-empty/EmptyExample.vcxproj.filters"
+sourceVcxprojUser = "example-empty/EmptyExample.vcxproj.user"
+
 # xcode osx
 sourceXcconfig = "example-empty/Project.xcconfig"
 sourcePlist = "example-empty/openFrameworks-Info.plist"
@@ -35,6 +41,18 @@ for example in examples:
     shutil.copy(sourceWorkspace, targetWorkspace)
     replaceInFile(targetCbp, sourceProjectName, targetProjectName)
     replaceInFile(targetWorkspace, sourceProjectName, targetProjectName)
+
+    # windows vs2010
+    targetSln = "{0}/{1}.sln".format(example, targetProjectName)
+    targetVcxproj = "{0}/{1}.vcxproj".format(example, targetProjectName)
+    targetVcxprojFilters = "{0}/{1}.vcxproj.filters".format(example, targetProjectName)
+    targetVcxprojUser = "{0}/{1}.vcxproj.user".format(example, targetProjectName)
+    shutil.copy(sourceSln, targetSln)
+    shutil.copy(sourceVcxproj, targetVcxproj)
+    shutil.copy(sourceVcxprojFilters, targetVcxprojFilters)
+    shutil.copy(sourceVcxprojUser, targetVcxprojUser)
+    replaceInFile(targetSln, sourceProjectName, targetProjectName)
+    replaceInFile(targetVcxproj, sourceProjectName, targetProjectName)
 
     # xcode osx
     targetXcodeproj = "{0}/ofApp.xcodeproj".format(example)

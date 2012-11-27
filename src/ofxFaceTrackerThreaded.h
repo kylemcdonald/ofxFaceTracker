@@ -12,7 +12,7 @@ public:
 	,meanObjectPointsReady(false) {
 	}
 	~ofxFaceTrackerThreaded() {
-		stopThread(false);
+		stopThread();
 		ofSleepMillis(500);
 	}
 	void setup() {
