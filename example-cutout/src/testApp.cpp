@@ -41,9 +41,9 @@ void testApp::draw() {
 		// add boundary face points
 		float scaleFactor = 1.6;
 		ofPolyline outline = imgTracker.getImageFeature(ofxFaceTracker::FACE_OUTLINE);
-		ofVec2f centroid = outline.getCentroid2D();
+		ofVec2f position = imgTracker.getPosition();
 		for(int i = 0; i < outline.size(); i++) {
-			ofVec2f point((outline[i] - centroid) * scaleFactor + centroid);
+			ofVec2f point((outline[i] - position) * scaleFactor + position);
 			delaunay.addPoint(point);
 		}
 
@@ -96,9 +96,18 @@ void testApp::draw() {
 		
 		// modify mesh
 		if(camTracker.getFound()) {
+			ofVec2f imgPosition = imgTracker.getPosition();
+			ofVec2f camPosition = camTracker.getPosition();
+			float imgScale = imgTracker.getScale();
+			float camScale = camTracker.getScale();
 			ofMesh reference = camTracker.getImageMesh();
 			for(int i = 0; i < reference.getNumVertices(); i++) {
-				finalMesh.getVertices()[i] = reference.getVertices()[i];
+				ofVec2f point = reference.getVertices()[i];
+				point -= camPosition;
+				point /= camScale;
+				point *= imgScale;
+				point += imgPosition;
+				finalMesh.getVertices()[i] = point;
 			}
 		}
 		 
