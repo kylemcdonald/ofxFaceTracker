@@ -28,6 +28,8 @@ void testApp::draw() {
 		camTracker.draw();
 	}
 	
+	ofTranslate(0, 480);
+	
 	if(imgTracker.getFound()) {
 		ofMesh faceMesh = imgTracker.getImageMesh();
 		
