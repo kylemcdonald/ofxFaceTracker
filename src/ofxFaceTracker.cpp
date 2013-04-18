@@ -65,6 +65,12 @@ void ofxFaceTracker::setup() {
 	wSize2[1] = 9;
 	wSize2[2] = 7;
 	
+	if(!ofFile("model/face2.tracker").exists() ||
+		 !ofFile("model/face.tri").exists() ||
+		 !ofFile("model/face.con").exists()) {
+		ofLogError() << "Make sure you've placed the files face2.tracker, face.tri and face.con in the data/model/ folder.";
+	}
+	
 	string ftFile = ofToDataPath("model/face2.tracker");
 	string triFile = ofToDataPath("model/face.tri");
 	string conFile = ofToDataPath("model/face.con");
