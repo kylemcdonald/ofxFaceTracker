@@ -90,7 +90,7 @@ cv::Rect FDet::Detect(cv::Mat im)
   cvClearMemStorage(storage_); IplImage simg = small_img_;
   CvSeq* obj = cvHaarDetectObjects(&simg,_cascade,storage_,
 				   _scale_factor,_min_neighbours,0,
-				   cv::Size(_min_size,_min_size));
+				   cv::Size(_min_size/_img_scale,_min_size/_img_scale));
   _haar_count = obj->total;
   if(obj->total == 0)return cv::Rect(0,0,0,0);
   for(i = 0,maxv = 0; i < obj->total; i++){
@@ -100,6 +100,7 @@ cv::Rect FDet::Detect(cv::Mat im)
       R.width  = r->width*_img_scale; R.height = r->height*_img_scale;
     }
   }
+  _haar_rect = R;
   cvRelease((void**)(&obj)); return R;
 }
 //===========================================================================

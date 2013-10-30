@@ -153,7 +153,7 @@ bool ofxFaceTracker::getFound() const {
 	return !failed;
 }
 
-bool ofxFaceTracker::getHaardFound() const {
+bool ofxFaceTracker::getHaarFound() const {
 	return tracker._fdet._haar_count > 0;
 }
 
@@ -233,6 +233,11 @@ ofMesh ofxFaceTracker::getMeanObjectMesh() const {
 
 const Mat& ofxFaceTracker::getObjectPointsMat() const {
 	return objectPoints;
+}
+
+ofRectangle ofxFaceTracker::getHaarRectangle() const {
+	cv::Rect rect = tracker._fdet._haar_rect;
+	return ofRectangle(rect.x / rescale, rect.y / rescale, rect.width / rescale, rect.height / rescale);
 }
 
 ofVec2f ofxFaceTracker::getPosition() const {
@@ -336,7 +341,7 @@ void ofxFaceTracker::setUseInvisible(bool useInvisible) {
 }
 
 void ofxFaceTracker::setHaarMinSize(float minSize) {
-	tracker._fdet._min_size = minSize;
+	tracker._fdet._min_size = minSize * rescale;
 }
 
 void ofxFaceTracker::updateObjectPoints() {

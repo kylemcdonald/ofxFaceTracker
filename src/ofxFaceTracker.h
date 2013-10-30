@@ -29,7 +29,7 @@ public:
 	
 	int size() const;
 	bool getFound() const;
-	bool getHaardFound() const;
+	bool getHaarFound() const;
 	int getAge() const;
 	virtual bool getVisibility(int i) const;
 	
@@ -48,6 +48,7 @@ public:
 	
 	virtual const cv::Mat& getObjectPointsMat() const;
 	
+	virtual ofRectangle getHaarRectangle() const;
 	virtual ofVec2f getPosition() const;
 	virtual float getScale() const;
 	virtual ofVec3f getOrientation() const;

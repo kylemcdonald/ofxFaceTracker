@@ -49,6 +49,7 @@ namespace FACETRACKER
   class FDet{
   public:
     int                      _haar_count;
+    cv::Rect                 _haar_rect;
     int                      _min_neighbours; /**< see OpenCV documentation */
     int                      _min_size;       /**< ...                      */
     double                   _img_scale;      /**< ...                      */
