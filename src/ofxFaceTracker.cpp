@@ -153,6 +153,10 @@ bool ofxFaceTracker::getFound() const {
 	return !failed;
 }
 
+bool ofxFaceTracker::getHaardFound() const {
+	return tracker._fdet._haar_count > 0;
+}
+
 int ofxFaceTracker::getAge() const {
 	return age;
 }
@@ -329,6 +333,10 @@ void ofxFaceTracker::setAttempts(int attempts) {
 
 void ofxFaceTracker::setUseInvisible(bool useInvisible) {
 	this->useInvisible = useInvisible;
+}
+
+void ofxFaceTracker::setHaarMinSize(float minSize) {
+	tracker._fdet._min_size = minSize;
 }
 
 void ofxFaceTracker::updateObjectPoints() {

@@ -37,7 +37,7 @@ void testApp::draw() {
 	
 	ofSetLineWidth(1);
 	ofSetColor(255);
-	tracker.draw();
+	tracker.draw(true);
 }
 
 void testApp::keyPressed(int key) {

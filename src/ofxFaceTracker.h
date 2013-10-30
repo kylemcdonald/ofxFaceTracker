@@ -29,6 +29,7 @@ public:
 	
 	int size() const;
 	bool getFound() const;
+	bool getHaardFound() const;
 	int getAge() const;
 	virtual bool getVisibility(int i) const;
 	
@@ -86,6 +87,7 @@ public:
 	void setTolerance(float tolerance);
 	void setAttempts(int attempts);
 	void setUseInvisible(bool useInvisible);
+	void setHaarMinSize(float minSize);
 	
 protected:
 	void updateObjectPoints();

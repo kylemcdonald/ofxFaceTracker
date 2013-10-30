@@ -91,6 +91,7 @@ cv::Rect FDet::Detect(cv::Mat im)
   CvSeq* obj = cvHaarDetectObjects(&simg,_cascade,storage_,
 				   _scale_factor,_min_neighbours,0,
 				   cv::Size(_min_size,_min_size));
+  _haar_count = obj->total;
   if(obj->total == 0)return cv::Rect(0,0,0,0);
   for(i = 0,maxv = 0; i < obj->total; i++){
     CvRect* r = (CvRect*)cvGetSeqElem(obj,i);
