@@ -18,8 +18,6 @@ void testApp::draw() {
 	cam.draw(0, 0);
 	ofSetLineWidth(2);
 	tracker.draw();
-	ofNoFill();
-	ofRect(tracker.getHaarRectangle());
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
 }
 

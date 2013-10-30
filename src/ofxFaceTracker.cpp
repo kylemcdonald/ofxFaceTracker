@@ -87,8 +87,12 @@ bool ofxFaceTracker::update(Mat image) {
 		resize(image, im, cv::Size(rescale * image.cols, rescale * image.rows));
 	}
 	
-	cvtColor(im, gray, CV_RGB2GRAY);
-	
+	if(im.type() == CV_8UC3) {
+		cvtColor(im, gray, CV_RGB2GRAY);
+	} else if(im.type() == CV_8UC1) {
+		gray = im;
+	}
+		
 	bool tryAgain = true;
 	for(int i = 0; tryAgain && i < attempts; i++) {
 		vector<int> wSize;
