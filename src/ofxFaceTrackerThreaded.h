@@ -15,6 +15,11 @@ public:
 		stopThread();
 		ofSleepMillis(500);
 	}
+	void exit()
+	{
+		stopThread();
+		ofSleepMillis(500);
+	}
 	void setup() {
 		failed = true;
 		ofxFaceTracker::setup();
@@ -39,19 +44,19 @@ public:
 		return objectPointsMatFront;
 	}
 	ofVec2f getImagePoint(int i) const {
-		if(failed) {
+		if(failed || imagePointsFront.size() == 0) {
 			return ofVec2f();
 		}
 		return imagePointsFront[i];
 	}
 	ofVec3f getObjectPoint(int i) const {
-		if(failed) {
+		if(failed || objectPointsFront.size() == 0) {
 			return ofVec3f();
 		}
 		return objectPointsFront[i];
 	}
 	ofVec3f getMeanObjectPoint(int i) const {
-		if(meanObjectPointsReady) {
+		if(meanObjectPointsReady || meanObjectPointsFront.size() != 0) {
 			return meanObjectPointsFront[i];
 		} else {
 			return ofVec3f();
@@ -74,6 +79,12 @@ protected:
 	void threadedFunction() {
 		ofxFaceTracker* threadedTracker = new ofxFaceTracker();
 		threadedTracker->setup();
+		
+		if(isThreadRunning()) {
+			ofLog(OF_LOG_NOTICE, "ofxFaceTracker::Thread running");
+		} else {
+			ofLog(OF_LOG_ERROR, "ofxFaceTracker::Error Failed to start thread");
+		}
 		while(isThreadRunning()) {
 			dataMutex.lock();
 			needsUpdatingBack = needsUpdatingFront;

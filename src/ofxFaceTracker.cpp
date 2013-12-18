@@ -278,6 +278,8 @@ ofxFaceTracker::Direction ofxFaceTracker::getDirection() const {
 		case 0: return FACING_FORWARD;
 		case 1: return FACING_LEFT;
 		case 2: return FACING_RIGHT;
+        default:
+            return FACING_UNKNOWN;
 	}
 }
 
