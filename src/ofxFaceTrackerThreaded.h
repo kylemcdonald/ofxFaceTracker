@@ -12,8 +12,10 @@ public:
 	,meanObjectPointsReady(false) {
 	}
 	~ofxFaceTrackerThreaded() {
-		stopThread();
-		ofSleepMillis(500);
+		if(isThreadRunning()) {
+			stopThread();
+			ofSleepMillis(500);
+		}
 	}
 	void exit() {
 		waitForThread(true);
