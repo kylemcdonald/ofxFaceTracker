@@ -15,10 +15,8 @@ public:
 		stopThread();
 		ofSleepMillis(500);
 	}
-	void exit()
-	{
-		stopThread();
-		ofSleepMillis(500);
+	void exit() {
+		waitForThread(true);
 	}
 	void setup() {
 		failed = true;
