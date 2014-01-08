@@ -22,6 +22,7 @@ public:
 	}
 	void setup() {
 		failed = true;
+		failedMiddle = true;
 		ofxFaceTracker::setup();
 		startThread(true, false);
 	}
