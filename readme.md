@@ -6,7 +6,7 @@ All ofxFaceTracker code is available under the MIT license, while FaceTracker is
 
 After downloading or cloning ofxFaceTracker, you need to make a copy of the `/libs/Tracker/model/` directory in `bin/data/model/` of each example. You can do this by hand, or `python update-projects.py` will take care of this for you. If you see the error `Assertion failed: s.is_open()`, that means you forgot to drop the model files in the right directory.
 
-If you would like to prototype an idea involving face tracking, I encourage you to download [FaceOSC](https://github.com/kylemcdonald/ofxFaceTracker/downloads). Dan Wilcox has some great [FaceOSC templates](https://github.com/danomatika/FaceOSC-Templates) that will help you get started in environments like Max, pd, Processing, and openFrameworks.
+If you would like to prototype an idea involving face tracking, I encourage you to download [FaceOSC](https://github.com/kylemcdonald/ofxFaceTracker/downloads). Dan Wilcox has some great [FaceOSC templates](hhttps://github.com/CreativeInquiry/FaceOSC-Templates) that will help you get started in environments like Max, pd, Processing, and openFrameworks.
 
 If you're interested in using ofxFaceTracker for face substitution, check out the [FaceSubstitution](https://github.com/arturoc/FaceSubstitution) repository.
 
