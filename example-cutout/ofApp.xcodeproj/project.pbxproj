@@ -14,6 +14,8 @@
 		2023EF517ED2D8B397511D4B /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9076967F8C54A04362C04AA /* Helpers.cpp */; };
 		24735CD2E138DC5C1F0A1085 /* ofxFaceTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BB9B07B8DB74BD2D3211F /* ofxFaceTracker.cpp */; };
 		250A95BA26587BE85DB0A353 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C7160245B19131DAE6128 /* ofxCvColorImage.cpp */; };
+		270A84A018C285CD00E8F30E /* ofxDelaunay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 270A849A18C285CD00E8F30E /* ofxDelaunay.cpp */; };
+		270A84A118C285CD00E8F30E /* Delaunay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 270A849E18C285CD00E8F30E /* Delaunay.cpp */; };
 		2745C0B718210A7D00F2D29A /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2745C0B518210A7D00F2D29A /* testApp.cpp */; };
 		45CC483A999BF1065A6B926C /* Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD717072C35D324E101669 /* Distance.cpp */; };
 		4F02F4D92C36436C945A6716 /* Patch.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3769B74412282AEFEBDD8C86 /* Patch.cc */; };
@@ -104,6 +106,10 @@
 		185BB9B07B8DB74BD2D3211F /* ofxFaceTracker.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxFaceTracker.cpp; path = ../../../addons/ofxFaceTracker/src/ofxFaceTracker.cpp; sourceTree = SOURCE_ROOT; };
 		19660B42DF06415007708495 /* IO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = IO.h; path = ../../../addons/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/IO.h; sourceTree = SOURCE_ROOT; };
 		1E95EFD35ED9C5D97F2F015E /* timer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = timer.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/timer.h; sourceTree = SOURCE_ROOT; };
+		270A849A18C285CD00E8F30E /* ofxDelaunay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxDelaunay.cpp; sourceTree = "<group>"; };
+		270A849B18C285CD00E8F30E /* ofxDelaunay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxDelaunay.h; sourceTree = "<group>"; };
+		270A849E18C285CD00E8F30E /* Delaunay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Delaunay.cpp; sourceTree = "<group>"; };
+		270A849F18C285CD00E8F30E /* Delaunay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Delaunay.h; sourceTree = "<group>"; };
 		2745C0B518210A7D00F2D29A /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		2745C0B618210A7D00F2D29A /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		2E411F99E3AB7154484B4F96 /* kmeans_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = kmeans_index.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/kmeans_index.h; sourceTree = SOURCE_ROOT; };
@@ -392,6 +398,43 @@
 			name = flann;
 			sourceTree = "<group>";
 		};
+		270A849818C285CD00E8F30E /* ofxDelaunay */ = {
+			isa = PBXGroup;
+			children = (
+				270A849918C285CD00E8F30E /* src */,
+				270A849C18C285CD00E8F30E /* libs */,
+			);
+			name = ofxDelaunay;
+			sourceTree = "<group>";
+		};
+		270A849918C285CD00E8F30E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				270A849A18C285CD00E8F30E /* ofxDelaunay.cpp */,
+				270A849B18C285CD00E8F30E /* ofxDelaunay.h */,
+			);
+			name = src;
+			path = ../../ofxDelaunay/src;
+			sourceTree = "<group>";
+		};
+		270A849C18C285CD00E8F30E /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				270A849D18C285CD00E8F30E /* Delaunay */,
+			);
+			name = libs;
+			path = ../../ofxDelaunay/libs;
+			sourceTree = "<group>";
+		};
+		270A849D18C285CD00E8F30E /* Delaunay */ = {
+			isa = PBXGroup;
+			children = (
+				270A849E18C285CD00E8F30E /* Delaunay.cpp */,
+				270A849F18C285CD00E8F30E /* Delaunay.h */,
+			);
+			path = Delaunay;
+			sourceTree = "<group>";
+		};
 		2B86176FA97BFB2BEE1F2F83 /* ofxFaceTracker */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +666,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				270A849818C285CD00E8F30E /* ofxDelaunay */,
 				A0B90D3B0ADB9C1716816714 /* ofxOpenCv */,
 				6025FAF6414C2CA589764D26 /* ofxCv */,
 				2B86176FA97BFB2BEE1F2F83 /* ofxFaceTracker */,
@@ -949,9 +993,11 @@
 				10B69DE456AED1288FC9316B /* Tracker.cpp in Sources */,
 				A6668C5B1272D7FCD5B5A16F /* Utilities.cpp in Sources */,
 				DBCB84A37F9AECC254870D79 /* Wrappers.cpp in Sources */,
+				270A84A018C285CD00E8F30E /* ofxDelaunay.cpp in Sources */,
 				F451166A6C72528F3F009F6C /* Expression.cpp in Sources */,
 				8AC885FBC5325950337592D2 /* ExpressionClassifier.cpp in Sources */,
 				24735CD2E138DC5C1F0A1085 /* ofxFaceTracker.cpp in Sources */,
+				270A84A118C285CD00E8F30E /* Delaunay.cpp in Sources */,
 				80AE40254BBE0F03C25563C1 /* CLM.cc in Sources */,
 				9F4DA577D30F7B7CA7B8E5F8 /* FCheck.cc in Sources */,
 				6E23C8DD86B189759F85B24F /* FDet.cc in Sources */,
