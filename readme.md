@@ -2,7 +2,7 @@
 
 [openFrameworks](http://openFrameworks.cc/) is an open source toolkit for creative coding.
 
-All ofxFaceTracker code is available under the MIT license, while FaceTracker is provided free for non-commercial use. For commercial use, please contact the author of FaceTracker, [Jason Saragih](mailto:jason.saragih@csiro.au).
+All ofxFaceTracker code is available under the MIT license, while FaceTracker is provided free for non-commercial use. For commercial use of FaceTracker, please [request a quote](http://facetracker.net/quote/).
 
 After downloading or cloning ofxFaceTracker, you need to make a copy of the `/libs/Tracker/model/` directory in `bin/data/model/` of each example. You can do this by hand, or `python update-projects.py` will take care of this for you. If you see the error `Assertion failed: s.is_open()`, that means you forgot to drop the model files in the right directory.
 
