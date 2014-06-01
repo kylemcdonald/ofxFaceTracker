@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/env python
 
 import glob, re, shutil, fileinput, os
 
