@@ -80,6 +80,10 @@ void ofxFaceTracker::setup() {
 	con = IO::LoadCon(conFile.c_str());  // not being used right now
 }
 
+void ofxFaceTracker::exit() {
+
+}
+
 bool ofxFaceTracker::update(Mat image) {	
 	if(rescale == 1) {
 		im = image; 
@@ -278,6 +282,8 @@ ofxFaceTracker::Direction ofxFaceTracker::getDirection() const {
 		case 0: return FACING_FORWARD;
 		case 1: return FACING_LEFT;
 		case 2: return FACING_RIGHT;
+        default:
+            return FACING_UNKNOWN;
 	}
 }
 
