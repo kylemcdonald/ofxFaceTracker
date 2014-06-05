@@ -9,6 +9,7 @@ public:
 	ofxFaceTrackerThreaded()
 	:needsUpdatingBack(false)
 	,needsUpdatingFront(false)
+	,needsResetting(false)
 	,meanObjectPointsReady(false) {
 	}
 	~ofxFaceTrackerThreaded() {
@@ -89,7 +90,10 @@ protected:
 			threadedTracker->setAttempts(attempts);
 			threadedTracker->setUseInvisible(useInvisible);
 			
-			if(needsUpdatingBack) {
+			if(needsResetting){
+				threadedTracker->reset();
+				needsResetting = false;
+			} else if(needsUpdatingBack) {
 				threadedTracker->update(imageBack);
 			} else {
 				ofSleepMillis(4);
@@ -111,7 +115,7 @@ protected:
 	
 	ofMutex dataMutex;
 	
-	bool needsUpdatingBack, needsUpdatingFront;
+	bool needsUpdatingBack, needsUpdatingFront, needsResetting;
 	cv::Mat imageMiddle, imageBack;
 	vector<ofVec3f> objectPointsFront, objectPointsMiddle;
 	vector<ofVec2f> imagePointsFront, imagePointsMiddle;
