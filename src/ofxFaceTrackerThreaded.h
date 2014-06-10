@@ -20,7 +20,7 @@ public:
 		failed = true;
         failedMiddle = true;
 		ofxFaceTracker::setup();
-		startThread(true, false);
+		startThread(true);
 	}
 	bool update(cv::Mat image) {
 		dataMutex.lock();
