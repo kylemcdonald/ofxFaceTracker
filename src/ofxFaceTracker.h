@@ -73,6 +73,8 @@ public:
 	ofPolyline getObjectFeature(Feature feature) const;
 	ofPolyline getMeanObjectFeature(Feature feature) const;
 	
+    ofRectangle getFeatureRectangle(Feature feature) const;
+    
 	enum Gesture {
 		MOUTH_WIDTH, MOUTH_HEIGHT,
 		LEFT_EYEBROW_HEIGHT, RIGHT_EYEBROW_HEIGHT,

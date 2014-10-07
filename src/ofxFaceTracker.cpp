@@ -292,7 +292,18 @@ ofPolyline ofxFaceTracker::getObjectFeature(Feature feature) const {
 ofPolyline ofxFaceTracker::getMeanObjectFeature(Feature feature) const {
 	return getFeature(feature, getMeanObjectPoints());
 }
-
+ofRectangle ofxFaceTracker::getFeatureRectangle(Feature feature) const{
+    vector<int> ind = getFeatureIndices(feature);
+    ofRectangle r;
+    if (ind.size() >0) {
+        ofVec2f p = getImagePoint(ind[0]);
+        r.set(p.x, p.y, 0,0);
+        for (int i = 1; i < ind.size(); i++) {
+            r.growToInclude(getImagePoint(ind[i]));
+        }
+    }
+    return r;
+}
 float ofxFaceTracker::getGesture(Gesture gesture) const {
 	if(failed) {
 		return 0;
