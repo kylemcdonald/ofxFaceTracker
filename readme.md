@@ -10,6 +10,12 @@ If you would like to prototype an idea involving face tracking, I encourage you 
 
 If you're interested in using ofxFaceTracker for face substitution, check out the [FaceSubstitution](https://github.com/arturoc/FaceSubstitution) repository.
 
+## Installation
+
+### Windows
+
+The code has been tested with the Code::Blocks' version of Openframeworks.
+
 ## Examples
 
 ### Advanced
