@@ -93,7 +93,8 @@ protected:
 			threadedTracker->setClamp(clamp);
 			threadedTracker->setTolerance(tolerance);
 			threadedTracker->setAttempts(attempts);
-			threadedTracker->setUseInvisible(useInvisible);
+      threadedTracker->setUseInvisible(useInvisible);
+      threadedTracker->setHaarMinSize(tracker._fdet._min_size);
 			
 			if(needsResetting){
 				threadedTracker->reset();
