@@ -7,7 +7,7 @@
 
 <!-- camera input settings -->
 <camera>
-	<!-- <device>0</device> -->
+	<device>0</device>
 	<!-- <framerate>30</framerate> -->
 	<width>640</width>
 	<height>480</height>
