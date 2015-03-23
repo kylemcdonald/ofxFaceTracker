@@ -11,7 +11,8 @@ public:
 	ExpressionClassifier();
 	void save(string directory) const;
 	void load(string directory);
-	unsigned int classify(const ofxFaceTracker& tracker);
+    unsigned int classify(const ofxFaceTracker& tracker);
+    unsigned int classify(const cv::Mat& objectPoints);
 	unsigned int getPrimaryExpression() const;
 	double getProbability(unsigned int i) const;
 	string getDescription(unsigned int i) const;
@@ -19,8 +20,9 @@ public:
 	void setSigma(double sigma);
 	double getSigma() const;
 	unsigned int size() const;
-	void addExpression(string description = "");
-	void addExpression(Expression& expression);
+    void addExpression(string description = "");
+    void addExpression(Expression& expression);
+    void addSample(const cv::Mat& objectPoints);
 	void addSample(const ofxFaceTracker& tracker);
 	void reset();
 protected:

@@ -34,8 +34,12 @@ void ExpressionClassifier::load(string directory) {
 }
 
 unsigned int ExpressionClassifier::classify(const ofxFaceTracker& tracker) {
+    return classify(tracker.getObjectPointsMat());
+}
+
+unsigned int ExpressionClassifier::classify(const Mat& objectPoints) {
 	Mat cur;
-	tracker.getObjectPointsMat().copyTo(cur);
+	objectPoints.copyTo(cur);
 	norm(cur);
 	int n = size();
 	probability.resize(n);
@@ -117,10 +121,14 @@ void ExpressionClassifier::addExpression(Expression& expression) {
 }
 
 void ExpressionClassifier::addSample(const ofxFaceTracker& tracker) {
-	if(size() == 0) {
-		addExpression();
-	}
-	expressions.back().addSample(tracker.getObjectPointsMat());
+	addSample(tracker.getObjectPointsMat());
+}
+
+void ExpressionClassifier::addSample(const Mat& objectPoints) {
+    if(size() == 0) {
+        addExpression();
+    }
+    expressions.back().addSample(objectPoints);
 }
 
 void ExpressionClassifier::reset() {
