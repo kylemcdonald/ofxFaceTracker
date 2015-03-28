@@ -66,10 +66,10 @@ for example in examples:
 
     print "Updated " + targetProjectName + " project."
 
-  # model data
-  targetModelPath = example + "/bin/data/model/"
-  try: shutil.rmtree(targetModelPath)
-  except: pass
-  shutil.copytree(sourceModelPath, targetModelPath)
+    # model data
+    targetModelPath = example + "/bin/data/model/"
+    try: shutil.rmtree(targetModelPath)
+    except: pass
+    shutil.copytree(sourceModelPath, targetModelPath)
 
-  print "Copied model data into " + targetModelPath
+    print "Copied model data into " + targetModelPath
