@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>29AE5A13-C5CD-4D2A-B5A9-8BADCEF00A34</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ofApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2D0CFF599BAA58060E7C94A3DA240C286FDA626D</key>
+		<string>github.com:kylemcdonald/ofxTiming.git</string>
+		<key>37526DA425E5430474A14FBFA1BC4525160B5FC1</key>
+		<string>https://github.com/kylemcdonald/ofxCv.git</string>
+		<key>A4D0373C699384D3146D509694B516AB9C7B5AD6</key>
+		<string>https://github.com/kylemcdonald/ofxFaceTracker.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>example-batch-process/ofApp.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2D0CFF599BAA58060E7C94A3DA240C286FDA626D</key>
+		<string>../../../../../../openFrameworks/addons/ofxTiming</string>
+		<key>37526DA425E5430474A14FBFA1BC4525160B5FC1</key>
+		<string>../../../../ofxCv</string>
+		<key>A4D0373C699384D3146D509694B516AB9C7B5AD6</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kylemcdonald/ofxFaceTracker.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>A4D0373C699384D3146D509694B516AB9C7B5AD6</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>37526DA425E5430474A14FBFA1BC4525160B5FC1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxCv</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A4D0373C699384D3146D509694B516AB9C7B5AD6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxFaceTracker</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2D0CFF599BAA58060E7C94A3DA240C286FDA626D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxTiming</string>
+		</dict>
+	</array>
+</dict>
+</plist>
