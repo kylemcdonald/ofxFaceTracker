@@ -26,13 +26,13 @@ void testApp::loadSettings() {
 	camHeight = xml.getValue("height", 480);
 	cam.initGrabber(camWidth, camHeight);
 	xml.popTag();
-    
+
 	xml.pushTag("movie");
 	if(xml.getNumTags("filename") > 0) {
 		string filename = ofToDataPath((string) xml.getValue("filename", ""));
 		if(!movie.loadMovie(filename)) {
 			ofLog(OF_LOG_ERROR, "Could not load movie \"%s\", reverting to camera input", filename.c_str());
-			bUseCamera = true; 
+			bUseCamera = true;
 		}
 		movie.play();
 	}
@@ -41,11 +41,11 @@ void testApp::loadSettings() {
 		bUseCamera = true;
 	}
 	if(xml.getNumTags("volume") > 0) {
-		float movieVolume = ofClamp(xml.getValue("volume", 1.0), 0, 1.0); 
+		float movieVolume = ofClamp(xml.getValue("volume", 1.0), 0, 1.0);
 		movie.setVolume(movieVolume);
 	}
 	if(xml.getNumTags("speed") > 0) {
-		float movieSpeed = ofClamp(xml.getValue("speed", 1.0), -16, 16); 
+		float movieSpeed = ofClamp(xml.getValue("speed", 1.0), -16, 16);
 		movie.setSpeed(movieSpeed);
 	}
 	bPaused = false;
@@ -61,7 +61,7 @@ void testApp::loadSettings() {
 		ofSetWindowShape(movieWidth, movieHeight);
 		setVideoSource(false);
 	}
-    
+
 	xml.pushTag("face");
 	if(xml.getNumTags("rescale")) {
 		tracker.setRescale(xml.getValue("rescale", 1.));
@@ -102,7 +102,7 @@ void testApp::setup() {
 void testApp::update() {
 	if(bPaused)
 		return;
-        
+
 	videoSource->update();
 	if(videoSource->isFrameNew()) {
 		tracker.update(toCv(*videoSource));
@@ -122,9 +122,9 @@ void testApp::draw() {
 			ofSetLineWidth(1);
 			//tracker.draw();
 			tracker.getImageMesh().drawWireframe();
-		
+
 			ofPushView();
-			ofSetupScreenOrtho(sourceWidth, sourceHeight, OF_ORIENTATION_UNKNOWN, true, -1000, 1000);
+			ofSetupScreenOrtho(sourceWidth, sourceHeight, -1000, 1000);
 			ofVec2f pos = tracker.getPosition();
 			ofTranslate(pos.x, pos.y);
 			applyMatrix(rotationMatrix);
@@ -135,7 +135,7 @@ void testApp::draw() {
 	} else {
 		ofDrawBitmapString("searching for face...", 10, 20);
 	}
-    
+
 	if(bPaused) {
 		ofSetColor(255, 0, 0);
 		ofDrawBitmapString( "paused", 10, 32);

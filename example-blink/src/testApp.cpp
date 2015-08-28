@@ -42,11 +42,11 @@ void testApp::setup() {
 	ofSetVerticalSync(true);
 	ofSetDrawBitmapMode(OF_BITMAPMODE_MODEL_BILLBOARD);
 	cam.initGrabber(640, 480);
-	
+
 	tracker.setup();
 	eyeFbo.allocate(128, 48, GL_RGB);
 	runningMean = 24;
-	
+
 	osc.setup("localhost", 8338);
 }
 
@@ -57,33 +57,33 @@ void testApp::update() {
 		position = tracker.getPosition();
 		scale = tracker.getScale();
 		rotationMatrix = tracker.getRotationMatrix();
-		
+
 		if(tracker.getFound()) {
 			ofVec2f
 			leftOuter = tracker.getImagePoint(36),
 			leftInner = tracker.getImagePoint(39),
 			rightInner = tracker.getImagePoint(42),
 			rightOuter = tracker.getImagePoint(45);
-			
+
 			ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
 			ofPolyline rightEye = tracker.getImageFeature(ofxFaceTracker::RIGHT_EYE);
-			
+
 			ofVec2f leftCenter = leftEye.getBoundingBox().getCenter();
 			ofVec2f rightCenter = rightEye.getBoundingBox().getCenter();
-			
+
 			float leftRadius = (leftCenter.distance(leftInner) + leftCenter.distance(leftOuter)) / 2;
 			float rightRadius = (rightCenter.distance(rightInner) + rightCenter.distance(rightOuter)) / 2;
-			
+
 			ofVec2f
 			leftOuterObj = tracker.getObjectPoint(36),
 			leftInnerObj = tracker.getObjectPoint(39),
 			rightInnerObj = tracker.getObjectPoint(42),
 			rightOuterObj = tracker.getObjectPoint(45);
-			
+
 			ofVec3f upperBorder(0, -3.5, 0), lowerBorder(0, 2.5, 0);
 			ofVec3f leftDirection(-1, 0, 0), rightDirection(+1, 0, 0);
 			float innerBorder = 1.5, outerBorder = 2.5;
-			
+
 			ofMesh leftRect, rightRect;
 			leftRect.setMode(OF_PRIMITIVE_LINE_LOOP);
 			leftRect.addVertex(leftOuterObj + upperBorder + leftDirection * outerBorder);
@@ -95,17 +95,17 @@ void testApp::update() {
 			rightRect.addVertex(rightOuterObj + upperBorder + rightDirection * outerBorder);
 			rightRect.addVertex(rightOuterObj + lowerBorder + rightDirection * outerBorder);
 			rightRect.addVertex(rightInnerObj + lowerBorder + leftDirection * innerBorder);
-			
+
 			ofPushMatrix();
-			ofSetupScreenOrtho(640, 480, OF_ORIENTATION_UNKNOWN, true, -1000, 1000);
+			ofSetupScreenOrtho(640, 480, -1000, 1000);
 			ofScale(1, 1, -1);
 			ofTranslate(position);
 			applyMatrix(rotationMatrix);
 			ofScale(scale, scale, scale);
 			leftRectImg = getProjectedMesh(leftRect);
-			rightRectImg = getProjectedMesh(rightRect);		
+			rightRectImg = getProjectedMesh(rightRect);
 			ofPopMatrix();
-			
+
 			// more effective than using object space points would be to use image space
 			// but translate to the center of the eye and orient the rectangle in the
 			// direction the face is facing.
@@ -115,14 +115,14 @@ void testApp::update() {
 			 applyMatrix(rotationMatrix);
 			 ofRect(-50, -40, 2*50, 2*40);
 			 ofPopMatrix();
-			 
+
 			 ofPushMatrix();
 			 ofTranslate(tracker.getImageFeature(ofxFaceTracker::RIGHT_EYE).getCentroid2D());
 			 applyMatrix(rotationMatrix);
 			 ofRect(-50, -40, 2*50, 2*40);
 			 ofPopMatrix();
 			 */
-			
+
 			ofMesh normRect, normLeft, normRight;
 			normRect.addVertex(ofVec2f(0, 0));
 			normRect.addVertex(ofVec2f(64, 0));
@@ -134,7 +134,7 @@ void testApp::update() {
 			normRight.addVertices(normRect.getVertices());
 			addTexCoords(normLeft, leftRectImg.getVertices());
 			addTexCoords(normRight, rightRectImg.getVertices());
-			
+
 			eyeFbo.begin();
 			ofSetColor(255);
 			ofFill();
@@ -145,7 +145,7 @@ void testApp::update() {
 			cam.getTextureReference().unbind();
 			eyeFbo.end();
 			eyeFbo.readToPixels(eyePixels);
-			
+
 			convertColor(eyePixels, gray, CV_RGB2GRAY);
 			normalize(gray, gray);
 			Sobel(gray, sobelx, CV_32F, 1, 0, 3, 1);
@@ -154,7 +154,7 @@ void testApp::update() {
 			bitwise_not(gray, gray);
 			gray.convertTo(grayFloat, CV_32F);
 			sobel += grayFloat;
-			
+
 			rowMean = meanRows(sobel);
 			// clear the ends
 			rowMean.at<float>(0) = 0;
@@ -171,12 +171,12 @@ void testApp::update() {
 			avg /= sum;
 			rowGraph.addSample(avg - runningMean);
 			runningMean = 0;//ofLerp(runningMean, avg, .3);
-			
+
 			Mat sobelImgMat = toCv(sobelImg);
 			imitate(sobelImg, gray);
 			sobel.convertTo(sobelImgMat, CV_8U, .5);
 			sobelImg.update();
-			
+
 			ofxOscMessage msg;
 			msg.setAddress("/gesture/blink");
 			msg.addIntArg(rowGraph.getState() ? 1 : 0);
@@ -192,21 +192,21 @@ void testApp::draw() {
 	leftRectImg.draw();
 	rightRectImg.draw();
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, ofGetHeight() - 20);
-	
+
 	ofTranslate(10, 10);
 	eyeFbo.draw(0, 0);
-	
+
 	ofTranslate(0, 48 + 10);
 	sobelImg.draw(0, 0);
-	
+
 	ofNoFill();
 	ofPushMatrix();
 	ofTranslate(128, 0);
 	ofScale(.3, 1);
 	rowMeanLine.draw();
 	ofPopMatrix();
-	
-	ofTranslate(0, 48 + 10);	
+
+	ofTranslate(0, 48 + 10);
 	rowGraph.draw(0, 0, 64);
 }
 
