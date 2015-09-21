@@ -11,7 +11,11 @@ void ofApp::setup() {
 	tracker.setup();
 }
 
-void ofApp::update() {
+void testApp::exit() {
+    tracker.waitForThread();
+}
+
+void testApp::update() {
 	cam.update();
 	if(cam.isFrameNew()) {
 		tracker.update(toCv(cam));
@@ -32,7 +36,7 @@ void ofApp::draw() {
 		tracker.draw();
 		
 		//easyCam.begin();
-		ofSetupScreenOrtho(640, 480, OF_ORIENTATION_UNKNOWN, true, -1000, 1000);
+		ofSetupScreenOrtho(640, 480, -1000, 1000);
 		ofTranslate(640 / 2, 480 / 2);
         
         ofPushMatrix();

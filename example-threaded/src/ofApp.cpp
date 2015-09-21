@@ -5,9 +5,9 @@ using namespace ofxCv;
 void ofApp::setup() {
 	ofSetVerticalSync(true);
 	ofSetDrawBitmapMode(OF_BITMAPMODE_MODEL_BILLBOARD);
-	
+
 	cam.initGrabber(640, 480);
-	
+
 	tracker.setup();
 }
 
@@ -26,11 +26,11 @@ void ofApp::draw() {
 	ofSetColor(255);
 	cam.draw(0, 0);
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
-	
+
 	if(tracker.getFound()) {
 		ofSetLineWidth(1);
 		tracker.draw();
-		
+
 		//easyCam.begin();
 		ofSetupScreenOrtho(640, 480, -1000, 1000);
 		ofTranslate(640 / 2, 480 / 2);

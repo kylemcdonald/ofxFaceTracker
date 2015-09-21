@@ -19,13 +19,13 @@ void ofApp::draw() {
 	ofSetColor(255);
 	cam.draw(0, 0);
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
-	
+
 	if(tracker.getFound()) {
 		tracker.draw();
 		ofMesh objectMesh = tracker.getObjectMesh();
 		ofMesh meanMesh = tracker.getMeanObjectMesh();
-		
-		ofSetupScreenOrtho(640, 480, OF_ORIENTATION_DEFAULT, true, -1000, 1000);
+
+		ofSetupScreenOrtho(640, 480, -1000, 1000);
 		ofTranslate(100, 100);
 		ofScale(5,5,5);
 		cam.getTextureReference().bind();
