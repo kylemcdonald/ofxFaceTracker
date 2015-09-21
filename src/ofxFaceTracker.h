@@ -25,7 +25,7 @@ public:
 	void setup();
 	virtual bool update(cv::Mat image);
 	void draw(bool drawLabels = false) const;
-	void reset();
+	virtual void reset();
 	
 	int size() const;
 	bool getFound() const;
@@ -49,9 +49,9 @@ public:
 	virtual const cv::Mat& getObjectPointsMat() const;
 	
 	virtual ofRectangle getHaarRectangle() const;
-	virtual ofVec2f getPosition() const;
-	virtual float getScale() const;
-	virtual ofVec3f getOrientation() const;
+	virtual ofVec2f getPosition() const; // pixels
+	virtual float getScale() const; // arbitrary units
+	virtual ofVec3f getOrientation() const; // radians
 	ofMatrix4x4 getRotationMatrix() const;
 	
 	enum Direction {
@@ -62,6 +62,8 @@ public:
 	Direction getDirection() const;
 	
 	enum Feature {
+        LEFT_EYE_TOP, RIGHT_EYE_TOP,
+        
 		LEFT_EYEBROW, RIGHT_EYEBROW,
 		LEFT_EYE, RIGHT_EYE,
 		LEFT_JAW, RIGHT_JAW, JAW,

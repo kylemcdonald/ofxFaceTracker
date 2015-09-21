@@ -19,7 +19,7 @@ public:
 	void setup() {
 		failed = true;
 		ofxFaceTracker::setup();
-		startThread(true, false);
+		startThread();
 	}
 	bool update(cv::Mat image) {
 		dataMutex.lock();
@@ -70,6 +70,9 @@ public:
 	float getScale() const {
 		return scale;
 	}
+    void reset() {
+        needsResetting = true;
+    }
 	
 protected:
 	void threadedFunction() {
@@ -91,7 +94,7 @@ protected:
 			threadedTracker->setUseInvisible(useInvisible);
 			
 			if(needsResetting){
-				threadedTracker->reset();
+                threadedTracker->ofxFaceTracker::reset();
 				needsResetting = false;
 			} else if(needsUpdatingBack) {
 				threadedTracker->update(imageBack);

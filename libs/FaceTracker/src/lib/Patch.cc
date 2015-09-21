@@ -38,7 +38,7 @@
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
 #include <FaceTracker/Patch.h>
-#define SGN(x) (x<0) ? 0:1
+#define SGN(x) (x < 0 ? 0 : 1)
 using namespace FACETRACKER;
 using namespace std;
 //===========================================================================

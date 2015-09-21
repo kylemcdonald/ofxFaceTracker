@@ -19,7 +19,9 @@ vector<int> consecutive(int start, int end) {
 }
 
 vector<int> ofxFaceTracker::getFeatureIndices(Feature feature) {
-	switch(feature) {
+    switch(feature) {
+        case LEFT_EYE_TOP: return consecutive(36, 40);
+        case RIGHT_EYE_TOP: return consecutive(42, 46);
 		case LEFT_JAW: return consecutive(0, 9);
 		case RIGHT_JAW: return consecutive(8, 17);
 		case JAW: return consecutive(0, 17);
