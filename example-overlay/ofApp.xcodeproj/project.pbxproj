@@ -12,19 +12,19 @@
 		1D5F3298C2FA073628012944 /* ofxCvContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DE5C29BDBD2CAA1DD0021 /* ofxCvContourFinder.cpp */; };
 		2023EF517ED2D8B397511D4B /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9076967F8C54A04362C04AA /* Helpers.cpp */; };
 		250A95BA26587BE85DB0A353 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C7160245B19131DAE6128 /* ofxCvColorImage.cpp */; };
-		2798DE1A1BB0BAF5002F667B /* Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2798DDF71BB0BAF5002F667B /* Expression.cpp */; settings = {ASSET_TAGS = (); }; };
-		2798DE1B1BB0BAF5002F667B /* ExpressionClassifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2798DDF91BB0BAF5002F667B /* ExpressionClassifier.cpp */; settings = {ASSET_TAGS = (); }; };
-		2798DE1C1BB0BAF5002F667B /* ofxFaceTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2798DDFB1BB0BAF5002F667B /* ofxFaceTracker.cpp */; settings = {ASSET_TAGS = (); }; };
-		2798DE1D1BB0BAF5002F667B /* license.md in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE0A1BB0BAF5002F667B /* license.md */; settings = {ASSET_TAGS = (); }; };
-		2798DE1E1BB0BAF5002F667B /* CLM.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE121BB0BAF5002F667B /* CLM.cc */; settings = {ASSET_TAGS = (); }; };
-		2798DE1F1BB0BAF5002F667B /* FCheck.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE131BB0BAF5002F667B /* FCheck.cc */; settings = {ASSET_TAGS = (); }; };
-		2798DE201BB0BAF5002F667B /* FDet.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE141BB0BAF5002F667B /* FDet.cc */; settings = {ASSET_TAGS = (); }; };
-		2798DE211BB0BAF5002F667B /* IO.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE151BB0BAF5002F667B /* IO.cc */; settings = {ASSET_TAGS = (); }; };
-		2798DE221BB0BAF5002F667B /* Patch.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE161BB0BAF5002F667B /* Patch.cc */; settings = {ASSET_TAGS = (); }; };
-		2798DE231BB0BAF5002F667B /* PAW.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE171BB0BAF5002F667B /* PAW.cc */; settings = {ASSET_TAGS = (); }; };
-		2798DE241BB0BAF5002F667B /* PDM.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE181BB0BAF5002F667B /* PDM.cc */; settings = {ASSET_TAGS = (); }; };
-		2798DE251BB0BAF5002F667B /* Tracker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE191BB0BAF5002F667B /* Tracker.cc */; settings = {ASSET_TAGS = (); }; };
-		279A1A2E1BB0BAA700B665E1 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279A1A2C1BB0BAA700B665E1 /* ofApp.cpp */; settings = {ASSET_TAGS = (); }; };
+		2798DE1A1BB0BAF5002F667B /* Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2798DDF71BB0BAF5002F667B /* Expression.cpp */; };
+		2798DE1B1BB0BAF5002F667B /* ExpressionClassifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2798DDF91BB0BAF5002F667B /* ExpressionClassifier.cpp */; };
+		2798DE1C1BB0BAF5002F667B /* ofxFaceTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2798DDFB1BB0BAF5002F667B /* ofxFaceTracker.cpp */; };
+		2798DE1D1BB0BAF5002F667B /* license.md in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE0A1BB0BAF5002F667B /* license.md */; };
+		2798DE1E1BB0BAF5002F667B /* CLM.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE121BB0BAF5002F667B /* CLM.cc */; };
+		2798DE1F1BB0BAF5002F667B /* FCheck.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE131BB0BAF5002F667B /* FCheck.cc */; };
+		2798DE201BB0BAF5002F667B /* FDet.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE141BB0BAF5002F667B /* FDet.cc */; };
+		2798DE211BB0BAF5002F667B /* IO.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE151BB0BAF5002F667B /* IO.cc */; };
+		2798DE221BB0BAF5002F667B /* Patch.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE161BB0BAF5002F667B /* Patch.cc */; };
+		2798DE231BB0BAF5002F667B /* PAW.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE171BB0BAF5002F667B /* PAW.cc */; };
+		2798DE241BB0BAF5002F667B /* PDM.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE181BB0BAF5002F667B /* PDM.cc */; };
+		2798DE251BB0BAF5002F667B /* Tracker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2798DE191BB0BAF5002F667B /* Tracker.cc */; };
+		279A1A2E1BB0BAA700B665E1 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279A1A2C1BB0BAA700B665E1 /* ofApp.cpp */; };
 		311DF864378748129984EA1D /* Kalman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77A1A692522820F935B58762 /* Kalman.cpp */; };
 		45CC483A999BF1065A6B926C /* Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD717072C35D324E101669 /* Distance.cpp */; };
 		5CC34D433F5806179935B89D /* Flow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A75A648BC4CF1D9DEDD0CE /* Flow.cpp */; };
@@ -281,6 +281,12 @@
 		DB0CD4C938C079DCD67222FE /* imatrix.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = imatrix.h; path = ../../../addons/ofxCv/libs/CLD/include/CLD/imatrix.h; sourceTree = SOURCE_ROOT; };
 		DB8653D6433E14BF06F3EFAF /* cvwimage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = cvwimage.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv/cvwimage.h; sourceTree = SOURCE_ROOT; };
 		DCB56F4E9F44E31D571BC9C4 /* index_testing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = index_testing.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/index_testing.h; sourceTree = SOURCE_ROOT; };
+		DD97A1971BE781CD000E23C7 /* DelayTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelayTimer.h; sourceTree = "<group>"; };
+		DD97A1981BE781CD000E23C7 /* FadeTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FadeTimer.h; sourceTree = "<group>"; };
+		DD97A1991BE781CD000E23C7 /* Hysteresis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hysteresis.h; sourceTree = "<group>"; };
+		DD97A19A1BE781CD000E23C7 /* LerpTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LerpTimer.h; sourceTree = "<group>"; };
+		DD97A19B1BE781CD000E23C7 /* ofxTiming.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTiming.h; sourceTree = "<group>"; };
+		DD97A19C1BE781CD000E23C7 /* RateTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateTimer.h; sourceTree = "<group>"; };
 		DEA2EDC0AFD59176FDEDC222 /* ofxCvShortImage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCvShortImage.h; path = ../../../addons/ofxOpenCv/src/ofxCvShortImage.h; sourceTree = SOURCE_ROOT; };
 		E14D3EF03E140F5604900412 /* tracking.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tracking.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/video/tracking.hpp; sourceTree = SOURCE_ROOT; };
 		E21FF871B93E31DA43FE7E42 /* vec_distance_detail.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = vec_distance_detail.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/gpu/device/detail/vec_distance_detail.hpp; sourceTree = SOURCE_ROOT; };
@@ -815,6 +821,7 @@
 				6025FAF6414C2CA589764D26 /* ofxCv */,
 				A0B90D3B0ADB9C1716816714 /* ofxOpenCv */,
 				2798DDF51BB0BAF5002F667B /* ofxFaceTracker */,
+				DD97A1951BE781CD000E23C7 /* ofxTiming */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -918,6 +925,28 @@
 				AAA97F42C2FE4A31ECFD0585 /* opencv */,
 			);
 			name = libs;
+			sourceTree = "<group>";
+		};
+		DD97A1951BE781CD000E23C7 /* ofxTiming */ = {
+			isa = PBXGroup;
+			children = (
+				DD97A1961BE781CD000E23C7 /* src */,
+			);
+			name = ofxTiming;
+			sourceTree = "<group>";
+		};
+		DD97A1961BE781CD000E23C7 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DD97A1971BE781CD000E23C7 /* DelayTimer.h */,
+				DD97A1981BE781CD000E23C7 /* FadeTimer.h */,
+				DD97A1991BE781CD000E23C7 /* Hysteresis.h */,
+				DD97A19A1BE781CD000E23C7 /* LerpTimer.h */,
+				DD97A19B1BE781CD000E23C7 /* ofxTiming.h */,
+				DD97A19C1BE781CD000E23C7 /* RateTimer.h */,
+			);
+			name = src;
+			path = ../../ofxTiming/src;
 			sourceTree = "<group>";
 		};
 		DF5D380A1A4583A1636503A6 /* detail */ = {
