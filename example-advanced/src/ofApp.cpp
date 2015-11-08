@@ -11,11 +11,8 @@ void ofApp::setup() {
 	tracker.setup();
 }
 
-void testApp::exit() {
-    tracker.waitForThread();
-}
 
-void testApp::update() {
+void ofApp::update() {
 	cam.update();
 	if(cam.isFrameNew()) {
 		tracker.update(toCv(cam));
