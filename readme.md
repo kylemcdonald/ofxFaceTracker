@@ -8,7 +8,7 @@ All ofxFaceTracker code is available under the MIT license, while FaceTracker is
 
 First, download [ofxCv](hhttps://github.com/kylemcdonald/ofxCv).
 
-Then, you need to make a copy of the `/libs/FaceTracker/model/` directory in `bin/data/model/` of each example. You can do this by hand, or `python copy-model.py` will take care of this for you.
+Then, you need to make a copy of the `/libs/FaceTracker/model/` directory in `bin/data/model/` of each example. You can do this by hand, or `python copy-model.sh` will take care of this for you.
 
 Then you can generate project files with the OF project generator and run the examples. If you see the error `Assertion failed: s.is_open()` when running your app, that means you forgot to drop the model files in the right directory.
 
