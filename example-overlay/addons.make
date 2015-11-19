@@ -2,4 +2,4 @@ ofxCv
 ofxFaceTracker
 ofxGui
 ofxOpenCv
-ofxTming
+ofxTiming
