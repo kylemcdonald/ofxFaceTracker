@@ -1,4 +1,7 @@
 ofxCv
 ofxFaceTracker
+ofxGui
+ofxOpenCv
 ofxOsc
+ofxSyphon
 ofxXmlSettings
