@@ -5,25 +5,13 @@ OF_PATH = ../../..
 //THIS HAS ALL THE HEADER AND LIBS FOR OF CORE
 #include "../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig"
 
-///////////////////////////////////////////
-// ADDONS
+//ICONS - NEW IN 0072 
+ICON_NAME_DEBUG = icon-debug.icns
+ICON_NAME_RELEASE = icon.icns
+ICON_FILE_PATH = $(OF_PATH)/libs/openFrameworksCompiled/project/osx/
 
-// path to the addons dir
-ADDONS_PATH = $(OF_PATH)/addons
+//IF YOU WANT AN APP TO HAVE A CUSTOM ICON - PUT THEM IN YOUR DATA FOLDER AND CHANGE ICON_FILE_PATH to:
+//ICON_FILE_PATH = bin/data/
 
-// ofxCV
-OFX_OPENCV_HEADERS = "$(ADDONS_PATH)/ofxOpenCv/src" "$(ADDONS_PATH)/ofxOpenCv/libs/opencv/include/" "$(ADDONS_PATH)/ofxOpenCv/libs/opencv/include/opencv" "$(ADDONS_PATH)/ofxCv/src" "$(ADDONS_PATH)/ofxCv/libs/ofxCv/include"
-OFX_OPENCV_LIBS = "$(ADDONS_PATH)/ofxOpenCv/libs/opencv/lib/osx/opencv.a"
-
-// ofxFaceTracker
-OFX_FACETRACKER_HEADERS = "$(ADDONS_PATH)/ofxFaceTracker/src"
-
-// all addons
-OF_ADDON_HEADERS = $(OFX_OPENCV_HEADERS) $(OFX_FACETRACKER_HEADERS)
-OF_ADDON_LIBS = $(OFX_OPENCV_LIBS)
-
-///////////////////////////////////////////
-// MAIN
-
-HEADER_SEARCH_PATHS = $(OF_CORE_HEADERS) $(OF_ADDON_HEADERS)
-OTHER_LDFLAGS = $(OF_CORE_LIBS) $(OF_ADDON_LIBS)
+OTHER_LDFLAGS = $(OF_CORE_LIBS) $(OF_CORE_FRAMEWORKS)
+HEADER_SEARCH_PATHS = $(OF_CORE_HEADERS)
