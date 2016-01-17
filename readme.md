@@ -42,6 +42,29 @@ Demonstrates the `ExpressionClassifier`, which can load, save, and classify expr
 
 Demonstrates how to use the mean face mesh to draw pose and expression normalized representation of the face currently being tracked.
 
-### FaceOSC
 
-Sends as much data as possible from `ofxFaceTracker` via OSC, including various "gestures", position, and orientation.
+## FaceOSC
+
+FaceOSC sends as much data as possible from `ofxFaceTracker` via OSC, including its pose/position and gestural data, and its raw points. It also streams the image over [Syphon](http://syphon.v002.info/).
+
+You can download a pre-built binary in the [releases page](https://github.com/kylemcdonald/ofxFaceTracker/releases).   
+
+#### OSC information
+
+ * Pose
+  * **center position**: /pose/position
+  * **scale**: /pose/scale
+  * **orientation** (which direction you're facing): /pose/orientation
+ * Gestures
+  * **mouth width**: /gesture/mouth/width
+  * **mouth height**: /gesture/mouth/height
+  * **left eyebrow height**: /gesture/eyebrow/left
+  * **right eyebrow height**: /gesture/eyebrow/right
+  * **left eye openness**: /gesture/eye/left
+  * **right eye openness**: /gesture/eye/right
+  * **jaw openness**: /gesture/jaw
+  * **nostril flate**: /gesture/nostrils
+ * Raw
+  * **raw points** (66 xy-pairs): /raw
+
+
