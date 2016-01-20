@@ -172,7 +172,7 @@ void ofApp::update() {
 			rowGraph.addSample(avg - runningMean);
 			runningMean = 0;//ofLerp(runningMean, avg, .3);
 
-			Mat sobelImgMat = toCv(sobelImg);
+			cv::Mat sobelImgMat = toCv(sobelImg);
 			imitate(sobelImg, gray);
 			sobel.convertTo(sobelImgMat, CV_8U, .5);
 			sobelImg.update();
