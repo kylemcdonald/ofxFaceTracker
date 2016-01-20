@@ -15,6 +15,7 @@
 
 #pragma once
 
+#include "ofMain.h"
 #include "ofxCv.h"
 #include "FaceTracker/Tracker.h"
 #include "ExpressionClassifier.h"
