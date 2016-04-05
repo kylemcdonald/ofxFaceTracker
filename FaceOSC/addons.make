@@ -3,4 +3,3 @@ ofxFaceTracker
 ofxGui
 ofxOpenCv
 ofxOsc
-ofxXmlSettings
