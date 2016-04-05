@@ -22,7 +22,7 @@ void ofApp::draw() {
     ofPolyline noseBase = tracker.getImageFeature(ofxFaceTracker::NOSE_BASE);
     ofSetColor(ofColor::red);
     noseBase.draw();
-    ofCircle(noseBase.getCentroid2D(), 8 * tracker.getScale());
+    ofDrawCircle(noseBase.getCentroid2D(), 8 * tracker.getScale());
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
 }
 

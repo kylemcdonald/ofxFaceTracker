@@ -28,9 +28,9 @@ void ofApp::draw() {
 		ofSetupScreenOrtho(640, 480, -1000, 1000);
 		ofTranslate(100, 100);
 		ofScale(5,5,5);
-		cam.getTextureReference().bind();
+		cam.getTexture().bind();
 		meanMesh.draw();
-		cam.getTextureReference().unbind();
+		cam.getTexture().unbind();
 	}
 }
 

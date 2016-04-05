@@ -60,16 +60,16 @@ public:
 		ofFill();
 		bool bright = !buffer.empty() && threshold != 0 && buffer.back() > threshold;
 		ofSetColor(bright ? 128 : 0);
-		ofRect(0, 0, maxSize, height);
+		ofDrawRectangle(0, 0, maxSize, height);
 		ofNoFill();
 		ofSetColor(255);
-		ofRect(0, 0, maxSize, height);
+		ofDrawRectangle(0, 0, maxSize, height);
 		
 		if(!buffer.empty()) {
 			glMapX(box.x, box.x + box.width, 0, maxSize);
 			glMapY(box.y, box.y + box.height, height, 0);
 			line.draw();
-			ofLine(0, threshold, buffer.size(), threshold);
+			ofDrawLine(0, threshold, buffer.size(), threshold);
 			state = buffer.back() > threshold;
 		}
 		ofPopStyle();

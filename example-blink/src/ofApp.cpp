@@ -138,11 +138,11 @@ void ofApp::update() {
 			eyeFbo.begin();
 			ofSetColor(255);
 			ofFill();
-			cam.getTextureReference().bind();
+			cam.getTexture().bind();
 			normLeft.draw();
 			ofTranslate(64, 0);
 			normRight.draw();
-			cam.getTextureReference().unbind();
+			cam.getTexture().unbind();
 			eyeFbo.end();
 			eyeFbo.readToPixels(eyePixels);
 
@@ -153,7 +153,7 @@ void ofApp::update() {
 			sobel = abs(sobelx) + abs(sobely);
 			bitwise_not(gray, gray);
 			gray.convertTo(grayFloat, CV_32F);
-			sobel += grayFloat;
+			sobel += gray;
 
 			rowMean = meanRows(sobel);
 			// clear the ends

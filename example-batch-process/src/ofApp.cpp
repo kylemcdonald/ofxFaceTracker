@@ -1,8 +1,8 @@
-#include "testApp.h"
+#include "ofApp.h"
 
 using namespace ofxCv;
 
-void testApp::setup() {
+void ofApp::setup() {
     dir.allowExt("png");
     dir.allowExt("jpg");
     dir.allowExt("tiff");
@@ -17,23 +17,23 @@ void testApp::setup() {
     iterations = 30;
 }
 
-void testApp::saveFace() {
+void ofApp::saveFace() {
     ofMesh mesh = tracker.getImageMesh();
     string facePly = dir.getFile(index).path() + ".ply";
     mesh.save(facePly);
 }
 
-void testApp::loadFace() {
+void ofApp::loadFace() {
     string facePly = dir.getFile(index).path() + ".ply";
     if(ofFile(facePly).exists()) {
         prevFace.load(facePly);
     }
 }
 
-void testApp::update() {
+void ofApp::update() {
     if(index < dir.size()) {
         tracker.reset();
-        img.loadImage(dir.getPath(index));
+        img.load(dir.getPath(index));
         for(int i = 0; i < iterations; i++) {
             tracker.update(toCv(img));
         }
@@ -44,7 +44,7 @@ void testApp::update() {
     }
 }
 
-void testApp::draw() {
+void ofApp::draw() {
     ofSetColor(255);
     if(img.isAllocated()) {
         img.draw(0, 0);

@@ -32,7 +32,6 @@ void ofApp::draw() {
 		ofSetLineWidth(1);
 		tracker.draw();
 		
-		//easyCam.begin();
 		ofSetupScreenOrtho(640, 480, -1000, 1000);
 		ofTranslate(640 / 2, 480 / 2);
         
@@ -44,7 +43,6 @@ void ofApp::draw() {
 		applyMatrix(rotationMatrix);
 		ofScale(5,5,5);
 		tracker.getObjectMesh().drawWireframe();
-		//easyCam.end();
 	}
 }
 

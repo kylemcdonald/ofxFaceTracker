@@ -3,7 +3,6 @@
 #include "ofMain.h"
 #include "ofxCv.h"
 #include "FaceOsc.h"
-#include "ofxXmlSettings.h"
 
 class ofApp : public ofBaseApp, public FaceOsc {
 public:

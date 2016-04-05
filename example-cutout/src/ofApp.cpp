@@ -8,7 +8,7 @@ void ofApp::setup() {
 	camTracker.setup();
 	imgTracker.setup();
 	
-	img.loadImage("face.jpg");
+	img.load("face.jpg");
 	imgTracker.update(toCv(img));
 }
 
