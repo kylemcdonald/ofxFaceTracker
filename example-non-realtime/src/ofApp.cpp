@@ -27,7 +27,7 @@ string gestureNames[] = {
 int gestureCount = 8;
 
 void ofApp::setup() {
-    video.loadMovie("video.mov");
+    video.load("video.mov");
 	tracker.setup();
     tracker.setRescale(.25);
     tracker.setIterations(100);

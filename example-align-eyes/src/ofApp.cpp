@@ -12,7 +12,7 @@ void ofApp::setup() {
 
 void ofApp::update() {
     string filename = dir.getFile(cur).getFileName();
-    img.loadImage("raw/" + filename);
+    img.load("raw/" + filename);
     tracker.reset();
     if(tracker.update(toCv(img))) {
         fbo.begin();

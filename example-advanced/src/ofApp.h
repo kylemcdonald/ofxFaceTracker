@@ -23,6 +23,4 @@ public:
 	
 	Mat translation, rotation;
 	ofMatrix4x4 pose;
-	
-	ofEasyCam easyCam;
 };

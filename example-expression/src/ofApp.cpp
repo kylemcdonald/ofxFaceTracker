@@ -33,7 +33,7 @@ void ofApp::draw() {
 	int primary = classifier.getPrimaryExpression();
   for(int i = 0; i < n; i++){
 		ofSetColor(i == primary ? ofColor::red : ofColor::black);
-		ofRect(0, 0, w * classifier.getProbability(i) + .5, h);
+		ofDrawRectangle(0, 0, w * classifier.getProbability(i) + .5, h);
 		ofSetColor(255);
 		ofDrawBitmapString(classifier.getDescription(i), 5, 9);
 		ofTranslate(0, h + 5);
@@ -42,7 +42,7 @@ void ofApp::draw() {
 	ofPopStyle();
 	
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), ofGetWidth() - 20, ofGetHeight() - 10);
-	drawHighlightString(
+	ofDrawBitmapStringHighlight(
 		string() +
 		"r - reset\n" +
 		"e - add expression\n" +

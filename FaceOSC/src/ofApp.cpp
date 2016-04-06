@@ -4,54 +4,60 @@ using namespace ofxCv;
 using namespace cv;
 
 void ofApp::loadSettings() {
-	ofxXmlSettings xml;
-	xml.loadFile("settings.xml");
-
+	ofXml xml;
+	if(!xml.load("settings.xml")) {
+		return;
+	}
+	
+	// expects following tags to be wrapped by a main "faceosc" tag
+	
 	bool bUseCamera = true;
 
-	xml.pushTag("source");
-	if(xml.getNumTags("useCamera") > 0) {
-		bUseCamera = xml.getValue("useCamera", 0);
+	xml.setTo("source");
+	if(xml.exists("useCamera")) {
+		bUseCamera = xml.getValue("useCamera", false);
 	}
-	xml.popTag();
+	xml.setToParent();
 
-	xml.pushTag("camera");
-	if(xml.getNumTags("device") > 0) {
+	xml.setTo("camera");
+	if(xml.exists("device")) {
 		cam.setDeviceID(xml.getValue("device", 0));
 	}
-	if(xml.getNumTags("framerate") > 0) {
+	if(xml.exists("framerate")) {
 		cam.setDesiredFrameRate(xml.getValue("framerate", 30));
 	}
 	camWidth = xml.getValue("width", 640);
 	camHeight = xml.getValue("height", 480);
 	cam.initGrabber(camWidth, camHeight);
-	xml.popTag();
+	xml.setToParent();
 
-	xml.pushTag("movie");
-	if(xml.getNumTags("filename") > 0) {
-		string filename = ofToDataPath((string) xml.getValue("filename", ""));
-		if(!movie.loadMovie(filename)) {
-			ofLog(OF_LOG_ERROR, "Could not load movie \"%s\", reverting to camera input", filename.c_str());
-			bUseCamera = true;
+	xml.setTo("movie");
+	if(xml.exists("filename")) {
+		string filename = ofToDataPath((string)xml.getValue("filename", ""));
+		if(filename != "") {
+			if(!movie.load(filename)) {
+				ofLog(OF_LOG_ERROR, "Could not load movie \"%s\", reverting to camera input", filename.c_str());
+				bUseCamera = true;
+			}
+			movie.play();
 		}
-		movie.play();
 	}
 	else {
 		ofLog(OF_LOG_ERROR, "Movie filename tag not set in settings, reverting to camera input");
 		bUseCamera = true;
 	}
-	if(xml.getNumTags("volume") > 0) {
+	if(xml.exists("volume")) {
 		float movieVolume = ofClamp(xml.getValue("volume", 1.0), 0, 1.0);
 		movie.setVolume(movieVolume);
 	}
-	if(xml.getNumTags("speed") > 0) {
+	if(xml.exists("speed")) {
 		float movieSpeed = ofClamp(xml.getValue("speed", 1.0), -16, 16);
 		movie.setSpeed(movieSpeed);
 	}
 	bPaused = false;
 	movieWidth = movie.getWidth();
 	movieHeight = movie.getHeight();
-	xml.popTag();
+	xml.setToParent();
 
 	if(bUseCamera) {
 		ofSetWindowShape(camWidth, camHeight);
@@ -62,36 +68,36 @@ void ofApp::loadSettings() {
 		setVideoSource(false);
 	}
 
-	xml.pushTag("face");
-	if(xml.getNumTags("rescale")) {
-		tracker.setRescale(xml.getValue("rescale", 1.));
+	xml.setTo("face");
+	if(xml.exists("rescale")) {
+		tracker.setRescale(xml.getValue("rescale", 1.0));
 	}
-	if(xml.getNumTags("iterations")) {
+	if(xml.exists("iterations")) {
 		tracker.setIterations(xml.getValue("iterations", 5));
 	}
-	if(xml.getNumTags("clamp")) {
-		tracker.setClamp(xml.getValue("clamp", 3.));
+	if(xml.exists("clamp")) {
+		tracker.setClamp(xml.getValue("clamp", 3.0));
 	}
-	if(xml.getNumTags("tolerance")) {
-		tracker.setTolerance(xml.getValue("tolerance", .01));
+	if(xml.exists("tolerance")) {
+		tracker.setTolerance(xml.getValue("tolerance", 0.01));
 	}
-	if(xml.getNumTags("attempts")) {
+	if(xml.exists("attempts")) {
 		tracker.setAttempts(xml.getValue("attempts", 1));
 	}
 	bDrawMesh = true;
-	if(xml.getNumTags("drawMesh")) {
+	if(xml.exists("drawMesh")) {
 		bDrawMesh = (bool) xml.getValue("drawMesh", 1);
 	}
 	tracker.setup();
-	xml.popTag();
+	xml.setToParent();
 
-	xml.pushTag("osc");
+	xml.setTo("osc");
 	host = xml.getValue("host", "localhost");
 	port = xml.getValue("port", 8338);
 	osc.setup(host, port);
-	xml.popTag();
-
-	osc.setup(host, port);
+	xml.setToParent();
+	
+	xml.clear();
 }
 
 void ofApp::setup() {

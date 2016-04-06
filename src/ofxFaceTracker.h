@@ -138,6 +138,7 @@ ofPolyline ofxFaceTracker::getFeature(Feature feature, vector<T> points) const {
 			case INNER_MOUTH:
 			case FACE_OUTLINE:
 				polyline.close();
+			default: break;
 		}
 	}
 	return polyline;
