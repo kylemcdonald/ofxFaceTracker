@@ -12,7 +12,7 @@ Then, you need to make a copy of the `/libs/FaceTracker/model/` directory in `bi
 
 Then you can generate project files with the OF project generator and run the examples. If you see the error `Assertion failed: s.is_open()` when running your app, that means you forgot to drop the model files in the right directory.
 
-If you would like to prototype an idea involving face tracking, I encourage you to download [FaceOSC](https://github.com/kylemcdonald/ofxFaceTracker/downloads). Dan Wilcox has some great [FaceOSC templates](hhttps://github.com/CreativeInquiry/FaceOSC-Templates) that will help you get started in environments like Max, pd, Processing, and openFrameworks.
+If you would like to prototype an idea involving face tracking, I encourage you to download [FaceOSC](https://github.com/kylemcdonald/ofxFaceTracker/releases). Dan Wilcox has some great [FaceOSC templates](hhttps://github.com/CreativeInquiry/FaceOSC-Templates) that will help you get started in environments like Max, pd, Processing, and openFrameworks.
 
 If you're interested in using ofxFaceTracker for face substitution, check out the [FaceSubstitution](https://github.com/arturoc/FaceSubstitution) repository.
 
