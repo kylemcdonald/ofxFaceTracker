@@ -128,7 +128,7 @@ ofPolyline ofxFaceTracker::getFeature(Feature feature, vector<T> points) const {
 		for(int i = 0; i < indices.size(); i++) {
 			int cur = indices[i];
 			if(useInvisible || getVisibility(cur)) {
-				polyline.addVertex(points[cur]);
+                polyline.addVertex(ofVec3f(points[cur]));
 			}
 		}
 		switch(feature) {
@@ -151,7 +151,7 @@ ofMesh ofxFaceTracker::getMesh(vector<T> points) const {
 	if(!failed) {
 		int n = size();
 		for(int i = 0; i < n; i++) {
-			mesh.addVertex(points[i]);
+            mesh.addVertex(ofVec3f(points[i]));
 			mesh.addTexCoord(getImagePoint(i));
 		}
 		addTriangleIndices(mesh);
