@@ -18,6 +18,10 @@ If you're interested in using ofxFaceTracker for face substitution, check out th
 
 ## Examples
 
+### iOS
+
+Getting the combination of ofxFaceTracker and ofxCv working on iOS can be complicated and confusing. Try using this [ofxFaceTracker-iOS repo](https://github.com/kylemcdonald/ofxFaceTracker-iOS) as a starting point.
+
 ### Advanced
 
 Demonstrates how to get the image-space position of the face, and the 3d orientation (collectively, the face "pose") then applies these to the OpenGL context in order to draw an oriented face mesh.
