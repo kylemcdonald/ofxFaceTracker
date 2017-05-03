@@ -38,6 +38,9 @@
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
 #include <FaceTracker/FDet.h>
+// cv
+#include "opencv2/opencv.hpp"
+
 using namespace FACETRACKER;
 using namespace std;
 //===========================================================================

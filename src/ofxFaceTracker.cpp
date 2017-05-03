@@ -175,54 +175,54 @@ bool ofxFaceTracker::getVisibility(int i) const {
 	return (visi.it(i, 0) != 0);
 }
 
-vector<ofVec2f> ofxFaceTracker::getImagePoints() const {
+vector<glm::vec2> ofxFaceTracker::getImagePoints() const {
 	int n = size();
-	vector<ofVec2f> imagePoints(n);
+	vector<glm::vec2> imagePoints(n);
 	for(int i = 0; i < n; i++) {
 		imagePoints[i] = getImagePoint(i);
 	}
 	return imagePoints;
 }
 
-vector<ofVec3f> ofxFaceTracker::getObjectPoints() const {
+vector<glm::vec3> ofxFaceTracker::getObjectPoints() const {
 	int n = size();
-	vector<ofVec3f> objectPoints(n);
+	vector<glm::vec3> objectPoints(n);
 	for(int i = 0; i < n; i++) {
 		objectPoints[i] = getObjectPoint(i);
 	}
 	return objectPoints;
 }
 
-vector<ofVec3f> ofxFaceTracker::getMeanObjectPoints() const {
+vector<glm::vec3> ofxFaceTracker::getMeanObjectPoints() const {
 	int n = size();
-	vector<ofVec3f> meanObjectPoints(n);
+	vector<glm::vec3> meanObjectPoints(n);
 	for(int i = 0; i < n; i++) {
 		meanObjectPoints[i] = getMeanObjectPoint(i);
 	}
 	return meanObjectPoints;
 }
 
-ofVec2f ofxFaceTracker::getImagePoint(int i) const {
+glm::vec2 ofxFaceTracker::getImagePoint(int i) const {
 	if(failed) {
-		return ofVec2f();
+		return glm::vec2();
 	}
 	const Mat& shape = tracker._shape;
 	int n = shape.rows / 2;
-	return ofVec2f(shape.db(i, 0), shape.db(i + n, 0)) / rescale;
+	return glm::vec2(shape.db(i, 0), shape.db(i + n, 0)) / rescale;
 }
 
-ofVec3f ofxFaceTracker::getObjectPoint(int i) const {
+glm::vec3 ofxFaceTracker::getObjectPoint(int i) const {
 	if(failed) {
-		return ofVec3f();
+		return glm::vec3();
 	}	
 	int n = objectPoints.rows / 3;
-	return ofVec3f(objectPoints.db(i,0), objectPoints.db(i+n,0), objectPoints.db(i+n+n,0));
+	return glm::vec3(objectPoints.db(i,0), objectPoints.db(i+n,0), objectPoints.db(i+n+n,0));
 }
 
-ofVec3f ofxFaceTracker::getMeanObjectPoint(int i) const {
+glm::vec3 ofxFaceTracker::getMeanObjectPoint(int i) const {
 	const Mat& mean = tracker._clm._pdm._M;
 	int n = mean.rows / 3;
-	return ofVec3f(mean.db(i,0), mean.db(i+n,0), mean.db(i+n+n,0));
+	return glm::vec3(mean.db(i,0), mean.db(i+n,0), mean.db(i+n+n,0));
 }
 
 ofMesh ofxFaceTracker::getImageMesh() const{
@@ -246,9 +246,9 @@ ofRectangle ofxFaceTracker::getHaarRectangle() const {
 	return ofRectangle(rect.x / rescale, rect.y / rescale, rect.width / rescale, rect.height / rescale);
 }
 
-ofVec2f ofxFaceTracker::getPosition() const {
+glm::vec2 ofxFaceTracker::getPosition() const {
 	const Mat& pose = tracker._clm._pglobl;
-	return ofVec2f(pose.db(4,0), pose.db(5,0)) / rescale;
+	return glm::vec2(pose.db(4,0), pose.db(5,0)) / rescale;
 }
 
  // multiply by ~20-23 to get pixel units (+/-20 units in the x axis, +23/-18 on the y axis)
@@ -257,19 +257,19 @@ float ofxFaceTracker::getScale() const {
 	return pose.db(0,0) / rescale;
 }
 
-ofVec3f ofxFaceTracker::getOrientation() const {
+glm::vec3 ofxFaceTracker::getOrientation() const {
 	const Mat& pose = tracker._clm._pglobl;
-	ofVec3f euler(pose.db(1, 0), pose.db(2, 0), pose.db(3, 0));
+	glm::vec3 euler(pose.db(1, 0), pose.db(2, 0), pose.db(3, 0));
 	return euler;
 }
 
 ofMatrix4x4 ofxFaceTracker::getRotationMatrix() const {
-	ofVec3f euler = getOrientation();
+	glm::vec3 euler = getOrientation();
 	ofMatrix4x4 matrix;
 	matrix.makeRotationMatrix(ofRadToDeg(euler.x), ofVec3f(1,0,0),
-														ofRadToDeg(euler.y), ofVec3f(0,1,0),
-														ofRadToDeg(euler.z), ofVec3f(0,0,1));
-														return matrix;
+                              ofRadToDeg(euler.y), ofVec3f(0,1,0),
+                              ofRadToDeg(euler.z), ofVec3f(0,0,1));
+    return matrix;
 }
 
 ofxFaceTracker::Direction ofxFaceTracker::getDirection() const {
@@ -319,7 +319,7 @@ float ofxFaceTracker::getGesture(Gesture gesture) const {
 		case NOSTRIL_FLARE: start = 31; end = 35; break;
 	}
 	
-	return (getObjectPoint(start) - getObjectPoint(end)).length();
+    return glm::length(getObjectPoint(start) - getObjectPoint(end));
 }
 
 void ofxFaceTracker::setRescale(float rescale) {

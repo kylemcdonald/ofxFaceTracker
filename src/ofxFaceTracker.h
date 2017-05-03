@@ -34,13 +34,13 @@ public:
 	int getAge() const;
 	virtual bool getVisibility(int i) const;
 	
-	vector<ofVec2f> getImagePoints() const;
-	vector<ofVec3f> getObjectPoints() const;
-	vector<ofVec3f> getMeanObjectPoints() const;
+	vector<glm::vec2> getImagePoints() const;
+	vector<glm::vec3> getObjectPoints() const;
+	vector<glm::vec3> getMeanObjectPoints() const;
 	
-	virtual ofVec2f getImagePoint(int i) const;
-	virtual ofVec3f getObjectPoint(int i) const;
-	virtual ofVec3f getMeanObjectPoint(int i) const;
+    virtual glm::vec2 getImagePoint(int i) const;
+	virtual glm::vec3 getObjectPoint(int i) const;
+	virtual glm::vec3 getMeanObjectPoint(int i) const;
 	
 	ofMesh getImageMesh() const;
 	ofMesh getObjectMesh() const;
@@ -50,9 +50,9 @@ public:
 	virtual const cv::Mat& getObjectPointsMat() const;
 	
 	virtual ofRectangle getHaarRectangle() const;
-	virtual ofVec2f getPosition() const; // pixels
+	virtual glm::vec2 getPosition() const; // pixels
 	virtual float getScale() const; // arbitrary units
-	virtual ofVec3f getOrientation() const; // radians
+    virtual glm::vec3 getOrientation() const; // radians
 	ofMatrix4x4 getRotationMatrix() const;
 	
 	enum Direction {
@@ -128,7 +128,7 @@ ofPolyline ofxFaceTracker::getFeature(Feature feature, vector<T> points) const {
 		for(int i = 0; i < indices.size(); i++) {
 			int cur = indices[i];
 			if(useInvisible || getVisibility(cur)) {
-				polyline.addVertex(points[cur]);
+                polyline.addVertex(glm::vec3(points[cur].x, points[cur].y, 0));
 			}
 		}
 		switch(feature) {
@@ -151,7 +151,7 @@ ofMesh ofxFaceTracker::getMesh(vector<T> points) const {
 	if(!failed) {
 		int n = size();
 		for(int i = 0; i < n; i++) {
-			mesh.addVertex(points[i]);
+			mesh.addVertex(glm::vec3(points[i].x, points[i].y, 0));
 			mesh.addTexCoord(getImagePoint(i));
 		}
 		addTriangleIndices(mesh);
