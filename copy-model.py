@@ -13,4 +13,4 @@ for example in examples:
     except: pass
     shutil.copytree(sourceModelPath, targetModelPath)
 
-    print "Copied model data into " + targetModelPath
+    print ("Copied model data into " + targetModelPath)
