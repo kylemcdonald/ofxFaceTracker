@@ -128,7 +128,7 @@ ofPolyline ofxFaceTracker::getFeature(Feature feature, vector<T> points) const {
 		for(int i = 0; i < indices.size(); i++) {
 			int cur = indices[i];
 			if(useInvisible || getVisibility(cur)) {
-                polyline.addVertex(glm::vec3(points[cur].x, points[cur].y, 0));
+        polyline.addVertex(glm::vec3(points[cur].x, points[cur].y, 0));
 			}
 		}
 		switch(feature) {

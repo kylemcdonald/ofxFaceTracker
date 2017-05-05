@@ -2,7 +2,9 @@
 
 #include "ofMain.h"
 #include "ofxCv.h"
+#include "ofxOpenCv.h"
 #include "ofxOsc.h"
+#include "ofxGui.h"
 
 #include "ofxFaceTracker.h"
 
@@ -22,22 +24,38 @@ public:
 			buffer.pop_front();
 		}
 		
-		// get the median at the 95th percentile
+		// get the median at the 92nd percentile
 		vector<float> all;
 		all.assign(buffer.begin(), buffer.end());
 		ofSort(all);
-		float percentile = .95;
+		float percentile = 0.92;
 		threshold = all[(int) (all.size() * percentile)];
 	}
+	
+	void addSample(float sample, float percentile) {
+		buffer.push_back(sample);
+		if(buffer.size() > maxSize) {
+			buffer.pop_front();
+		}
+		
+		// get the median at the provided percentile
+		vector<float> all;
+		all.assign(buffer.begin(), buffer.end());
+		ofSort(all);
+		threshold = all[(int) (all.size() * percentile)];
+	}
+	
 	void glMapX(float minInput, float maxInput, float minOutput, float maxOutput) {
-		float inputRange = maxInput - minInput, outputRange = maxOutput - minOutput;
+		float inputRange = maxInput - minInput;
+		float outputRange = maxOutput - minOutput;
 		ofTranslate(minOutput, 0);
 		ofScale(outputRange, 1);
 		ofScale(1. / inputRange, 1);
 		ofTranslate(-minInput, 0);
 	}
 	void glMapY(float minInput, float maxInput, float minOutput, float maxOutput) {
-		float inputRange = maxInput - minInput, outputRange = maxOutput - minOutput;
+		float inputRange = maxInput - minInput;
+		float outputRange = maxOutput - minOutput;
 		ofTranslate(0, minOutput);
 		ofScale(1, outputRange);
 		ofScale(1, 1. / inputRange);
@@ -59,7 +77,7 @@ public:
 		ofTranslate(x, y);
 		ofFill();
 		bool bright = !buffer.empty() && threshold != 0 && buffer.back() > threshold;
-		ofSetColor(bright ? 128 : 0);
+		ofSetColor(bright ? 160 : 0);
 		ofDrawRectangle(0, 0, maxSize, height);
 		ofNoFill();
 		ofSetColor(255);
@@ -95,20 +113,22 @@ public:
 	
 	ofVideoGrabber cam;
 	ofxFaceTracker tracker;
+	ofImage camImage;
 	
 	ofFbo eyeFbo;
 	ofPixels eyePixels;
-	ofImage sobelImg;
-	cv::Mat grayFloat;
-	cv::Mat sobelx, sobely;
-	cv::Mat rowMean, gray, sobel;
-	ofPolyline rowMeanLine;
+	ofxCvColorImage		eyeImageColor;
+	ofxCvGrayscaleImage	eyeImageGray;
+	ofxCvGrayscaleImage	eyeImageGrayPrev;
+	ofxCvGrayscaleImage	eyeImageGrayDif;
+	
 	ofMesh leftRectImg, rightRectImg;
-
-	float runningMean;
 	Graph rowGraph;
 	
-    glm::vec2 position;
+	glm::vec2 position;
+	ofxFloatSlider percentileThreshold;
+	ofxPanel gui;
+	
 	float scale;
 	ofMatrix4x4 rotationMatrix;
 	

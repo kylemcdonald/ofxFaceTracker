@@ -1,6 +1,7 @@
 #include "ofApp.h"
 
-// from ProCamToolkit
+//===================================================================
+// Used to extract eye rectangles. from ProCamToolkit
 GLdouble modelviewMatrix[16], projectionMatrix[16];
 GLint viewport[4];
 void updateProjectionState() {
@@ -35,6 +36,8 @@ void addTexCoords(ofMesh& to, const vector<T>& from) {
 	}
 }
 
+
+//===================================================================
 using namespace ofxCv;
 
 void ofApp::setup() {
@@ -42,17 +45,35 @@ void ofApp::setup() {
 	ofSetVerticalSync(true);
 	ofSetDrawBitmapMode(OF_BITMAPMODE_MODEL_BILLBOARD);
 	cam.initGrabber(640, 480);
-
-	tracker.setup();
+	
+	// Set up images we'll use for frame-differencing
+	camImage.allocate(640, 480, OF_IMAGE_COLOR);
+	eyeImageColor.allocate(128, 48);
+	eyeImageGray.allocate(128,48);
+	eyeImageGrayPrev.allocate(128,48);
+	eyeImageGrayDif.allocate(128,48);
 	eyeFbo.allocate(128, 48, GL_RGB);
-	runningMean = 24;
+	
+	// Initialize our images to black.
+	eyeImageColor.set(0);
+	eyeImageGray.set(0);
+	eyeImageGrayPrev.set(0);
+	eyeImageGrayDif.set(0);
 
+	// Set up other objects.
+	tracker.setup();
 	osc.setup("localhost", 8338);
+	
+	// This GUI slider adjusts the sensitivity of the blink detector.
+	gui.setup();
+	gui.add(percentileThreshold.setup("Threshold", 0.92, 0.75, 1.0));
 }
 
 void ofApp::update() {
 	cam.update();
 	if(cam.isFrameNew()) {
+		camImage.setFromPixels(cam.getPixels());
+		
 		tracker.update(toCv(cam));
 		position = tracker.getPosition();
 		scale = tracker.getScale();
@@ -135,6 +156,7 @@ void ofApp::update() {
 			addTexCoords(normLeft, leftRectImg.getVertices());
 			addTexCoords(normRight, rightRectImg.getVertices());
 
+			// Copy the extracted quadrilaterals into the eyeFbo
 			eyeFbo.begin();
 			ofSetColor(255);
 			ofFill();
@@ -145,69 +167,59 @@ void ofApp::update() {
 			cam.getTexture().unbind();
 			eyeFbo.end();
 			eyeFbo.readToPixels(eyePixels);
-
-			convertColor(eyePixels, gray, CV_RGB2GRAY);
-			normalize(gray, gray);
-			Sobel(gray, sobelx, CV_32F, 1, 0, 3, 1);
-			Sobel(gray, sobely, CV_32F, 0, 1, 3, 1);
-			sobel = abs(sobelx) + abs(sobely);
-			bitwise_not(gray, gray);
-			gray.convertTo(grayFloat, CV_32F);
-			sobel += gray;
-
-			rowMean = meanRows(sobel);
-			// clear the ends
-			rowMean.at<float>(0) = 0;
-			rowMean.at<float>(rowMean.rows - 1) = 0;
-			// build the line
-			rowMeanLine.clear();
-			float avg = 0, sum = 0;
-			for(int i = 0; i < rowMean.rows; i++) {
-				float cur = rowMean.at<float>(i);
-				avg += i * cur;
-				sum += cur;
-				rowMeanLine.addVertex(cur, i);
+			
+			// Convert the combined eye-image to grayscale,
+			// and put its data into a frame-differencer.
+			eyeImageColor.setFromPixels(eyePixels);
+			eyeImageGrayPrev.setFromPixels(eyeImageGray.getPixels());
+			eyeImageGray.setFromColorImage(eyeImageColor);
+			eyeImageGray.contrastStretch();
+			eyeImageGrayDif.absDiff(eyeImageGrayPrev, eyeImageGray);
+			
+			// Compute the average brightness of the difference image.
+			unsigned char* difPixels = eyeImageGrayDif.getPixels().getData();
+			int nPixels = 128*48;
+			float sum = 0;
+			for (int i=0; i<nPixels; i++){
+				if (difPixels[i] > 4){ // don't consider diffs less than 4 gray levels;
+					sum += difPixels[i]; // reduces noise
+				}
 			}
-			avg /= sum;
-			rowGraph.addSample(avg - runningMean);
-			runningMean = 0;//ofLerp(runningMean, avg, .3);
+			// Store the current average in the row graph
+			float avg = sum / (float) nPixels;
+			rowGraph.addSample(avg, percentileThreshold);
 
-			cv::Mat sobelImgMat = toCv(sobelImg);
-			imitate(sobelImg, gray);
-			sobel.convertTo(sobelImgMat, CV_8U, .5);
-			sobelImg.update();
-
+			// Send out an OSC message,
+			// With the value 1 if the current average is above threshold
 			ofxOscMessage msg;
 			msg.setAddress("/gesture/blink");
-			msg.addIntArg(rowGraph.getState() ? 1 : 0);
+			int oscMsgInt = (rowGraph.getState() ? 1 : 0);
+			msg.addIntArg(oscMsgInt);
 			osc.sendMessage(msg);
+			
+			// Print out a message to the console if there was a blink.
+			if (oscMsgInt > 0){
+				printf("Blink happened at frame #:	%d\n", (int)ofGetFrameNum());
+			}
+		
 		}
 	}
 }
 
 void ofApp::draw() {
 	ofSetColor(255);
-	cam.draw(0, 0);
+	
+	camImage.draw(0, 0);
 	tracker.draw();
 	leftRectImg.draw();
 	rightRectImg.draw();
+	
+	float y = 58;
+	gui.draw();
+	eyeImageGray.draw(10, y);    y+=58;
+	eyeImageGrayDif.draw(10, y); y+=58;
+	rowGraph.draw(10, y, 48);
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, ofGetHeight() - 20);
-
-	ofTranslate(10, 10);
-	eyeFbo.draw(0, 0);
-
-	ofTranslate(0, 48 + 10);
-	sobelImg.draw(0, 0);
-
-	ofNoFill();
-	ofPushMatrix();
-	ofTranslate(128, 0);
-	ofScale(.3, 1);
-	rowMeanLine.draw();
-	ofPopMatrix();
-
-	ofTranslate(0, 48 + 10);
-	rowGraph.draw(0, 0, 64);
 }
 
 void ofApp::keyPressed(int key) {
