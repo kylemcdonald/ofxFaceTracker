@@ -49,7 +49,7 @@ public:
 	void draw(int x, int y, int height) {
 		line.clear();
 		for(int i = 0; i < buffer.size(); i++) {
-			line.addVertex(ofVec2f(i, buffer[i]));
+            line.addVertex(glm::vec3(i, buffer[i], 0));
 		}
 		ofPushMatrix();
 		ofPushStyle();
@@ -108,7 +108,7 @@ public:
 	float runningMean;
 	Graph rowGraph;
 	
-	ofVec2f position;
+    glm::vec2 position;
 	float scale;
 	ofMatrix4x4 rotationMatrix;
 	

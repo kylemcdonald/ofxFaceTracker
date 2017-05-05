@@ -14,3 +14,11 @@ for example in examples:
     shutil.copytree(sourceModelPath, targetModelPath)
 
     print ("Copied model data into " + targetModelPath)
+
+# Don't forget FACEOSC.
+targetModelPath = "FaceOSC/bin/data/model/"
+try: shutil.rmtree(targetModelPath)
+except: pass
+shutil.copytree(sourceModelPath, targetModelPath)
+
+print ("Copied model data into " + targetModelPath)

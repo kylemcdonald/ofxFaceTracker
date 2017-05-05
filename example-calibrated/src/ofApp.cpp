@@ -8,7 +8,7 @@ using namespace cv;
 void ofApp::setup() {
 	ofSetVerticalSync(true);
 	
-	cam.initGrabber(640, 480);
+	cam.setup(640, 480);
 	tracker.setup();
 	calibration.load("mbp-isight.yml");
 	

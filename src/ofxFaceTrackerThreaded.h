@@ -43,13 +43,13 @@ public:
 	}
 	glm::vec2 getImagePoint(int i) const {
 		if(failed || imagePointsFront.size() == 0) {
-			return ofVec2f();
+			return glm::vec2();
 		}
 		return imagePointsFront[i];
 	}
     glm::vec3 getObjectPoint(int i) const {
 		if(failed || objectPointsFront.size() == 0) {
-			return ofVec3f();
+			return glm::vec3();
 		}
 		return objectPointsFront[i];
 	}
@@ -57,7 +57,7 @@ public:
 		if(meanObjectPointsReady || meanObjectPointsFront.size() != 0) {
 			return meanObjectPointsFront[i];
 		} else {
-			return ofVec3f();
+			return glm::vec3();
 		}
 	}
 	bool getVisibility(int i) const {

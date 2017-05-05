@@ -6,7 +6,7 @@ void ofApp::setup() {
 	ofSetVerticalSync(true);
 	ofSetDrawBitmapMode(OF_BITMAPMODE_MODEL_BILLBOARD);
 
-	cam.initGrabber(640, 480);
+	cam.setup(640, 480);
 
 	tracker.setup();
 }
@@ -41,6 +41,14 @@ void ofApp::draw() {
 		//easyCam.end();
 	}
 }
+
+
+void ofApp::exit()
+{
+    tracker.stopThread();
+    tracker.waitForThread();
+}
+
 
 void ofApp::keyPressed(int key) {
 	if(key == 'r') {

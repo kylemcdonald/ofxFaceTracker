@@ -4,7 +4,14 @@ using namespace ofxCv;
 
 void ofApp::setup() {
 	tracker.setup();
-    dir.listDir("raw");
+    std::size_t n = dir.listDir("faces/");
+
+    if (n == 0)
+    {
+        ofLogError() << "No files in the directory. Quitting.";
+        ofExit();
+    }
+
     cur = 0;
     eyeDistance = 32;
     fbo.allocate(ofGetWidth(), ofGetHeight());
@@ -12,7 +19,7 @@ void ofApp::setup() {
 
 void ofApp::update() {
     string filename = dir.getFile(cur).getFileName();
-    img.load("raw/" + filename);
+    img.load("faces/" + filename);
     tracker.reset();
     if(tracker.update(toCv(img))) {
         fbo.begin();
@@ -26,7 +33,7 @@ void ofApp::update() {
         float rotation = (rightEye - leftEye).angle(ofVec2f(1, 0));
         ofTranslate(-eyeDistance / 2, 0);
         ofScale(scale, scale);
-        ofRotate(rotation);
+        ofRotateDeg(rotation);
         ofTranslate(-leftEye.x, -leftEye.y);
         img.draw(0, 0);
         ofPopMatrix();

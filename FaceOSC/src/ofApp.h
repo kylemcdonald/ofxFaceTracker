@@ -27,7 +27,7 @@ public:
 	ofBaseVideoDraws *videoSource;
     
 	ofxFaceTracker tracker;
-	ofMatrix4x4 rotationMatrix;
+    glm::mat4 rotationMatrix;
 	
 	bool bDrawMesh;
     

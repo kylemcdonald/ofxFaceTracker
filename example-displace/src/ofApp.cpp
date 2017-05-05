@@ -12,7 +12,7 @@ void ofApp::setup() {
     
     // add main face points
     ofMesh faceMesh = imgTracker.getImageMesh();
-    for(int i = 0; i < faceMesh.getNumVertices(); i++) {
+    for(std::size_t i = 0; i < faceMesh.getNumVertices(); i++) {
         delaunay.addPoint(faceMesh.getVertex(i));
     }
     
@@ -20,7 +20,7 @@ void ofApp::setup() {
     float scaleFactor = 1.6;
     ofPolyline outline = imgTracker.getImageFeature(ofxFaceTracker::FACE_OUTLINE);
     ofVec2f position = imgTracker.getPosition();
-    for(int i = 0; i < outline.size(); i++) {
+    for(std::size_t i = 0; i < outline.size(); i++) {
         ofVec2f point((outline[i] - position) * scaleFactor + position);
         delaunay.addPoint(point);
     }
@@ -46,12 +46,12 @@ void ofApp::draw() {
     ofMesh finalMesh;
     finalMesh = triangulated;
     for(auto& v : triangulated.getVertices()) {
-        finalMesh.addTexCoord(v);
+        finalMesh.addTexCoord(v.xy());
     }
     
     // modify mesh
     for(auto& v : finalMesh.getVertices()) {
-        v += ofVec2f(ofRandomf(), ofRandomf()) * (mouseX/10.);
+        v += glm::vec3(ofRandomf(), ofRandomf(), 0) * (mouseX/10.);
     }
     
     if(ofGetKeyPressed('1')) {

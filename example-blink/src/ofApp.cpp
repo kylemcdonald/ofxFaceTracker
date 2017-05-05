@@ -9,19 +9,19 @@ void updateProjectionState() {
 	glGetIntegerv(GL_VIEWPORT, viewport);
 }
 
-ofVec3f ofWorldToScreen(ofVec3f world) {
+glm::vec3 ofWorldToScreen(glm::vec3 world) {
 	updateProjectionState();
 	GLdouble x, y, z;
 	gluProject(world.x, world.y, world.z, modelviewMatrix, projectionMatrix, viewport, &x, &y, &z);
-	ofVec3f screen(x, y, z);
+	glm::vec3 screen(x, y, z);
 	screen.y = ofGetHeight() - screen.y;
 	return screen;
 }
 
 ofMesh getProjectedMesh(const ofMesh& mesh) {
 	ofMesh projected = mesh;
-	for(int i = 0; i < mesh.getNumVertices(); i++) {
-		ofVec3f cur = ofWorldToScreen(mesh.getVerticesPointer()[i]);
+    for(std::size_t i = 0; i < mesh.getNumVertices(); i++) {
+		glm::vec3 cur = ofWorldToScreen(mesh.getVerticesPointer()[i]);
 		cur.z = 0;
 		projected.setVertex(i, cur);
 	}
@@ -30,8 +30,8 @@ ofMesh getProjectedMesh(const ofMesh& mesh) {
 
 template <class T>
 void addTexCoords(ofMesh& to, const vector<T>& from) {
-	for(int i = 0; i < from.size(); i++) {
-		to.addTexCoord(from[i]);
+    for(std::size_t i = 0; i < from.size(); i++) {
+        to.addTexCoord(glm::vec2(from[i].x, from[i].y));
 	}
 }
 
@@ -59,7 +59,7 @@ void ofApp::update() {
 		rotationMatrix = tracker.getRotationMatrix();
 
 		if(tracker.getFound()) {
-			ofVec2f
+			glm::vec2
 			leftOuter = tracker.getImagePoint(36),
 			leftInner = tracker.getImagePoint(39),
 			rightInner = tracker.getImagePoint(42),
@@ -68,20 +68,20 @@ void ofApp::update() {
 			ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
 			ofPolyline rightEye = tracker.getImageFeature(ofxFaceTracker::RIGHT_EYE);
 
-			ofVec2f leftCenter = leftEye.getBoundingBox().getCenter();
-			ofVec2f rightCenter = rightEye.getBoundingBox().getCenter();
+            glm::vec2 leftCenter = leftEye.getBoundingBox().getCenter().xy();
+			glm::vec2 rightCenter = rightEye.getBoundingBox().getCenter().xy();
 
-			float leftRadius = (leftCenter.distance(leftInner) + leftCenter.distance(leftOuter)) / 2;
-			float rightRadius = (rightCenter.distance(rightInner) + rightCenter.distance(rightOuter)) / 2;
+            float leftRadius = (glm::distance(leftCenter, leftInner) + glm::distance(leftCenter, leftOuter)) / 2;
+            float rightRadius = (glm::distance(rightCenter, rightInner) + glm::distance(rightCenter, rightOuter)) / 2;
 
-			ofVec2f
+			glm::vec3
 			leftOuterObj = tracker.getObjectPoint(36),
 			leftInnerObj = tracker.getObjectPoint(39),
 			rightInnerObj = tracker.getObjectPoint(42),
 			rightOuterObj = tracker.getObjectPoint(45);
 
-			ofVec3f upperBorder(0, -3.5, 0), lowerBorder(0, 2.5, 0);
-			ofVec3f leftDirection(-1, 0, 0), rightDirection(+1, 0, 0);
+			glm::vec3 upperBorder(0, -3.5, 0), lowerBorder(0, 2.5, 0);
+			glm::vec3 leftDirection(-1, 0, 0), rightDirection(+1, 0, 0);
 			float innerBorder = 1.5, outerBorder = 2.5;
 
 			ofMesh leftRect, rightRect;
@@ -124,10 +124,10 @@ void ofApp::update() {
 			 */
 
 			ofMesh normRect, normLeft, normRight;
-			normRect.addVertex(ofVec2f(0, 0));
-			normRect.addVertex(ofVec2f(64, 0));
-			normRect.addVertex(ofVec2f(64, 48));
-			normRect.addVertex(ofVec2f(0, 48));
+			normRect.addVertex(glm::vec3(0, 0, 0));
+			normRect.addVertex(glm::vec3(64, 0, 0));
+			normRect.addVertex(glm::vec3(64, 48, 0));
+			normRect.addVertex(glm::vec3(0, 48, 0));
 			normLeft.setMode(OF_PRIMITIVE_TRIANGLE_FAN);
 			normRight.setMode(OF_PRIMITIVE_TRIANGLE_FAN);
 			normLeft.addVertices(normRect.getVertices());

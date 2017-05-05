@@ -3,3 +3,4 @@ ofxFaceTracker
 ofxGui
 ofxOpenCv
 ofxOsc
+ofxPoco
