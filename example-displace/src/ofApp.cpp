@@ -19,9 +19,9 @@ void ofApp::setup() {
     // add boundary face points
     float scaleFactor = 1.6;
     ofPolyline outline = imgTracker.getImageFeature(ofxFaceTracker::FACE_OUTLINE);
-    ofVec2f position = imgTracker.getPosition();
+    glm::vec2 position = imgTracker.getPosition();
     for(std::size_t i = 0; i < outline.size(); i++) {
-        ofVec2f point((outline[i] - position) * scaleFactor + position);
+        glm::vec2 point = (outline[i] - position) * scaleFactor + position;
         delaunay.addPoint(point);
     }
     
