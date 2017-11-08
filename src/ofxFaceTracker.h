@@ -96,8 +96,8 @@ public:
 protected:
 	void updateObjectPoints();
 	void addTriangleIndices(ofMesh& mesh) const;
-	static vector<int> getFeatureIndices(Feature feature);
-	template <class T> ofPolyline getFeature(Feature feature, vector<T> points) const;
+	static std::vector<int> getFeatureIndices(Feature feature);
+	template <class T> ofPolyline getFeature(Feature feature, std::vector<T> points) const;
 	
 	bool failed;
 	int age;
@@ -107,7 +107,7 @@ protected:
 	double rescale;
 	int frameSkip;
 	
-	vector<int> wSize1, wSize2;
+	std::vector<int> wSize1, wSize2;
 	int iterations;
 	int attempts;
 	double clamp, tolerance;
@@ -121,10 +121,10 @@ protected:
 };
 
 template <class T>
-ofPolyline ofxFaceTracker::getFeature(Feature feature, vector<T> points) const {
+ofPolyline ofxFaceTracker::getFeature(Feature feature, std::vector<T> points) const {
 	ofPolyline polyline;
 	if(!failed) {
-		vector<int> indices = getFeatureIndices(feature);
+		std::vector<int> indices = getFeatureIndices(feature);
 		for(int i = 0; i < indices.size(); i++) {
 			int cur = indices[i];
 			if(useInvisible || getVisibility(cur)) {

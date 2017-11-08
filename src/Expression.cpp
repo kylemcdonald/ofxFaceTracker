@@ -2,15 +2,15 @@
 
 using namespace cv;
 
-Expression::Expression(string description) {
+Expression::Expression(std::string description) {
 	this->description = description;
 }
 
-void Expression::setDescription(string description) {
+void Expression::setDescription(std::string description) {
 	this->description = description;
 }
 
-string Expression::getDescription() const {
+std::string Expression::getDescription() const {
 	return description;
 }
 
@@ -30,7 +30,7 @@ void Expression::reset() {
 	samples.clear();
 }
 
-void Expression::save(string filename) const {
+void Expression::save(std::string filename) const {
 	FileStorage fs(ofToDataPath(filename), FileStorage::WRITE);
 	fs <<	"description" << description <<
 	"samples" << "[";
@@ -40,9 +40,9 @@ void Expression::save(string filename) const {
 	fs << "]";
 }
 
-void Expression::load(string filename) {
+void Expression::load(std::string filename) {
 	FileStorage fs(ofToDataPath(filename), FileStorage::READ);
-	description = (string) fs["description"];
+	description = (std::string) fs["description"];
 	FileNode samplesNode = fs["samples"];
 	int n = samplesNode.size();
 	samples.resize(n);

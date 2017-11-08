@@ -61,8 +61,8 @@ void ofApp::draw() {
 		triangulated.drawWireframe();
 		
 		// find mapping between triangulated mesh and original
-		vector<int> delaunayToFinal(triangulated.getNumVertices(), -1);
-		vector<int> finalToDelaunay;
+        std::vector<int> delaunayToFinal(triangulated.getNumVertices(), -1);
+		std::vector<int> finalToDelaunay;
 		int reindexed = 0;
 		for(std::size_t i = 0; i < faceMesh.getNumVertices(); i++) {
 			float minDistance = 0;

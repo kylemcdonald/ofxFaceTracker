@@ -30,7 +30,7 @@ ofMesh getProjectedMesh(const ofMesh& mesh) {
 }
 
 template <class T>
-void addTexCoords(ofMesh& to, const vector<T>& from) {
+void addTexCoords(ofMesh& to, const std::vector<T>& from) {
     for(std::size_t i = 0; i < from.size(); i++) {
         to.addTexCoord(glm::vec2(from[i].x, from[i].y));
 	}
