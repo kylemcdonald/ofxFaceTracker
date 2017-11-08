@@ -12,10 +12,11 @@ void updateProjectionState() {
 
 glm::vec3 ofWorldToScreen(glm::vec3 world) {
 	updateProjectionState();
-	GLdouble x, y, z;
-	gluProject(world.x, world.y, world.z, modelviewMatrix, projectionMatrix, viewport, &x, &y, &z);
-	glm::vec3 screen(x, y, z);
-	screen.y = ofGetHeight() - screen.y;
+    glm::vec3 screen = glm::project(glm::dvec3(world),
+                                    glm::make_mat4(modelviewMatrix),
+                                    glm::make_mat4(projectionMatrix),
+                                    glm::make_vec4(viewport));
+    screen.y = ofGetHeight() - screen.y;
 	return screen;
 }
 
