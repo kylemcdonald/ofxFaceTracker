@@ -281,6 +281,8 @@ ofxFaceTracker::Direction ofxFaceTracker::getDirection() const {
 		case 1: return FACING_LEFT;
 		case 2: return FACING_RIGHT;
 	}
+
+    return FACING_UNKNOWN;
 }
 
 ofPolyline ofxFaceTracker::getImageFeature(Feature feature) const {
