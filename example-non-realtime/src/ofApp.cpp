@@ -27,8 +27,9 @@ string gestureNames[] = {
 int gestureCount = 8;
 
 void ofApp::setup() {
+    // You must add your own video to bin/data.
     video.load("video.mov");
-	tracker.setup();
+    tracker.setup();
     tracker.setRescale(.25);
     tracker.setIterations(100);
     tracker.setClamp(10);
@@ -51,12 +52,19 @@ void ofApp::update() {
 }
 
 void ofApp::draw() {
-    float scale = ofGetWidth() / video.getWidth();
-    ofScale(scale, scale);
-    video.draw(0, 0);
-    ofSetLineWidth(2);
-    tracker.draw();
-    ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
+    if (video.isLoaded())
+    {
+        float scale = ofGetWidth() / video.getWidth();
+        ofScale(scale, scale);
+        video.draw(0, 0);
+        ofSetLineWidth(2);
+        tracker.draw();
+        ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
+    }
+    else
+    {
+        ofDrawBitmapStringHighlight("No video loaded. You must place one in the bin/data folder.", 10, 20);
+    }
 }
 
 void ofApp::keyPressed(int key) {

@@ -15,5 +15,6 @@ public:
 	ofVideoPlayer video;
 	ofxFaceTracker tracker;
     vector<ofMesh> trackedFrames;
-    vector<vector<float> > trackedGestures;
+    vector<vector<float>> trackedGestures;
+
 };

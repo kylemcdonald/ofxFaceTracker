@@ -13,16 +13,17 @@ public:
 	void update();
 	void draw();
 	void keyPressed(int key);
-	
+    void exit();
+
 	ofVideoGrabber cam;
 	ofxFaceTrackerThreaded tracker;
-	ofVec2f position;
+    glm::vec2 position;
 	float scale;
-	ofVec3f orientation;
-	ofMatrix4x4 rotationMatrix;
+    glm::vec3 orientation;
+    glm::mat4 rotationMatrix;
 	
 	Mat translation, rotation;
-	ofMatrix4x4 pose;
+    glm::mat4 pose;
 	
 	ofEasyCam easyCam;
 };

@@ -1,8 +1,7 @@
 #include "ofApp.h"
-#include "ofAppGlutWindow.h"
+
 
 int main() {
-	ofAppGlutWindow window;
-	ofSetupOpenGL(&window, 640, 960, OF_WINDOW);
-	ofRunApp(new ofApp());
+    ofSetupOpenGL(640, 960, OF_WINDOW);
+    return ofRunApp(std::make_shared<ofApp>());
 }

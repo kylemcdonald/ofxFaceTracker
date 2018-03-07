@@ -41,32 +41,32 @@ public:
 	const cv::Mat& getObjectPointsMat() const {
 		return objectPointsMatFront;
 	}
-	ofVec2f getImagePoint(int i) const {
+	glm::vec2 getImagePoint(int i) const {
 		if(failed || imagePointsFront.size() == 0) {
-			return ofVec2f();
+			return glm::vec2();
 		}
 		return imagePointsFront[i];
 	}
-	ofVec3f getObjectPoint(int i) const {
+    glm::vec3 getObjectPoint(int i) const {
 		if(failed || objectPointsFront.size() == 0) {
-			return ofVec3f();
+			return glm::vec3();
 		}
 		return objectPointsFront[i];
 	}
-	ofVec3f getMeanObjectPoint(int i) const {
+	glm::vec3 getMeanObjectPoint(int i) const {
 		if(meanObjectPointsReady || meanObjectPointsFront.size() != 0) {
 			return meanObjectPointsFront[i];
 		} else {
-			return ofVec3f();
+			return glm::vec3();
 		}
 	}
 	bool getVisibility(int i) const {
 		return failed;
 	}
-	ofVec3f getOrientation() const {
+    glm::vec3 getOrientation() const {
 		return orientation;
 	}
-	ofVec2f getPosition() const {
+	glm::vec2 getPosition() const {
 		return position;
 	}
 	float getScale() const {
@@ -96,8 +96,8 @@ protected:
 			threadedTracker->setClamp(clamp);
 			threadedTracker->setTolerance(tolerance);
 			threadedTracker->setAttempts(attempts);
-      threadedTracker->setUseInvisible(useInvisible);
-      threadedTracker->setHaarMinSize(tracker._fdet._min_size);
+			threadedTracker->setUseInvisible(useInvisible);
+			threadedTracker->setHaarMinSize(tracker._fdet._min_size);
 			
 			if(needsResetting){
                 threadedTracker->ofxFaceTracker::reset();
@@ -126,14 +126,14 @@ protected:
 	
 	bool needsUpdatingBack, needsUpdatingFront, needsResetting;
 	cv::Mat imageMiddle, imageBack;
-	vector<ofVec3f> objectPointsFront, objectPointsMiddle;
-	vector<ofVec2f> imagePointsFront, imagePointsMiddle;
-	vector<ofVec3f> meanObjectPointsFront, meanObjectPointsMiddle;
+	vector<glm::vec3> objectPointsFront, objectPointsMiddle;
+	vector<glm::vec2> imagePointsFront, imagePointsMiddle;
+	vector<glm::vec3> meanObjectPointsFront, meanObjectPointsMiddle;
 	bool failedMiddle;
 	bool meanObjectPointsReady;
 	
-	ofVec3f orientation;
+	glm::vec3 orientation;
 	float scale;
-	ofVec2f position;
+	glm::vec2 position;
 	cv::Mat objectPointsMatBack, objectPointsMatMiddle, objectPointsMatFront; 
 };

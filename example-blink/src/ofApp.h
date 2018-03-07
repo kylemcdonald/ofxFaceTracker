@@ -67,7 +67,7 @@ public:
 	void draw(int x, int y, int height) {
 		line.clear();
 		for(int i = 0; i < buffer.size(); i++) {
-			line.addVertex(ofVec2f(i, buffer[i]));
+            line.addVertex(glm::vec3(i, buffer[i], 0));
 		}
 		ofPushMatrix();
 		ofPushStyle();
@@ -125,10 +125,10 @@ public:
 	ofMesh leftRectImg, rightRectImg;
 	Graph rowGraph;
 	
+	glm::vec2 position;
 	ofxFloatSlider percentileThreshold;
 	ofxPanel gui;
 	
-	ofVec2f position;
 	float scale;
 	ofMatrix4x4 rotationMatrix;
 	

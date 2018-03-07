@@ -34,13 +34,13 @@ public:
 	int getAge() const;
 	virtual bool getVisibility(int i) const;
 	
-	vector<ofVec2f> getImagePoints() const;
-	vector<ofVec3f> getObjectPoints() const;
-	vector<ofVec3f> getMeanObjectPoints() const;
+	vector<glm::vec2> getImagePoints() const;
+	vector<glm::vec3> getObjectPoints() const;
+	vector<glm::vec3> getMeanObjectPoints() const;
 	
-	virtual ofVec2f getImagePoint(int i) const;
-	virtual ofVec3f getObjectPoint(int i) const;
-	virtual ofVec3f getMeanObjectPoint(int i) const;
+    virtual glm::vec2 getImagePoint(int i) const;
+	virtual glm::vec3 getObjectPoint(int i) const;
+	virtual glm::vec3 getMeanObjectPoint(int i) const;
 	
 	ofMesh getImageMesh() const;
 	ofMesh getObjectMesh() const;
@@ -50,9 +50,9 @@ public:
 	virtual const cv::Mat& getObjectPointsMat() const;
 	
 	virtual ofRectangle getHaarRectangle() const;
-	virtual ofVec2f getPosition() const; // pixels
+	virtual glm::vec2 getPosition() const; // pixels
 	virtual float getScale() const; // arbitrary units
-	virtual ofVec3f getOrientation() const; // radians
+    virtual glm::vec3 getOrientation() const; // radians
 	ofMatrix4x4 getRotationMatrix() const;
 	
 	enum Direction {
@@ -96,8 +96,8 @@ public:
 protected:
 	void updateObjectPoints();
 	void addTriangleIndices(ofMesh& mesh) const;
-	static vector<int> getFeatureIndices(Feature feature);
-	template <class T> ofPolyline getFeature(Feature feature, vector<T> points) const;
+	static std::vector<int> getFeatureIndices(Feature feature);
+	template <class T> ofPolyline getFeature(Feature feature, std::vector<T> points) const;
 	
 	bool failed;
 	int age;
@@ -107,7 +107,7 @@ protected:
 	double rescale;
 	int frameSkip;
 	
-	vector<int> wSize1, wSize2;
+	std::vector<int> wSize1, wSize2;
 	int iterations;
 	int attempts;
 	double clamp, tolerance;
@@ -121,14 +121,14 @@ protected:
 };
 
 template <class T>
-ofPolyline ofxFaceTracker::getFeature(Feature feature, vector<T> points) const {
+ofPolyline ofxFaceTracker::getFeature(Feature feature, std::vector<T> points) const {
 	ofPolyline polyline;
 	if(!failed) {
-		vector<int> indices = getFeatureIndices(feature);
+		std::vector<int> indices = getFeatureIndices(feature);
 		for(int i = 0; i < indices.size(); i++) {
 			int cur = indices[i];
 			if(useInvisible || getVisibility(cur)) {
-                polyline.addVertex(ofVec3f(points[cur]));
+        polyline.addVertex(glm::vec3(points[cur].x, points[cur].y, 0));
 			}
 		}
 		switch(feature) {
@@ -151,7 +151,7 @@ ofMesh ofxFaceTracker::getMesh(vector<T> points) const {
 	if(!failed) {
 		int n = size();
 		for(int i = 0; i < n; i++) {
-            mesh.addVertex(ofVec3f(points[i]));
+			mesh.addVertex(glm::vec3(points[i].x, points[i].y, 0));
 			mesh.addTexCoord(getImagePoint(i));
 		}
 		addTriangleIndices(mesh);

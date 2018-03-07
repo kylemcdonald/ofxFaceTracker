@@ -3,7 +3,7 @@
 using namespace ofxCv;
 
 void ofApp::setup() {
-	cam.initGrabber(1280, 720);
+	cam.setup(1280, 720);
 	tracker.setup();
 }
 

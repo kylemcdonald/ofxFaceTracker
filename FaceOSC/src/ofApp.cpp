@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "ofxXmlPoco.h"
 
 using namespace ofxCv;
 using namespace cv;
@@ -20,7 +21,7 @@ void ofApp::loadSettings() {
     gui.add(bNormalizeRaw.set("normalize raw", false));
     
     // load settings file
-	ofXml xml;
+	ofxXmlPoco xml;
 	if(!xml.load(ofToDataPath("settings.xml"))) {
 		return;
 	}

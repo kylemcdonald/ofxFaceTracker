@@ -6,7 +6,7 @@ void ofApp::setup() {
     dir.allowExt("png");
     dir.allowExt("jpg");
     dir.allowExt("tiff");
-    dir.listDir(".");
+    dir.listDir("faces/");
     index = 0;
 	tracker.setup();
     tracker.setRescale(.5);

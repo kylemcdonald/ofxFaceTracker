@@ -5,7 +5,7 @@ using namespace cv;
 
 void ofApp::setup() {
 	ofSetVerticalSync(true);
-	cam.initGrabber(640, 480);
+	cam.setup(640, 480);
 	
 	tracker.setup();
 	tracker.setRescale(.5);
@@ -31,13 +31,13 @@ void ofApp::draw() {
 	ofTranslate(5, 10);
 	int n = classifier.size();
 	int primary = classifier.getPrimaryExpression();
-  for(int i = 0; i < n; i++){
+	for(int i = 0; i < n; i++){
 		ofSetColor(i == primary ? ofColor::red : ofColor::black);
 		ofDrawRectangle(0, 0, w * classifier.getProbability(i) + .5, h);
 		ofSetColor(255);
 		ofDrawBitmapString(classifier.getDescription(i), 5, 9);
 		ofTranslate(0, h + 5);
-  }
+	}
 	ofPopMatrix();
 	ofPopStyle();
 	
