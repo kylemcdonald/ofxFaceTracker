@@ -25,7 +25,7 @@ If you're interested in using ofxFaceTracker for face substitution, check out th
 
 ### iOS
 
-Getting the combination of ofxFaceTracker and ofxCv working on iOS can be complicated and confusing. Try using this [ofxFaceTracker-iOS repo](https://github.com/kylemcdonald/ofxFaceTracker-iOS) as a starting point.
+Getting the combination of ofxFaceTracker and ofxCv working on iOS can be complicated and confusing. Try using this [ofxFaceTracker-iOS repo](https://github.com/kylemcdonald/ofxFaceTracker-iOS) as a starting point.  Scott Hawley has also made a [FaceOSC iOS port to interface with Wekinator](https://github.com/drscotthawley/FaceOSC-iOS) that may helpful. 
 
 ### Advanced
 
