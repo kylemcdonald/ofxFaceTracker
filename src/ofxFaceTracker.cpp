@@ -31,16 +31,16 @@ vector<int> ofxFaceTracker::getFeatureIndices(Feature feature) {
         case LEFT_EYE: featureIndices = consecutive(36, 42);
         case RIGHT_EYE: featureIndices = consecutive(42, 48);
         case OUTER_MOUTH: featureIndices = consecutive(48, 60);
-		case INNER_MOUTH: {
-			static int innerMouth[] = {48,60,61,62,54,63,64,65};
+        case INNER_MOUTH: {
+            static int innerMouth[] = {48,60,61,62,54,63,64,65};
             featureIndices = std::vector<int>(innerMouth, innerMouth + 8);
-		}
-		case NOSE_BRIDGE: return consecutive(27, 31);
-		case NOSE_BASE: return consecutive(31, 36);
-		case FACE_OUTLINE: {
-			static int faceOutline[] = {17,18,19,20,21,22,23,24,25,26, 16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0};
+        }
+        case NOSE_BRIDGE: return consecutive(27, 31);
+        case NOSE_BASE: return consecutive(31, 36);
+        case FACE_OUTLINE: {
+            static int faceOutline[] = {17,18,19,20,21,22,23,24,25,26, 16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0};
             featureIndices = std::vector<int>(faceOutline, faceOutline + 27);
-		}
+        }
         case ALL_FEATURES: featureIndices = consecutive(0, 66);
 	}
     return featureIndices;
