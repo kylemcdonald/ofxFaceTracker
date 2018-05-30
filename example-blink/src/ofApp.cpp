@@ -90,8 +90,8 @@ void ofApp::update() {
 			ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
 			ofPolyline rightEye = tracker.getImageFeature(ofxFaceTracker::RIGHT_EYE);
 
-            glm::vec2 leftCenter = leftEye.getBoundingBox().getCenter().xy();
-			glm::vec2 rightCenter = rightEye.getBoundingBox().getCenter().xy();
+            glm::vec2 leftCenter = leftEye.getBoundingBox().getCenter();
+            glm::vec2 rightCenter = rightEye.getBoundingBox().getCenter();
 
             float leftRadius = (glm::distance(leftCenter, leftInner) + glm::distance(leftCenter, leftOuter)) / 2;
             float rightRadius = (glm::distance(rightCenter, rightInner) + glm::distance(rightCenter, rightOuter)) / 2;
