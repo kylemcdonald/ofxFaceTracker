@@ -17,9 +17,10 @@ public:
             ofLog(OF_LOG_ERROR, "ofxFaceTrackerThreaded :: Thread was not stopped. You must call the trackers waitForThread() in ofApp::exit() or exit() of class that holds this object.");
         }
 	}
-	void setup() {
+	void setup(int _forceWaitTime = 0) {
 		failed = true;
         failedMiddle = true;
+		forceWaitTime = _forceWaitTime;
 		ofxFaceTracker::setup();
 		startThread(true);
 	}
@@ -118,6 +119,8 @@ protected:
 			scale = threadedTracker->getScale();
 			objectPointsMatMiddle = threadedTracker->getObjectPointsMat();
 			dataMutex.unlock();
+
+			ofSleepMillis(forceWaitTime);
 		}
 		delete threadedTracker;
 	}
@@ -136,4 +139,6 @@ protected:
 	float scale;
 	glm::vec2 position;
 	cv::Mat objectPointsMatBack, objectPointsMatMiddle, objectPointsMatFront; 
+
+	int forceWaitTime;
 };
