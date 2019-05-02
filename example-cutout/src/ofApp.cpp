@@ -90,7 +90,7 @@ void ofApp::draw() {
 		for(std::size_t i = 0; i < delaunayToFinal.size(); i++) {
 			std::size_t index = finalToDelaunay[i];
 			finalMesh.addVertex(triangulated.getVertex(index));
-			finalMesh.addTexCoord(triangulated.getVertex(index).xy());
+			finalMesh.addTexCoord(triangulated.getVertex(index));
 		}
 		for(std::size_t i = 0; i < triangulated.getNumIndices(); i++) {
 			finalMesh.addIndex(delaunayToFinal[triangulated.getIndex(i)]);

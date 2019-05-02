@@ -46,7 +46,7 @@ void ofApp::draw() {
     ofMesh finalMesh;
     finalMesh = triangulated;
     for(auto& v : triangulated.getVertices()) {
-        finalMesh.addTexCoord(v.xy());
+        finalMesh.addTexCoord(v);
     }
     
     // modify mesh
