@@ -1,5 +1,7 @@
 # ofxFaceTracker is openFrameworks addon for face tracking, based on Jason Saragih's FaceTracker library.
 
+**This addon breaks on OF 0.11.0 due OpenCV 4. Consider using [ofxFaceTracker2](https://github.com/HalfdanJ/ofxFaceTracker2)**
+
 [openFrameworks](http://openFrameworks.cc/) is an open source toolkit for creative coding.
 
 All ofxFaceTracker code is available under the MIT license, while FaceTracker is provided free for non-commercial use. For commercial use of FaceTracker, please [request a quote](http://facetracker.net/quote/).
