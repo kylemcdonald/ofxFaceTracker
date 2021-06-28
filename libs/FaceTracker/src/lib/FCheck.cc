@@ -92,7 +92,7 @@ bool FCheck::Check(cv::Mat &im,cv::Mat &s)
   cv::MatIterator_<uchar>  mp = _paw._mask.begin<uchar>();
   for(i=0;i<h;i++){for(j=0;j<w;j++,++mp,++cp){if(*mp)*vp++ = (double)*cp;}}
   double var,mean=cv::sum(vec_)[0]/vec_.rows; vec_-=mean; var = vec_.dot(vec_); 
-  if(var < 1.0e-10)vec_ = cvScalar(0); else vec_ /= sqrt(var);
+  if(var < 1.0e-10)vec_ = cv::Scalar(0); else vec_ /= sqrt(var);
   if((_w.dot(vec_)+ _b) > 0)return true; else return false;
 }
 //===========================================================================

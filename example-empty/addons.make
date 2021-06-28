@@ -1,4 +1,4 @@
+ofxOpenCv
 ofxCv
 ofxFaceTracker
 ofxGui
-ofxOpenCv

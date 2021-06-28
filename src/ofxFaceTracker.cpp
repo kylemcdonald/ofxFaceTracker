@@ -106,8 +106,10 @@ void ofxFaceTracker::setup() {
 	string ftFile = ofToDataPath("model/face2.tracker");
 	string triFile = ofToDataPath("model/face.tri");
 	string conFile = ofToDataPath("model/face.con");
-	
+    string detFile = ofToDataPath("model/haarcascade_frontalface_default.xml");
+    
 	tracker.Load(ftFile.c_str());
+    tracker._fdet.Init(detFile.c_str(), 1.3);
 	tri = IO::LoadTri(triFile.c_str());
 	con = IO::LoadCon(conFile.c_str());  // not being used right now
 }

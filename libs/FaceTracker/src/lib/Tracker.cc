@@ -38,6 +38,7 @@
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
 #include <FaceTracker/Tracker.h>
+#include <opencv2/imgproc.hpp>
 #define db at<double>
 #define TSCALE 0.3
 using namespace FACETRACKER;
@@ -75,7 +76,10 @@ void Tracker::Write(ofstream &s)
 void Tracker::Read(ifstream &s,bool readType)
 {
   if(readType){int type; s >> type; assert(type == IO::TRACKER);}
-  _clm.Read(s); _fdet.Read(s); _fcheck.Read(s); IO::ReadMat(s,_rshape); 
+  _clm.Read(s);
+    _fdet.Read(s);
+    _fcheck.Read(s);
+    IO::ReadMat(s,_rshape);
   s >> _simil[0] >> _simil[1] >> _simil[2] >> _simil[3]; 
   _shape.create(2*_clm._pdm.nPoints(),1,CV_64F);
   _rect.x = 0; _rect.y = 0; _rect.width = 0; _rect.height = 0;
@@ -91,7 +95,7 @@ int Tracker::Track(cv::Mat im,vector<int> &wSize, const int  fpd,
   else{
     if((gray_.rows != im.rows) || (gray_.cols != im.cols))
       gray_.create(im.rows,im.cols,CV_8U);
-    cv::cvtColor(im,gray_,CV_BGR2GRAY);
+    cv::cvtColor(im,gray_,cv::COLOR_BGR2GRAY);
   }
   bool gen,rsize=true; cv::Rect R;
   if((_frame < 0) || (fpd >= 0 && fpd < _frame)){
@@ -138,10 +142,9 @@ cv::Rect Tracker::ReDetect(cv::Mat &im)
   int w = TSCALE*ww-temp_.cols+1,h = TSCALE*hh-temp_.rows+1;
   if((small_.rows != TSCALE*hh) || (small_.cols != TSCALE*ww))
     small_.create(TSCALE*hh,TSCALE*ww,CV_8U);
-  cv::resize(im,small_,cv::Size(TSCALE*ww,TSCALE*hh),0,0,CV_INTER_LINEAR);
+  cv::resize(im,small_,cv::Size(TSCALE*ww,TSCALE*hh),0,0,cv::INTER_LINEAR);
   if((ncc_.rows != h) || (ncc_.cols != w))ncc_.create(h,w,CV_32F);
-  IplImage im_o = small_,temp_o = temp_,ncc_o = ncc_;
-  cvMatchTemplate(&im_o,&temp_o,&ncc_o,CV_TM_CCOEFF_NORMED);
+  cv::matchTemplate(small_,temp_,ncc_,cv::TM_CCOEFF_NORMED);
   cv::MatIterator_<float> p = ncc_.begin<float>(); cv::Rect R;  
   R.width = temp_.cols; R.height = temp_.rows;
   for(y = 0; y < h; y++){
@@ -175,7 +178,7 @@ cv::Rect Tracker::UpdateTemplate(cv::Mat &im,cv::Mat &s,bool rsize)
     if(rsize){
       if((small_.rows != TSCALE*hh) || (small_.cols != TSCALE*ww))
 	small_.create(TSCALE*hh,TSCALE*ww,CV_8U);
-      cv::resize(im,small_,cv::Size(TSCALE*ww,TSCALE*hh),0,0,CV_INTER_LINEAR);
+      cv::resize(im,small_,cv::Size(TSCALE*ww,TSCALE*hh),0,0,cv::INTER_LINEAR);
     }
 		if (temp_.rows > 0)
 			R.width = (((R.width) < (temp_.rows)) ? (R.width) : (temp_.rows));  

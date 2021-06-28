@@ -37,10 +37,8 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __IO_h_
-#define __IO_h_
-#include <opencv/cv.h>
-#include <opencv2/opencv.hpp>
+#pragma once
+#include <opencv2/core.hpp>
 #include <fstream>
 namespace FACETRACKER
 {
@@ -50,7 +48,15 @@ namespace FACETRACKER
   */
   class IO{
   public:
-    enum{PDM = 0,PAW,PATCH,MPATCH,CLM,FDET,FCHECK,MFCHECK,TRACKER};
+    enum{PDM = 0,
+        PAW = 1,
+        PATCH = 2,
+        MPATCH = 3,
+        CLM = 4,
+        FDET = 5,
+        FCHECK = 6,
+        MFCHECK = 7,
+        TRACKER = 8};
     static void ReadMat(std::ifstream& s,cv::Mat &M);
     static void WriteMat(std::ofstream& s,cv::Mat &M);
     static cv::Mat LoadCon(const char* fname);
@@ -58,4 +64,3 @@ namespace FACETRACKER
   };
   //===========================================================================
 }
-#endif

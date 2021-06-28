@@ -37,9 +37,9 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __FDet_h_
-#define __FDet_h_
+#pragma once
 #include <FaceTracker/IO.h>
+#include <opencv2/objdetect.hpp>
 namespace FACETRACKER
 {
   //===========================================================================
@@ -54,9 +54,9 @@ namespace FACETRACKER
     int                      _min_size;       /**< ...                      */
     double                   _img_scale;      /**< ...                      */
     double                   _scale_factor;   /**< ...                      */
-    CvHaarClassifierCascade* _cascade;        /**< ...                      */
+    cv::CascadeClassifier    _cascade;        /**< ...                      */
 
-    FDet(){storage_=NULL;_cascade=NULL;}
+    FDet(){}
     FDet(const char* fname){this->Load(fname);}
     FDet(const char*  cascFile,
 	 const double img_scale = 1.3,
@@ -79,8 +79,8 @@ namespace FACETRACKER
     void Read(std::ifstream &s,bool readType = true);
     
   private:
-    cv::Mat small_img_; CvMemStorage* storage_;
-  };
+    cv::Mat small_img_;
+    std::stringstream cascade_conf;
   //===========================================================================
-}
-#endif
+};
+} // namespace FACETRACKER
